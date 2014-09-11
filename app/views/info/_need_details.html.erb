@@ -1,0 +1,38 @@
+<hr>
+<div class="need-wrapper inner-block">
+  <p class="need-number">This page addresses the following need:</p>
+  <h1 class="need">
+    <span class="role">As <%= need["role"] %></span>
+    <span class="goal">I need to <%= need["goal"] %></span>
+    <span class="benefit">so that <%= need["benefit"] %></span>
+  </h1>
+</div>
+<div class="reason-block first">
+  <div class="inner-block">
+    <% if need["met_when"].present? %>
+      <h2>The need is met when:</h2>
+      <ul>
+        <% need["met_when"].each do |met| %>
+          <li>the user <%= met %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2>There are no recorded criteria to know when this need is met.</h2>
+    <% end %>
+  </div>
+</div>
+
+<div class="reason-block">
+  <div class="inner-block">
+    <% if need["justifications"].present? %>
+      <h2>GOV.UK addresses this need because:</h2>
+      <ul>
+        <% need["justifications"].each do |justification| %>
+          <li><%= justification %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2>There are no recorded reasons why this need falls within the GOV.UK proposition.</h2>
+    <% end %>
+  </div>
+</div>
