@@ -9,6 +9,7 @@ gem 'spring', group: :development
 gem 'airbrake', '4.0.0'
 gem 'slimmer', '5.0.0'
 gem 'plek', '1.9.0'
+gem 'govuk-client-url_arbiter', '0.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '3.1.0'
@@ -16,4 +17,5 @@ end
 
 group :test do
   gem 'capybara', '2.4.1'
+  gem 'webmock', '1.18.0'
 end
