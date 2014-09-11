@@ -9,3 +9,7 @@ gem 'spring', group: :development
 gem 'airbrake', '4.0.0'
 gem 'slimmer', '5.0.0'
 gem 'plek', '1.9.0'
+
+group :development, :test do
+  gem 'rspec-rails', '3.1.0'
+end
