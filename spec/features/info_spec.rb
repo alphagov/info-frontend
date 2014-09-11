@@ -9,6 +9,9 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
+    expect(page).to have_text("User needs")
+    expect(page).to have_text("Apply for a UK visa")
+
     expect(page).to have_text("As non-EEA national")
     expect(page).to have_text("I need to apply for a UK visa")
     expect(page).to have_text("so that I can come to the UK to visit, study or work")

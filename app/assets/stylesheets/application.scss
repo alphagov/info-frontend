@@ -1,0 +1,101 @@
+@import "grid_layout";
+@import "typography";
+@import "colours";
+@import "reset";
+@import "shims";
+
+.info-frontend {
+  hr {
+    margin: 0 $gutter-half;
+    border: 1px solid $border-colour;
+    border-width: 2px 0 0;
+    display: block;
+    clear: both;
+  }
+  .outer-block {
+    @include outer-block;
+  }
+
+  .inner-block {
+    margin: $gutter-half;
+    @include media(tablet){
+      margin: $gutter;
+    }
+  }
+  .floated-children {
+    @include media(tablet){
+      padding: $gutter-half;
+    }
+
+    .inner-block {
+      margin: $gutter-half;
+    }
+  }
+  .need-heading {
+    @include media(tablet){
+      width: $three-quarters;
+      float: left;
+    }
+  }
+
+  .need-heading {
+    margin-bottom: $gutter;
+
+    p {
+      @include core-19;
+      color: $secondary-text-colour;
+    }
+    h1 {
+      @include bold-48;
+    }
+  }
+
+  .need-wrapper {
+    clear: both;
+    padding: $gutter 0 0;
+
+    .need-number {
+      color: $secondary-text-colour;
+    }
+  }
+
+  .need {
+
+    @include bold-48;
+    @include bold-36;
+    max-width: 18em;
+
+    .role {
+      color: $grass-green;
+    }
+    .goal {
+      color: $green;
+    }
+    .benefit {
+      color: $turquoise;
+    }
+  }
+
+  .reason-block {
+    padding-bottom: $gutter;
+
+    &.first {
+      clear: both;
+    }
+    @include media(tablet){
+      width: $half;
+      float: left;
+    }
+    h2 {
+      @include bold-19;
+      margin-bottom: $gutter-one-third;
+    }
+    ul {
+      li {
+        @include core-16;
+        margin-bottom: $gutter-one-third;
+        margin-left: 1.6em;
+      }
+    }
+  }
+}

@@ -1,3 +1,7 @@
 <div class="outer-block">
-  <%= render partial: "need", collection: @needs %>
+  <%= render partial: "artefact", locals: { artefact: @artefact } %>
+</div>
+
+<div class="outer-block">
+  <%= render partial: "need", collection: @needs, spacer_template: "spacer" %>
 </div>
