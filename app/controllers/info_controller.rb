@@ -1,6 +1,8 @@
 require 'govuk/client/metadata_api'
 
 class InfoController < ApplicationController
+  before_filter :set_expiry, only: :show
+
   def show
     metadata = GOVUK::Client::MetadataAPI.new.info(params[:slug])
     if metadata
