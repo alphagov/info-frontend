@@ -32,4 +32,12 @@ feature "Info page" do
 
     expect(page).to have_text("There aren't any recorded needs for this page.")
   end
+
+  scenario "When no information is available for a given slug" do
+    stub_metadata_api_has_no_data_for_slug('slug-without-info')
+
+    visit "/info/slug-without-info"
+
+    expect(page.status_code).to eq(404)
+  end
 end
