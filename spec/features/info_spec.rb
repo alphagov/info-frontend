@@ -15,5 +15,13 @@ feature "Info page" do
     expect(page).to have_text("As non-EEA national")
     expect(page).to have_text("I need to apply for a UK visa")
     expect(page).to have_text("so that I can come to the UK to visit, study or work")
+
+    # justification for need
+    expect(page).to have_text("It's something only government does")
+
+    # need acceptance criteria
+    expect(page).to have_text("Finds out how whether they're eligible")
+    expect(page).to have_text("How to apply")
+    expect(page).to have_text("What documents to provide")
   end
 end
