@@ -24,4 +24,12 @@ feature "Info page" do
     expect(page).to have_text("How to apply")
     expect(page).to have_text("What documents to provide")
   end
+
+  scenario "Seeing where there aren't any recorded user needs" do
+    stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
+
+    visit "/info/some-slug"
+
+    expect(page).to have_text("There aren't any recorded needs for this page.")
+  end
 end

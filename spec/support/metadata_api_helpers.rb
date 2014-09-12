@@ -41,6 +41,12 @@ module MetadataAPIHelpers
         "duplicate_of"=>0}],
      "_response_info"=>{"status"=>"ok"}}
   end
+
+  def metadata_api_response_with_no_needs
+    metadata_api_response_for_apply_uk_visa.tap do |response|
+      response["needs"] = []
+    end
+  end
 end
 
 RSpec.configure do |c|
