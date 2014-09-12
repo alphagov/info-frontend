@@ -80,4 +80,8 @@ Rails.application.configure do
   config.logstasher.enabled = true
   config.logstasher.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.json.log")
   config.logstasher.suppress_app_log = true
+
+  config.action_controller.asset_host = ENV['GOVUK_ASSET_HOST']
+  config.slimmer.use_cache = true
+  config.slimmer.asset_host = Plek.current.find('static')
 end

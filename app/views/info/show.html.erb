@@ -1,0 +1,22 @@
+<div class="outer-block">
+  <%= render partial: "artefact", locals: { artefact: @artefact } %>
+</div>
+
+<div class="outer-block">
+  <div class="floated-children">
+    <header class="needs-heading">
+      <div class="inner-block">
+        <h1>Why is this page on GOV.UK?</h1>
+      </div>
+    </header>
+    <div class="needs-wrapper">
+      <% if @needs.present? %>
+        <%= render partial: "need_details", collection: @needs, as: 'need', spacer_template: "spacer" %>
+      <% else %>
+        <div class="need-wrapper inner-block">
+          <h2>There aren't any recorded needs for this page.</h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
