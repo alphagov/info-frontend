@@ -3,5 +3,14 @@
 </div>
 
 <div class="outer-block">
-  <%= render partial: "need", collection: @needs, spacer_template: "spacer" %>
+  <div class="floated-children">
+    <header class="needs-heading">
+      <div class="inner-block">
+        <h1>Why is this page on GOV.UK?</h1>
+      </div>
+    </header>
+    <div class="needs-wrapper">
+      <%= render partial: "need_details", collection: @needs, as: 'need', spacer_template: "spacer" %>
+    </div>
+  </div>
 </div>

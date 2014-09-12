@@ -31,6 +31,24 @@
       margin: $gutter-half;
     }
   }
+
+  .needs-heading {
+    @include media(tablet){
+      width: $one-third;
+      float: left;
+    }
+
+    h1 {
+      @include bold-27;
+      padding: $gutter 0 0;
+    }
+  }
+
+  .needs-wrapper {
+    float: left;
+    width: $two-thirds;
+  }
+
   .need-heading {
     @include media(tablet){
       width: $three-quarters;
