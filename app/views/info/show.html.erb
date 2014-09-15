@@ -1,24 +1,18 @@
 <% content_for :title do "Information about “#{@artefact["title"]}”" end %>
 
-<div class="outer-block">
-  <%= render partial: "artefact", locals: { artefact: @artefact } %>
-</div>
+<%= render partial: "artefact", locals: { artefact: @artefact } %>
 
-<div class="outer-block">
-  <div class="floated-children">
-    <header class="needs-heading">
-      <div class="inner-block">
-        <h1>Why is this page on GOV.UK?</h1>
+<div class="floated-children">
+  <header class="needs-heading">
+    <h1>Why is this page on GOV.UK?</h1>
+  </header>
+  <div class="needs-wrapper">
+    <% if @needs.present? %>
+      <%= render partial: "need_details", collection: @needs, as: 'need', spacer_template: "spacer" %>
+    <% else %>
+      <div class="need-wrapper">
+        <h2>There aren't any recorded needs for this page.</h2>
       </div>
-    </header>
-    <div class="needs-wrapper">
-      <% if @needs.present? %>
-        <%= render partial: "need_details", collection: @needs, as: 'need', spacer_template: "spacer" %>
-      <% else %>
-        <div class="need-wrapper inner-block">
-          <h2>There aren't any recorded needs for this page.</h2>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

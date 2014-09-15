@@ -4,6 +4,14 @@
 @import "reset";
 @import "shims";
 
+.outer-block {
+  @include outer-block;
+}
+
+.inner-block {
+  @include inner-block;
+}
+
 .info-frontend {
   hr {
     margin: 0 $gutter-half;
@@ -12,23 +20,11 @@
     display: block;
     clear: both;
   }
-  .outer-block {
-    @include outer-block;
-  }
 
-  .inner-block {
-    margin: $gutter-half;
-    @include media(tablet){
-      margin: $gutter;
-    }
-  }
   .floated-children {
     @include media(tablet){
       padding: $gutter-half;
-    }
-
-    .inner-block {
-      margin: $gutter-half;
+      padding-left: 0;
     }
   }
 
