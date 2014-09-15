@@ -1,3 +1,5 @@
+<% content_for :title do "Information about “#{@artefact["title"]}”" end %>
+
 <div class="outer-block">
   <%= render partial: "artefact", locals: { artefact: @artefact } %>
 </div>
