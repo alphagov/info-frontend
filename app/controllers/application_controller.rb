@@ -14,5 +14,6 @@ private
 
   def set_slimmer_headers
     response.headers[Slimmer::Headers::TEMPLATE_HEADER] = "header_footer_only"
+    response.headers[Slimmer::Headers::ALPHA_LABEL] = "before:.info-frontend"
   end
 end
