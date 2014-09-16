@@ -28,6 +28,34 @@
     }
   }
 
+  .lead-metrics {
+    @extend %contain-floats;
+    clear: both;
+    padding-bottom: $gutter-two-thirds;
+  }
+  .lead-metric {
+    @include media(tablet){
+      width: $one-third;
+      float: left;
+
+      &.page-views {
+        width: $one-third;
+      }
+    }
+  }
+
+  .lead-metric {
+    .count {
+      @include bold-80;
+    }
+    .title {
+      @include bold-16;
+      display: block;
+      margin-top: -10px;
+      margin-bottom: $gutter;
+    }
+  }
+
   .needs-heading {
     @include media(tablet){
       width: $one-third;

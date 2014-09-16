@@ -39,12 +39,57 @@ module MetadataAPIHelpers
         "in_scope"=>false,
         "out_of_scope_reason"=>"",
         "duplicate_of"=>0}],
+     "performance"=>
+      {"data"=>
+        [{"humanId"=>"page-statistics_20140703000000_day_/apply-uk-visa",
+          "pagePath"=>"/apply-uk-visa",
+          "searchKeyword"=>"",
+          "searchUniques"=>0,
+          "searchUniques:sum"=>0,
+          "timeSpan"=>"day",
+          "dataType"=>"page-statistics",
+          "uniquePageViews"=>25000,
+          "_id"=>
+           "cGFnZS1zdGF0aXN0aWNzXzIwMTQwNzAzMDAwMDAwX2RheV8vYXBwbHktdWstdmlzYQ==",
+          "_count"=>0,
+          "_timestamp"=>"2014-07-03T00:00:00Z"},
+         {"humanId"=>"page-statistics_20140701000000_day_/apply-uk-visa",
+          "pagePath"=>"/apply-uk-visa",
+          "searchKeyword"=>"",
+          "searchUniques"=>0,
+          "searchUniques:sum"=>0,
+          "timeSpan"=>"day",
+          "dataType"=>"page-statistics",
+          "uniquePageViews"=>24000,
+          "_id"=>
+           "cGFnZS1zdGF0aXN0aWNzXzIwMTQwNzAxMDAwMDAwX2RheV8vYXBwbHktdWstdmlzYQ==",
+          "_count"=>0,
+          "_timestamp"=>"2014-07-01T00:00:00Z"},
+         {"humanId"=>"page-statistics_20140702000000_day_/apply-uk-visa",
+          "pagePath"=>"/apply-uk-visa",
+          "searchKeyword"=>"",
+          "searchUniques"=>0,
+          "searchUniques:sum"=>0,
+          "timeSpan"=>"day",
+          "dataType"=>"page-statistics",
+          "uniquePageViews"=>26000,
+          "_id"=>
+           "cGFnZS1zdGF0aXN0aWNzXzIwMTQwNzAyMDAwMDAwX2RheV8vYXBwbHktdWstdmlzYQ==",
+          "_count"=>0,
+          "_timestamp"=>"2014-07-02T00:00:00Z"}],
+        },
      "_response_info"=>{"status"=>"ok"}}
   end
 
   def metadata_api_response_with_no_needs
     metadata_api_response_for_apply_uk_visa.tap do |response|
       response["needs"] = []
+    end
+  end
+
+  def metadata_api_response_with_no_performance_data
+    metadata_api_response_for_apply_uk_visa.tap do |response|
+      response["performance"]["data"] = []
     end
   end
 end
