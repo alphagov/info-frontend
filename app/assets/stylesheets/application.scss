@@ -102,11 +102,17 @@
   }
 
   .need {
-
-    @include bold-48;
     @include bold-36;
     max-width: 18em;
     padding: 0 0 $gutter;
+
+    span {
+      display: block;
+    }
+
+    .goal {
+      margin: 15px 0;
+    }
   }
 
   .reason-block {

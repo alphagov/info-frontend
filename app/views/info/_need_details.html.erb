@@ -1,12 +1,10 @@
 <div class="need-wrapper">
   <p class="need-label">The user need for this page:</p>
-  <h1 class="need">
+  <p class="need">
     <span class="role">As a <%= need["role"] %></span>
-    <br>
     <span class="goal">I need to <%= need["goal"] %></span>
-    <br>
-    <span class="benefit">so that <%= need["benefit"] %></span>
-  </h1>
+    <span class="benefit">So that <%= need["benefit"] %></span>
+  </p>
 </div>
 
 <div class="reason-block first">
@@ -24,7 +22,7 @@
 
 <div class="reason-block">
   <% if need["justifications"].present? %>
-    <h2>This need is in proposition for GOV.UK because:</h2>
+    <h2>This need is in proposition because:</h2>
     <ul>
       <% need["justifications"].each do |justification| %>
         <li><%= justification %></li>
