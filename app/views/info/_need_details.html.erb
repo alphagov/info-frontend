@@ -9,10 +9,10 @@
 
 <div class="reason-block first">
   <% if need["met_when"].present? %>
-    <h2>The need is met when:</h2>
+    <h2>The need is met when the user:</h2>
     <ul>
       <% need["met_when"].each do |met| %>
-        <li>the user <%= met %></li>
+        <li><%= met %></li>
       <% end %>
     </ul>
   <% else %>
