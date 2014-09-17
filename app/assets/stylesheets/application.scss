@@ -107,16 +107,6 @@
     @include bold-36;
     max-width: 18em;
     padding: 0 0 $gutter;
-
-    .role {
-      color: $grass-green;
-    }
-    .goal {
-      color: $green;
-    }
-    .benefit {
-      color: $turquoise;
-    }
   }
 
   .reason-block {
