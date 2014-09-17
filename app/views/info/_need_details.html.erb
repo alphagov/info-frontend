@@ -22,13 +22,13 @@
 
 <div class="reason-block">
   <% if need["justifications"].present? %>
-    <h2>GOV.UK addresses this need because:</h2>
+    <h2>This need is in proposition for GOV.UK because:</h2>
     <ul>
       <% need["justifications"].each do |justification| %>
         <li><%= justification %></li>
       <% end %>
     </ul>
   <% else %>
-    <h2>There are no recorded reasons why this need falls within the GOV.UK proposition.</h2>
+    <h2>There are no recorded reasons why this need is in proposition for GOV.UK.</h2>
   <% end %>
 </div>
