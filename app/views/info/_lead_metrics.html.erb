@@ -1,7 +1,13 @@
 <div class="lead-metrics">
-  <div class="lead-metric page-views">
-    <p class="count">
-      <%= formatted_traffic(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
-    </p>
-  </div>
+  <% if lead_metrics %>
+    <div class="lead-metric page-views">
+      <p class="count">
+        <%= formatted_traffic(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
+      </p>
+    </div>
+  <% else %>
+    <div class="no-metrics">
+      <p>Accurate metrics for multi-part formats aren't available yet.</p>
+    </div>
+  <% end %>
 </div>
