@@ -22,7 +22,7 @@
 
 <div class="reason-block">
   <% if need["justifications"].present? %>
-    <h2>This need is in proposition because:</h2>
+    <h2>This need is <%= link_to "in proposition", "https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition" %> because:</h2>
     <ul>
       <% need["justifications"].each do |justification| %>
         <li><%= justification %></li>
