@@ -96,26 +96,22 @@
     clear: both;
     padding: $gutter 0 0;
 
-    .need-number {
+    .need-label {
       color: $secondary-text-colour;
     }
   }
 
   .need {
-
-    @include bold-48;
     @include bold-36;
     max-width: 18em;
     padding: 0 0 $gutter;
 
-    .role {
-      color: $grass-green;
+    span {
+      display: block;
     }
+
     .goal {
-      color: $green;
-    }
-    .benefit {
-      color: $turquoise;
+      margin: 15px 0;
     }
   }
 
