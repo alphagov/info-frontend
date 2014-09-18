@@ -92,6 +92,16 @@ module MetadataAPIHelpers
       response["performance"]["data"] = []
     end
   end
+
+  def metadata_api_response_for_multipart_artefact
+    metadata_api_response_for_apply_uk_visa.tap do |response|
+      response["artefact"]["details"]["parts"] = [
+        { "web_url" => response["artefact"]["web_url"] + "/part-1" },
+        { "web_url" => response["artefact"]["web_url"] + "/part-2" },
+        { "web_url" => response["artefact"]["web_url"] + "/part-3" },
+      ]
+    end
+  end
 end
 
 RSpec.configure do |c|

@@ -32,6 +32,10 @@
     @extend %contain-floats;
     clear: both;
     padding-bottom: $gutter-two-thirds;
+
+    .no-metrics {
+      @include bold-27;
+    }
   }
   .lead-metric {
     @include media(tablet){

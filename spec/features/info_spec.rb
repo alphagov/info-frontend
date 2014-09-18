@@ -35,6 +35,14 @@ feature "Info page" do
     expect(page).to have_text("25k unique pageviews per day")
   end
 
+  scenario "Seeing metrics for multi-part formats" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_multipart_artefact)
+
+    visit "/info/apply-uk-visa"
+
+    expect(page).to have_text("Accurate metrics for multi-part formats aren't available yet.")
+  end
+
   scenario "Seeing where there aren't any recorded user needs" do
     stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
 
