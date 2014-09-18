@@ -21,5 +21,12 @@ module PerformanceData
         its(:unique_pageviews_average) { should eq(0.5) }
       end
     end
+
+    context "users leaving through search" do
+      context "some on-page searches" do
+        let(:data) { { exits_via_search: [3, 2, 1] } }
+        its(:exits_via_search_average) { should eq(2) }
+      end
+    end
   end
 end

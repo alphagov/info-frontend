@@ -2,7 +2,8 @@ require "rails_helper"
 require "ostruct"
 
 RSpec.describe "info/lead_metrics" do
-  let(:locals) { { lead_metrics: OpenStruct.new(data) } }
+  let(:defaults) { { unique_pageviews_average: 0, exits_via_search_average: 0 } }
+  let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)) } }
 
   context "when there's very little traffic" do
     let(:data) { { unique_pageviews_average: 0.5 } }

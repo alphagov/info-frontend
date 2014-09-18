@@ -47,6 +47,13 @@ module MetadataAPIHelpers
           "timestamp"=>"2014-07-01T00:00:00Z"},
          {"value"=>26000,
           "timestamp"=>"2014-07-02T00:00:00Z"}],
+       "searches"=>
+        [{"value"=>20,
+          "timestamp"=>"2014-07-03T00:00:00Z"},
+         {"value"=>15,
+          "timestamp"=>"2014-07-01T00:00:00Z"},
+         {"value"=>25,
+          "timestamp"=>"2014-07-02T00:00:00Z"}],
         },
      "_response_info"=>{"status"=>"ok"}}
   end
