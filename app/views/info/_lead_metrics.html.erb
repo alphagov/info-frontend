@@ -1,13 +1,22 @@
-<div class="lead-metrics">
-  <% if lead_metrics %>
-    <div class="lead-metric page-views">
+<% if lead_metrics %>
+  <div class="lead-metrics">
+    <div class="lead-metric">
       <p class="count">
-        <%= formatted_traffic(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
+        <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
       </p>
     </div>
-  <% else %>
+  </div>
+  <div class="lead-metrics">
+    <div class="lead-metric">
+      <p class="count">
+        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">users per day leave via the site search</span>
+      </p>
+    </div>
+  </div>
+<% else %>
+  <div class="lead-metrics">
     <div class="no-metrics">
       <p>Accurate metrics for multi-part formats aren't available yet.</p>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

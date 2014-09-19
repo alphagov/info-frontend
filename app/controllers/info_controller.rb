@@ -22,7 +22,11 @@ private
       return nil # can't present metrics for multi-part content yet
     else
       uniques = (performance_data["page_views"] || []).map {|l| l["value"] }
-      PerformanceData::LeadMetrics.new(unique_pageviews: uniques)
+      searches = (performance_data["searches"] || []).map {|l| l["value"] }
+      PerformanceData::LeadMetrics.new(
+        unique_pageviews: uniques,
+        exits_via_search: searches,
+      )
     end
   end
 end

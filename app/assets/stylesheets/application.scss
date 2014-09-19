@@ -41,10 +41,6 @@
     @include media(tablet){
       width: $one-third;
       float: left;
-
-      &.page-views {
-        width: $one-third;
-      }
     }
   }
 

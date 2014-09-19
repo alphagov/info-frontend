@@ -43,6 +43,14 @@ feature "Info page" do
     expect(page).to have_text("Accurate metrics for multi-part formats aren't available yet.")
   end
 
+  scenario "Seeing how many users are leaving via the site search" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+
+    visit "/info/apply-uk-visa"
+
+    expect(page).to have_text("20 users per day leave via the site search")
+  end
+
   scenario "Seeing where there aren't any recorded user needs" do
     stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
 
@@ -57,6 +65,7 @@ feature "Info page" do
     visit "/info/some-slug"
 
     expect(page).to have_text("0 unique pageviews per day")
+    expect(page).to have_text("0 users per day leave via the site search")
   end
 
   scenario "When no information is available for a given slug" do

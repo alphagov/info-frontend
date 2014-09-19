@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def formatted_traffic(size)
+  def human_readable_number(size)
     if size > 0 && size < 1
       "< 1"
     else
