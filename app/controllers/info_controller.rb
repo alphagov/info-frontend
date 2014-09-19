@@ -9,7 +9,7 @@ class InfoController < ApplicationController
     if metadata
       @artefact = metadata.fetch("artefact")
       @needs = metadata.fetch("needs")
-      @lead_metrics = lead_metrics_from(@artefact, metadata.fetch("performance").fetch("data"))
+      @lead_metrics = lead_metrics_from(@artefact, metadata.fetch("performance"))
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404
@@ -21,7 +21,7 @@ private
     if artefact.fetch("details")["parts"]
       return nil # can't present metrics for multi-part content yet
     else
-      uniques = performance_data.map {|l| l["uniquePageViews"] }
+      uniques = (performance_data["page_views"] || []).map {|l| l["value"] }
       PerformanceData::LeadMetrics.new(unique_pageviews: uniques)
     end
   end
