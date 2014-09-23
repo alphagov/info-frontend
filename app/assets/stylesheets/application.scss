@@ -13,6 +13,14 @@
 }
 
 .info-frontend {
+  padding-top: $gutter-half;
+  margin-bottom: $gutter;
+  @include media(tablet){
+    padding-top: $gutter;
+    margin-bottom: $gutter * 2;
+  }
+  @extend %contain-floats;
+
   hr {
     margin: 0 $gutter-half;
     border: 1px solid $border-colour;
@@ -31,7 +39,9 @@
   .lead-metrics {
     @extend %contain-floats;
     clear: both;
-    padding-bottom: $gutter-two-thirds;
+    @include media(tablet){
+      padding-bottom: $gutter-two-thirds;
+    }
 
     .no-metrics {
       @include bold-27;
@@ -70,7 +80,9 @@
 
   .needs-wrapper {
     float: left;
-    width: $two-thirds;
+    @include media(tablet){
+      width: $two-thirds;
+    }
   }
 
   .need-heading {
@@ -82,9 +94,12 @@
 
   .need-heading {
     margin-bottom: $gutter;
+    @include media(tablet){
+      margin-bottom: $gutter * 2;
+    }
 
     p {
-      @include core-19;
+      @include core-24;
       color: $secondary-text-colour;
     }
     h1 {
@@ -94,15 +109,16 @@
 
   .need-wrapper {
     clear: both;
-    padding: $gutter 0 0;
-
-    .need-label {
-      color: $secondary-text-colour;
+    padding-top: $gutter-half;
+    padding-bottom: $gutter-half;
+    @include media(tablet){
+      padding-top: $gutter;
+      padding-bottom: $gutter;
     }
   }
 
   .need {
-    @include bold-36;
+    @include core-36;
     max-width: 18em;
     padding: 0 0 $gutter;
 
