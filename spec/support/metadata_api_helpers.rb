@@ -54,7 +54,12 @@ module MetadataAPIHelpers
           "timestamp"=>"2014-07-01T00:00:00Z"},
          {"value"=>25,
           "timestamp"=>"2014-07-02T00:00:00Z"}],
-        },
+        "search_terms"=>
+         [{"TotalSearches"=>180,
+           "Keyword"=>"login"},
+          {"TotalSearches"=>100,
+           "Keyword"=>"spouse visa"}],
+         },
      "_response_info"=>{"status"=>"ok"}}
   end
 

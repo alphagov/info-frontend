@@ -12,6 +12,10 @@ module PerformanceData
       average(@data[:exits_via_search])
     end
 
+    def top_10_search_terms
+      @data[:search_terms].sort_by {|term| -1 * term[:total] }.take(10)
+    end
+
   private
     def average(list)
       list.empty? ? 0 : list.inject(0, :+) / list.size.to_f

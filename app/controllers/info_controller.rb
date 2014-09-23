@@ -23,9 +23,11 @@ private
     else
       uniques = (performance_data["page_views"] || []).map {|l| l["value"] }
       searches = (performance_data["searches"] || []).map {|l| l["value"] }
+      search_terms = (performance_data["search_terms"] || []).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } }
       PerformanceData::LeadMetrics.new(
         unique_pageviews: uniques,
         exits_via_search: searches,
+        search_terms: search_terms,
       )
     end
   end
