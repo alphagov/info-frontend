@@ -46,15 +46,7 @@
     .no-metrics {
       @include bold-27;
     }
-  }
-  .lead-metric {
-    @include media(tablet){
-      width: $one-third;
-      float: left;
-    }
-  }
 
-  .lead-metric {
     .count {
       @include bold-80;
     }
@@ -63,6 +55,46 @@
       display: block;
       margin-top: -10px;
       margin-bottom: $gutter;
+    }
+  }
+
+  .lead-metric {
+    @include media(tablet){
+      width: $one-third;
+      float: left;
+    }
+  }
+
+  .wide-lead-metric {
+    @include media(tablet){
+      width: $two-thirds;
+      float: left;
+    }
+  }
+
+  .search-terms {
+    .search-terms-title {
+      @include bold-24;
+      margin-bottom: $gutter-half;
+    }
+
+    .search-terms-list {
+      @include core-14;
+      @include media(tablet){
+        float: left;
+      }
+      ul {
+        list-style-type: none;
+        max-height: 2.5em;
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+      }
+    }
+
+    @include media(tablet){
+      width: $half;
+      float: left;
     }
   }
 

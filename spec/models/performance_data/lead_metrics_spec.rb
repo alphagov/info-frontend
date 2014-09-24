@@ -28,5 +28,19 @@ module PerformanceData
         its(:exits_via_search_average) { should eq(2) }
       end
     end
+
+    context "on-page search terms used by users" do
+      context "10 search terms availables" do
+        let(:search_terms) { 1.upto(11).map {|n| { keyword: "some-term-#{n}", total: n } } }
+        let(:data) { { search_terms: search_terms } }
+
+        it "shows the most popular 10 search terms" do
+          2.upto(11).each do |n|
+            expect(subject.top_10_search_terms).to include(keyword: "some-term-#{n}", total: n)
+          end
+          expect(subject.top_10_search_terms).not_to include(keyword: "some-term-1", total: 1)
+        end
+      end
+    end
   end
 end

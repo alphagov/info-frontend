@@ -51,6 +51,15 @@ feature "Info page" do
     expect(page).to have_text("20 users per day leave via the site search")
   end
 
+  scenario "Seeing what terms users are searching for" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+
+    visit "/info/apply-uk-visa"
+
+    expect(page).to have_text("login (180)")
+    expect(page).to have_text("spouse visa (100)")
+  end
+
   scenario "Seeing where there aren't any recorded user needs" do
     stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
 

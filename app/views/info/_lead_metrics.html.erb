@@ -5,12 +5,30 @@
         <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
       </p>
     </div>
+    <div class="wide-lead-metric">
+      <p class="count">
+        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">users per day leave via the site search</span>
+      </p>
+    </div>
+
   </div>
   <div class="lead-metrics">
     <div class="lead-metric">
       <p class="count">
-        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">users per day leave via the site search</span>
+        &nbsp;
+        <!-- problem reports will go here -->
       </p>
+    </div>
+    <div class="wide-lead-metric search-terms">
+      <h2 class="search-terms-title">Users searched for these terms</h2>
+
+      <div class="search-terms-list">
+        <ul>
+          <% lead_metrics.top_10_search_terms.each do |search_term| %>
+            <li><%= search_term[:keyword] %> (<%= search_term[:total] %>)</li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 <% else %>
