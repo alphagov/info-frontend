@@ -30,15 +30,15 @@ module PerformanceData
     end
 
     context "on-page search terms used by users" do
-      context "10 search terms availables" do
-        let(:search_terms) { 1.upto(11).map {|n| { keyword: "some-term-#{n}", total: n } } }
-        let(:data) { { search_terms: search_terms } }
+      let(:search_terms) { 1.upto(19).map {|n| { keyword: "some-term-#{n}", total: n } } }
+      let(:data) { { search_terms: search_terms } }
 
-        it "shows the most popular 10 search terms" do
-          2.upto(11).each do |n|
-            expect(subject.top_10_search_terms).to include(keyword: "some-term-#{n}", total: n)
-          end
-          expect(subject.top_10_search_terms).not_to include(keyword: "some-term-1", total: 1)
+      it "shows the most popular 10 search terms that were searched for at least 10 times" do
+        10.upto(19).each do |n|
+          expect(subject.top_10_search_terms).to include(keyword: "some-term-#{n}", total: n)
+        end
+        9.downto(1).each do |n|
+          expect(subject.top_10_search_terms).not_to include(keyword: "some-term-#{n}", total: n)
         end
       end
     end
