@@ -48,7 +48,7 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("20 users per day leave via the site search")
+    expect(page).to have_text("20 searches from the page")
   end
 
   scenario "Seeing what terms users are searching for" do
@@ -74,7 +74,7 @@ feature "Info page" do
     visit "/info/some-slug"
 
     expect(page).to have_text("0 unique pageviews per day")
-    expect(page).to have_text("0 users per day leave via the site search")
+    expect(page).to have_text("0 searches from the page")
   end
 
   scenario "When no information is available for a given slug" do
