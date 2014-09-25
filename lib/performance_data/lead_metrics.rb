@@ -13,7 +13,10 @@ module PerformanceData
     end
 
     def top_10_search_terms
-      @data[:search_terms].sort_by {|term| -1 * term[:total] }.take(10)
+      @data[:search_terms].
+        reject { |term| term[:total] < 10 }.
+        sort_by { |term| -1 * term[:total] }.
+        take(10)
     end
 
   private
