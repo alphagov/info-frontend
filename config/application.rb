@@ -17,4 +17,8 @@ module InfoFrontend
   class Application < Rails::Application
     config.assets.prefix = "/info-frontend"
   end
+
+  module FeatureFlags
+    mattr_accessor :show_needs
+  end
 end
