@@ -1,6 +1,10 @@
 <div class="floated-children">
   <div class="need-heading">
+  <%- if show_needs %>
     <p>User needs and metrics</p>
+  <%- else %>
+    <p>Metrics</p>
+  <%- end %>
     <h1><%= artefact["title"] %></h1>
   </div>
 </div>

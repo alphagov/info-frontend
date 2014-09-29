@@ -10,6 +10,7 @@ class InfoController < ApplicationController
       @artefact = metadata.fetch("artefact")
       @needs = metadata.fetch("needs")
       @lead_metrics = lead_metrics_from(@artefact, metadata.fetch("performance"))
+      @show_needs = InfoFrontend::FeatureFlags.show_needs
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404

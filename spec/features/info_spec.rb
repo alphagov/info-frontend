@@ -84,4 +84,36 @@ feature "Info page" do
 
     expect(page.status_code).to eq(404)
   end
+
+  context "configuring whether or not to show the user need" do
+    after(:each) do
+      InfoFrontend::FeatureFlags.show_needs = true
+    end
+
+    scenario "shows the user need by default" do
+      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+
+      visit "/info/apply-uk-visa"
+
+      expect(page).to have_text("User needs and metrics")
+      expect(page).to have_text("non-EEA national")
+      expect(page).to have_text("apply for a UK visa")
+      expect(page).to have_text("I can come to the UK to visit, study or work")
+    end
+
+    scenario "doesn't show the user need if set to false" do
+      InfoFrontend::FeatureFlags.show_needs = false
+
+      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+
+      visit "/info/apply-uk-visa"
+
+      expect(page).to_not have_text("User needs and metrics")
+      expect(page).to_not have_text("non-EEA national")
+      expect(page).to_not have_text("apply for a UK visa")
+      expect(page).to_not have_text("I can come to the UK to visit, study or work")
+
+      expect(page).to have_text("Metrics")
+    end
+  end
 end
