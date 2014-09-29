@@ -1,8 +1,6 @@
 module InfoFrontend
   module FeatureFlags
-    class << self
-      attr_accessor :show_needs
-    end
+    mattr_accessor :show_needs
   end
 end
 
