@@ -1,8 +1,9 @@
 <% content_for :title do "Information about “#{@artefact["title"]}”" end %>
 
-<%= render partial: "artefact", locals: { artefact: @artefact } %>
+<%= render partial: "artefact", locals: { artefact: @artefact, show_needs: @show_needs } %>
 <%= render partial: "lead_metrics", locals: { lead_metrics: @lead_metrics } %>
 
+<%- if @show_needs %>
 <div class="floated-children">
   <header class="needs-heading">
     <h1>Why is this page on GOV.UK?</h1>
@@ -17,3 +18,4 @@
     <% end %>
   </div>
 </div>
+<%- end %>
