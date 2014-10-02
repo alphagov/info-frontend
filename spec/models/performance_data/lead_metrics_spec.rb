@@ -42,5 +42,10 @@ module PerformanceData
         end
       end
     end
+
+    context "problem reports" do
+      let(:data) { { problem_reports: [1,3,3,0,0,0,0] } }
+      its(:problem_reports_weekly_average) { should eq(7) }
+    end
   end
 end

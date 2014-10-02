@@ -12,6 +12,10 @@ module PerformanceData
       average(@data[:exits_via_search])
     end
 
+    def problem_reports_weekly_average
+      average(@data[:problem_reports]) * 7
+    end
+
     def top_10_search_terms
       @data[:search_terms].
         reject { |term| term[:total] < 10 }.
