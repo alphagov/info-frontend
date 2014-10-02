@@ -2,7 +2,13 @@ require "rails_helper"
 require "ostruct"
 
 RSpec.describe "info/lead_metrics" do
-  let(:defaults) { { unique_pageviews_average: 0, exits_via_search_average: 0, top_10_search_terms: [] } }
+  let(:defaults) { {
+    unique_pageviews_average: 0,
+    exits_via_search_average: 0,
+    problem_reports_weekly_average: 0,
+    top_10_search_terms: []
+    }
+  }
   let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)) } }
 
   context "when there's very little traffic" do
@@ -33,6 +39,16 @@ RSpec.describe "info/lead_metrics" do
 
       expect(rendered).to have_text("abc (4)")
       expect(rendered).to have_text("xyz (5)")
+    end
+  end
+
+  context "when users have left problem reports" do
+    let(:data) { { problem_reports_weekly_average: 50.2 } }
+
+    it "displays problem reports in a human readable form" do
+      render partial: "info/lead_metrics", locals: locals
+
+      expect(rendered).to have_text("50.2 problem reports per week")
     end
   end
 end
