@@ -7,7 +7,7 @@
     </div>
     <div class="wide-lead-metric">
       <p class="count">
-        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">searches per day from the page</span>
+        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">searches per day started from this page</span>
       </p>
     </div>
 
@@ -20,7 +20,7 @@
     </div>
     <% if lead_metrics.top_10_search_terms.present? %>
       <div class="wide-lead-metric search-terms">
-        <h2 class="search-terms-title">Users searched for these terms</h2>
+        <h2 class="search-terms-title">Users left this page by searching for:</h2>
 
         <div class="search-terms-list">
           <ul>
@@ -35,7 +35,7 @@
 <% else %>
   <div class="lead-metrics">
     <div class="no-metrics">
-      <p>Accurate metrics for multi-part formats aren't available yet.</p>
+      <p>Accurate metrics for multi-part formats aren’t available yet.</p>
     </div>
   </div>
 <% end %>
