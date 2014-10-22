@@ -1,2 +1,2 @@
 # Show user needs by default. This file might be overriden at deploy.
-InfoFrontend::FeatureFlags.show_needs = true
+InfoFrontend::FeatureFlags.needs_to_show = :all
