@@ -19,6 +19,7 @@ module InfoFrontend
   end
 
   module FeatureFlags
-    mattr_accessor :show_needs
+    mattr_accessor :needs_to_show
+    mattr_accessor :validated_need_ids
   end
 end

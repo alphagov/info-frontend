@@ -9,8 +9,11 @@ class InfoController < ApplicationController
     if metadata
       @artefact = metadata.fetch("artefact")
       @needs = metadata.fetch("needs")
+      if InfoFrontend::FeatureFlags.needs_to_show == :only_validated
+        @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
+      end
       @lead_metrics = lead_metrics_from(@artefact, metadata.fetch("performance"))
-      @show_needs = InfoFrontend::FeatureFlags.show_needs
+      @show_needs = [:all, :only_validated].include?(InfoFrontend::FeatureFlags.needs_to_show)
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404
