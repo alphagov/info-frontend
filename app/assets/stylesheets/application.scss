@@ -60,6 +60,10 @@
     .unit {
       @include bold-16;
     }
+    .time-interval-explanation {
+      margin-top: $gutter-one-third;
+      color: $secondary-text-colour;
+    }
   }
 
   .lead-metric {
