@@ -37,6 +37,13 @@
   }
 
   .lead-metrics {
+    h2 {
+      @include bold-24;
+      display: block;
+      margin-top: -5px;
+      margin-bottom: $gutter-one-third;
+    }
+
     @extend %contain-floats;
     clear: both;
     @include media(tablet){
@@ -48,17 +55,16 @@
     }
 
     .count {
-      @include bold-80;
+      @include bold-36;
     }
-    .title {
+    .unit {
       @include bold-16;
-      display: block;
-      margin-top: -10px;
-      margin-bottom: $gutter;
     }
   }
 
   .lead-metric {
+    margin: $gutter-two-thirds 0 $gutter-one-third;
+
     @include media(tablet){
       width: $one-third;
       float: left;
@@ -66,6 +72,8 @@
   }
 
   .wide-lead-metric {
+    margin: $gutter-two-thirds 0 $gutter-one-third;
+
     @include media(tablet){
       width: $two-thirds;
       float: left;
@@ -73,11 +81,6 @@
   }
 
   .search-terms {
-    .search-terms-title {
-      @include bold-24;
-      margin-bottom: $gutter-half;
-    }
-
     .search-terms-list {
       @include core-14;
       @include media(tablet){
@@ -90,10 +93,13 @@
         -moz-column-count: 3; /* Firefox */
         column-count: 3;
       }
+      li {
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
     }
 
     @include media(tablet){
-      width: $half;
       float: left;
     }
   }
@@ -126,9 +132,6 @@
 
   .need-heading {
     margin-bottom: $gutter;
-    @include media(tablet){
-      margin-bottom: $gutter * 2;
-    }
 
     p {
       @include core-24;
