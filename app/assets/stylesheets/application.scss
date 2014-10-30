@@ -55,10 +55,10 @@
     }
 
     .count {
-      @include bold-36;
+      @include bold-48;
     }
     .unit {
-      @include bold-16;
+      @include bold-24;
     }
     .time-interval-explanation {
       margin-top: $gutter-one-third;
