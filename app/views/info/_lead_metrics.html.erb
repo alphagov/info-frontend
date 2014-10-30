@@ -1,26 +1,28 @@
 <% if lead_metrics %>
   <div class="lead-metrics">
     <div class="lead-metric">
+      <h2>Unique pageviews</h2>
       <p class="count">
-        <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="title">unique pageviews per day</span>
+        <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="unit">per day</span>
       </p>
     </div>
     <div class="wide-lead-metric">
+      <h2>Searches started from this page</h2>
       <p class="count">
-        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="title">searches per day started from this page</span>
+        <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="unit">per day</span>
       </p>
     </div>
-
   </div>
   <div class="lead-metrics">
     <div class="lead-metric">
+      <h2>Problem reports</h2>
       <p class="count">
-        <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %> <span class="title">problem reports per week</span>
+        <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %> <span class="unit">per week</span>
       </p>
     </div>
     <% if lead_metrics.top_10_search_terms.present? %>
       <div class="wide-lead-metric search-terms">
-        <h2 class="search-terms-title">Users left this page by searching for:</h2>
+        <h2>Users left this page by searching for:</h2>
 
         <div class="search-terms-list">
           <ul>
@@ -31,6 +33,10 @@
         </div>
       </div>
     <% end %>
+
+    <p class="time-interval-explanation">
+      Measured over the last 6 weeks
+    </p>
   </div>
 <% else %>
   <div class="lead-metrics">

@@ -17,7 +17,7 @@ RSpec.describe "info/lead_metrics" do
     it "displays pageviews" do
       render partial: "info/lead_metrics", locals: locals
 
-      expect(rendered).to have_text("< 1 unique pageviews per day")
+      expect(rendered).to have_text("Unique pageviews < 1 per day")
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe "info/lead_metrics" do
     it "displays pageviews in a human readable form" do
       render partial: "info/lead_metrics", locals: locals
 
-      expect(rendered).to have_text("12.3k unique pageviews per day")
+      expect(rendered).to have_text("Unique pageviews 12.3k per day")
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe "info/lead_metrics" do
     it "displays problem reports in a human readable form" do
       render partial: "info/lead_metrics", locals: locals
 
-      expect(rendered).to have_text("50.2 problem reports per week")
+      expect(rendered).to have_text("Problem reports 50.2 per week")
     end
   end
 end
