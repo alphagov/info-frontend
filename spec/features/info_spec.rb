@@ -93,6 +93,12 @@ feature "Info page" do
     expect(page.status_code).to eq(404)
   end
 
+  scenario "When an invalid slug is provided" do
+    visit '/info/%27%22--%3E%3C'
+
+    expect(page.status_code).to eq(404)
+  end
+
   context "configuring whether or not to show the user need" do
     after(:each) do
       InfoFrontend::FeatureFlags.needs_to_show = :all

@@ -1,8 +1,10 @@
 require 'govuk/client/metadata_api'
 require 'performance_data/lead_metrics'
+require 'slimmer/headers'
 
 class InfoController < ApplicationController
   before_filter :set_expiry, only: :show
+  before_filter :validate_slug
 
   def show
     metadata = GOVUK::Client::MetadataAPI.new.info(params[:slug])
@@ -35,6 +37,17 @@ private
         search_terms: search_terms,
         problem_reports: problem_reports,
       )
+    end
+  end
+
+  def validate_slug
+    begin
+      URI.parse("/" + params[:slug])
+    rescue URI::InvalidURIError
+      # skipping slimmer because it doesn't seem to like empty responses
+      response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
+      head :not_found
+      false
     end
   end
 end
