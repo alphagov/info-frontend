@@ -5,7 +5,8 @@ class InfoController < ApplicationController
   before_filter :set_expiry, only: :show
 
   def show
-    metadata = GOVUK::Client::MetadataAPI.new.info(params[:slug])
+    slug = URI.encode(params[:slug])
+    metadata = GOVUK::Client::MetadataAPI.new.info(slug)
     if metadata
       @artefact = metadata.fetch("artefact")
       @needs = metadata.fetch("needs")

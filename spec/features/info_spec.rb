@@ -93,6 +93,14 @@ feature "Info page" do
     expect(page.status_code).to eq(404)
   end
 
+  scenario "when a slug that needs encoding is provided" do
+    stub_metadata_api_has_slug('government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8', metadata_api_response_for_apply_uk_visa)
+
+    visit '/info/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8'
+
+    expect(page.status_code).to eq(200)
+  end
+
   context "configuring whether or not to show the user need" do
     after(:each) do
       InfoFrontend::FeatureFlags.needs_to_show = :all
