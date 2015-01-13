@@ -29,7 +29,7 @@
     clear: both;
   }
 
-  .floated-children {
+  .padding-for-tablets {
     @include media(tablet){
       padding: $gutter-half;
       padding-left: 0;
@@ -120,7 +120,7 @@
     }
   }
 
-  .needs-wrapper {
+  .individual-need {
     float: left;
     @include media(tablet){
       width: $two-thirds;
@@ -146,7 +146,7 @@
     }
   }
 
-  .need-wrapper {
+  .role-goal-benefit-panel {
     clear: both;
     padding-top: $gutter-half;
     padding-bottom: $gutter-half;
