@@ -1,0 +1,16 @@
+<%- if show_needs %>
+<section id="needs" class="padding-for-tablets">
+  <header class="needs-heading">
+    <h1>Why is this page on GOV.UK?</h1>
+  </header>
+  <div class="individual-need">
+    <% if needs.present? %>
+    <%= render partial: "need_details", collection: needs, as: 'need', spacer_template: "spacer" %>
+    <% else %>
+    <div class="role-goal-benefit-panel">
+      <h2 class="no-need">There aren’t any recorded needs for this page.</h2>
+    </div>
+    <% end %>
+  </div>
+</section>
+<%- end %>
