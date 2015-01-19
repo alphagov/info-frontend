@@ -36,6 +36,11 @@
     }
   }
 
+  .time-interval-explanation {
+    margin-top: $gutter-one-third;
+    color: $secondary-text-colour;
+  }
+
   .metrics-panel {
     h2 {
       @include bold-24;
@@ -59,10 +64,6 @@
     }
     .unit {
       @include bold-24;
-    }
-    .time-interval-explanation {
-      margin-top: $gutter-one-third;
-      color: $secondary-text-colour;
     }
   }
 
