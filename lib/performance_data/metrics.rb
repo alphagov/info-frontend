@@ -1,5 +1,5 @@
 module PerformanceData
-  class LeadMetrics
+  class Metrics
     def initialize(data)
       @data = data
     end

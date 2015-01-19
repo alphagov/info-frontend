@@ -41,6 +41,56 @@
     color: $secondary-text-colour;
   }
 
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 1em 0 2em;
+    width: 105.95%;
+
+    caption {
+      @include bold-24;
+      margin: 0.4em 0.5em 0.4em 0.7em;
+      text-align: left;
+    }
+
+    @media screen and (max-width: 320px) {
+      margin: 1em 0 2em 0;
+      width: 100%;
+
+      caption {
+        padding-left: 0;
+      }
+    }
+  }
+
+  th, td {
+    @include core-14;
+    vertical-align: top;
+    padding: 0.7em 0.5em 0.7em 0;
+  }
+
+  td {
+    border-bottom: solid 1px $border-colour;
+
+    small {
+      @include core-16;
+    }
+  }
+
+  /* reduce table font size on very small screens */
+  @media screen and (max-width: 320px) {
+    th, td, td small {
+      font-size: 10px;
+    }
+  }
+
+  th {
+    line-height: 1.25em;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: solid 1px $border-colour;
+  }
+
   .metrics-panel {
     h2 {
       @include bold-24;

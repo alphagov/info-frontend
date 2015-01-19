@@ -42,32 +42,45 @@ module MetadataAPIHelpers
      "performance"=>
       {"page_views"=>
         [{"value"=>25000,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-03T00:00:00Z"},
          {"value"=>24000,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-01T00:00:00Z"},
          {"value"=>26000,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-02T00:00:00Z"}],
        "problem_reports"=>
         [{"value"=>1,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-01T00:00:00Z"},
          {"value"=>2,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-02T00:00:00Z"},
          {"value"=>3,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-03T00:00:00Z"},
          {"value"=>0,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-04T00:00:00Z"},
          {"value"=>1,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-05T00:00:00Z"},
          {"value"=>0,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-06T00:00:00Z"},
          {"value"=>0,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-07T00:00:00Z"}],
        "searches"=>
         [{"value"=>20,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-03T00:00:00Z"},
          {"value"=>15,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-01T00:00:00Z"},
          {"value"=>25,
+          "path"=>"/apply-uk-visa",
           "timestamp"=>"2014-07-02T00:00:00Z"}],
         "search_terms"=>
          [{"TotalSearches"=>180,
@@ -96,6 +109,39 @@ module MetadataAPIHelpers
         { "web_url" => response["artefact"]["web_url"] + "/part-1" },
         { "web_url" => response["artefact"]["web_url"] + "/part-2" },
         { "web_url" => response["artefact"]["web_url"] + "/part-3" },
+      ]
+      response["performance"]["page_views"] += [
+        {"value"=>25000,
+         "path"=>"/apply-uk-visa/part-1",
+         "timestamp"=>"2014-07-03T00:00:00Z"},
+        {"value"=>24000,
+         "path"=>"/apply-uk-visa/part-2",
+         "timestamp"=>"2014-07-01T00:00:00Z"},
+        {"value"=>26000,
+         "path"=>"/apply-uk-visa/part-3",
+         "timestamp"=>"2014-07-02T00:00:00Z"}
+      ]
+      response["performance"]["searches"] += [
+        {"value"=>4000,
+         "path"=>"/apply-uk-visa/part-1",
+         "timestamp"=>"2014-07-03T00:00:00Z"},
+        {"value"=>5000,
+         "path"=>"/apply-uk-visa/part-2",
+         "timestamp"=>"2014-07-01T00:00:00Z"},
+        {"value"=>6000,
+         "path"=>"/apply-uk-visa/part-3",
+         "timestamp"=>"2014-07-02T00:00:00Z"}
+      ]
+      response["performance"]["problem_reports"] += [
+        {"value"=>200,
+         "path"=>"/apply-uk-visa/part-1",
+         "timestamp"=>"2014-07-03T00:00:00Z"},
+        {"value"=>250,
+         "path"=>"/apply-uk-visa/part-2",
+         "timestamp"=>"2014-07-01T00:00:00Z"},
+        {"value"=>100,
+         "path"=>"/apply-uk-visa/part-3",
+         "timestamp"=>"2014-07-02T00:00:00Z"}
       ]
     end
   end

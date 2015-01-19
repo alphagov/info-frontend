@@ -40,7 +40,37 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("Accurate metrics for multi-part formats aren’t available yet.")
+    within("#lead-metrics") do
+      expect(page).to have_text("Unique pageviews 25k per day")
+    end
+
+    # check multipart formats are present and correct
+    within("#per-page-metrics") do
+      expect(page.first('th.page').text).to have_text('Page')
+      expect(page.first('th.unique_pageviews').text).to have_text('Unique pageviews')
+      expect(page.first('th.searches').text).to have_text('Searches started from this page')
+      expect(page.first('th.problem_reports').text).to have_text('Problem reports')
+      expect(page.all('td.page')[0].text).to eq('/apply-uk-visa')
+      expect(page.all('td.page')[1].text).to eq('/apply-uk-visa/part-1')
+      expect(page.all('td.page')[2].text).to eq('/apply-uk-visa/part-2')
+      expect(page.all('td.page')[3].text).to eq('/apply-uk-visa/part-3')
+      expect(page.all('td.unique_pageviews')[0].text).to eq('25k per day')
+      expect(page.all('td.unique_pageviews')[1].text).to eq('25k per day')
+      expect(page.all('td.unique_pageviews')[2].text).to eq('24k per day')
+      expect(page.all('td.unique_pageviews')[3].text).to eq('26k per day')
+      expect(page.all('td.searches')[0].text).to eq('20 per day')
+      expect(page.all('td.searches')[1].text).to eq('4k per day')
+      expect(page.all('td.searches')[2].text).to eq('5k per day')
+      expect(page.all('td.searches')[3].text).to eq('6k per day')
+      expect(page.all('td.problem_reports')[0].text).to eq('7 per week')
+      expect(page.all('td.problem_reports')[1].text).to eq('1.4k per week')
+      expect(page.all('td.problem_reports')[2].text).to eq('1.75k per week')
+      expect(page.all('td.problem_reports')[3].text).to eq('700 per week')
+    end
+
+    within("#needs") do
+      expect(page).to have_text("As a non-EEA national")
+    end
   end
 
   scenario "Seeing how many users are leaving via the site search" do

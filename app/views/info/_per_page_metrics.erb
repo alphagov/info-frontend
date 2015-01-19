@@ -1,0 +1,27 @@
+<% if @per_page_metrics %>
+<% per_page_metrics %>
+  <div id="per-page-metrics" class="metrics-panel">
+    <h2>Metrics for individual pages</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th class='page'>Page</th>
+          <th class='unique_pageviews'>Unique pageviews</th>
+          <th class='searches'>Searches started from this page</th>
+          <th class='problem_reports'>Problem reports</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% per_page_metrics.each do |t, a| %>
+          <tr>
+          <td class='page'><a href="<%= t %>"><%= t %></a></td>
+          <td class='unique_pageviews'><%= human_readable_number(a.unique_pageviews_average) %> per day</td>
+          <td class='searches'><%= human_readable_number(a.exits_via_search_average) %> per day</td>
+          <td class='problem_reports'><%= human_readable_number(a.problem_reports_weekly_average) %> per week</td>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+<% end %>

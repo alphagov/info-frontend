@@ -1,9 +1,9 @@
 require "spec_helper"
-require 'performance_data/lead_metrics'
+require 'performance_data/metrics'
 
 module PerformanceData
-  describe LeadMetrics do
-    subject { LeadMetrics.new(data) }
+  describe Metrics do
+    subject { Metrics.new(data) }
 
     context "unique pageviews" do
       context "some unique pageviews" do

@@ -2,6 +2,7 @@
 
 <%= render partial: "artefact", locals: { artefact: @artefact, show_needs: @show_needs } %>
 <%= render partial: "lead_metrics", locals: { lead_metrics: @lead_metrics } %>
+<%= render partial: "per_page_metrics", locals: { per_page_metrics: @per_page_metrics } %>
 <p class="time-interval-explanation">
     All metrics are averages across the past 6 weeks
 </p>
