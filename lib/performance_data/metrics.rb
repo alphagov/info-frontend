@@ -16,6 +16,18 @@ module PerformanceData
       average(@data[:problem_reports]) * 7
     end
 
+    def unique_pageviews_multipart_average
+      @data[:unique_pageviews].reduce(:+) / @data[:number_of_days].to_f
+    end
+
+    def exits_via_search_multipart_average
+      @data[:exits_via_search].reduce(:+) / @data[:number_of_days].to_f
+    end
+
+    def problem_reports_multipart_weekly_average
+      @data[:problem_reports].reduce(:+) / (@data[:number_of_days].to_f / 7.0)
+    end
+
     def top_10_search_terms
       @data[:search_terms].
         reject { |term| term[:total] < 10 }.

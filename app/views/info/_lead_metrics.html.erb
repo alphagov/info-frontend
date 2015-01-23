@@ -4,13 +4,23 @@
       <div class="lead-metric">
         <h2>Unique pageviews</h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="unit">per day</span>
+          <%- if format == 'guide' %>
+            <%= human_readable_number(lead_metrics.unique_pageviews_multipart_average) %>
+          <%- else %>
+            <%= human_readable_number(lead_metrics.unique_pageviews_average) %>
+          <%- end %>
+          <span class="unit">per day</span>
         </p>
       </div>
       <div class="wide-lead-metric">
         <h2>Searches started from this page</h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="unit">per day</span>
+          <%- if format == 'guide' %>
+            <%= human_readable_number(lead_metrics.exits_via_search_multipart_average) %>
+          <%- else %>
+            <%= human_readable_number(lead_metrics.exits_via_search_average) %>
+          <%- end %>
+          <span class="unit">per day</span>
         </p>
       </div>
     </div>
@@ -18,7 +28,12 @@
       <div class="lead-metric">
         <h2>Problem reports</h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %> <span class="unit">per week</span>
+          <%- if format == 'guide' %>
+            <%= human_readable_number(lead_metrics.problem_reports_multipart_weekly_average) %>
+          <%- else %>
+            <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %>
+          <%- end %>
+          <span class="unit">per week</span>
         </p>
       </div>
       <% if lead_metrics.top_10_search_terms.present? %>

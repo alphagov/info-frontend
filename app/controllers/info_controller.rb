@@ -60,6 +60,7 @@ class AllMetrics
   def initialize(performance_data, part_urls)
     @performance_data = performance_data
     @part_urls = part_urls
+    @number_of_days = number_of_days
   end
 
   def lead_metrics
@@ -68,6 +69,7 @@ class AllMetrics
       exits_via_search: performance_data_for("searches", @part_urls).map {|l| l["value"] },
       problem_reports: performance_data_for("problem_reports", @part_urls).map {|l| l["value"] },
       search_terms: performance_data_for("search_terms", []).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } },
+      number_of_days: @number_of_days,
     )
   end
 
@@ -76,7 +78,16 @@ class AllMetrics
       unique_pageviews: performance_data_for("page_views", [path]).map {|l| l["value"] },
       exits_via_search: performance_data_for("searches", [path]).map {|l| l["value"] },
       problem_reports: performance_data_for("problem_reports", [path]).map {|l| l["value"] },
+      number_of_days: @number_of_days,
     )
+  end
+
+  def number_of_days
+    number_of_entries_for_one_url = []
+    if @performance_data["page_views"]
+      number_of_entries_for_one_url = @performance_data["page_views"].select { |record| @part_urls[0] == record["path"] }
+    end
+    number_of_entries_for_one_url.length
   end
 
   def performance_data_for(metric, part_urls)

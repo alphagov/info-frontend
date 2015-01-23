@@ -41,12 +41,16 @@ feature "Info page" do
     visit "/info/apply-uk-visa"
 
     within("#lead-metrics") do
-      expect(page).to have_text("Unique pageviews 25k per day")
+      # check lead metrics for multipart formats are summed
+      # across all pages in the format
+      expect(page).to have_text("Unique pageviews 67.7k per day")
+      expect(page).to have_text("Searches started 19.4k per day")
+      expect(page).to have_text("Problem reports 95.7 per week")
       expect(page).to have_text("login (180)")
       expect(page).to have_text("spouse visa (100)")
     end
 
-    # check multipart formats are present and correct
+    # check per-page multipart formats are present and correct
     within("#per-page-metrics") do
       expect(page.first('th.page').text).to have_text('Page')
       expect(page.first('th.unique_pageviews').text).to have_text('Unique pageviews')
@@ -57,17 +61,17 @@ feature "Info page" do
       expect(page.all('td.page')[2].text).to eq('/apply-uk-visa/part-2')
       expect(page.all('td.page')[3].text).to eq('/apply-uk-visa/part-3')
       expect(page.all('td.unique_pageviews')[0].text).to eq('25k per day')
-      expect(page.all('td.unique_pageviews')[1].text).to eq('25k per day')
-      expect(page.all('td.unique_pageviews')[2].text).to eq('24k per day')
-      expect(page.all('td.unique_pageviews')[3].text).to eq('26k per day')
+      expect(page.all('td.unique_pageviews')[1].text).to eq('24.3k per day')
+      expect(page.all('td.unique_pageviews')[2].text).to eq('11k per day')
+      expect(page.all('td.unique_pageviews')[3].text).to eq('7.4k per day')
       expect(page.all('td.searches')[0].text).to eq('20 per day')
-      expect(page.all('td.searches')[1].text).to eq('4k per day')
-      expect(page.all('td.searches')[2].text).to eq('5k per day')
-      expect(page.all('td.searches')[3].text).to eq('6k per day')
+      expect(page.all('td.searches')[1].text).to eq('5k per day')
+      expect(page.all('td.searches')[2].text).to eq('5.33k per day')
+      expect(page.all('td.searches')[3].text).to eq('9k per day')
       expect(page.all('td.problem_reports')[0].text).to eq('7 per week')
-      expect(page.all('td.problem_reports')[1].text).to eq('1.4k per week')
-      expect(page.all('td.problem_reports')[2].text).to eq('1.75k per week')
-      expect(page.all('td.problem_reports')[3].text).to eq('700 per week')
+      expect(page.all('td.problem_reports')[1].text).to eq('7 per week')
+      expect(page.all('td.problem_reports')[2].text).to eq('15 per week')
+      expect(page.all('td.problem_reports')[3].text).to eq('12 per week')
     end
 
     within("#needs") do
