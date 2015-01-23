@@ -1,7 +1,13 @@
 <%- if show_needs %>
-<section id="needs" class="padding-for-tablets">
+<section id="needs">
   <header class="needs-heading">
-    <h1>Why is this page on GOV.UK?</h1>
+    <h1>Why is this
+  <%- if format=='guide' %>
+    guide
+  <%- else %>
+    page
+  <%- end %>
+    on GOV.UK?</h1>
   </header>
   <div class="individual-need">
     <% if needs.present? %>

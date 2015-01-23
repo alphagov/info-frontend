@@ -41,11 +41,17 @@
     color: $secondary-text-colour;
   }
 
+  h2 {
+    @include bold-36;
+    display: block;
+    margin-bottom: $gutter-one-third;;
+  }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
     margin: 1em 0 2em;
-    width: 105.95%;
+    width: 100%;
 
     caption {
       @include bold-24;
@@ -135,6 +141,10 @@
     }
   }
 
+  #lead-metrics {
+    clear: both;
+  }
+
   .search-terms {
     .search-terms-list {
       @include core-14;
@@ -188,12 +198,13 @@
   .need-heading {
     margin-bottom: $gutter;
 
-    p {
+    p.type {
       @include core-24;
       color: $secondary-text-colour;
     }
     h1 {
       @include bold-48;
+      margin-bottom: $gutter-one-third;
     }
   }
 
