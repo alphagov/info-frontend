@@ -42,6 +42,8 @@ feature "Info page" do
 
     within("#lead-metrics") do
       expect(page).to have_text("Unique pageviews 25k per day")
+      expect(page).to have_text("login (180)")
+      expect(page).to have_text("spouse visa (100)")
     end
 
     # check multipart formats are present and correct

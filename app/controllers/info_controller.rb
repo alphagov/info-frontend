@@ -67,7 +67,7 @@ class AllMetrics
       unique_pageviews: performance_data_for("page_views", @part_urls).map {|l| l["value"] },
       exits_via_search: performance_data_for("searches", @part_urls).map {|l| l["value"] },
       problem_reports: performance_data_for("problem_reports", @part_urls).map {|l| l["value"] },
-      search_terms: performance_data_for("search_terms", @part_urls).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } },
+      search_terms: performance_data_for("search_terms", []).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } },
     )
   end
 
