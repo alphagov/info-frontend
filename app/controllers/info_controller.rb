@@ -14,7 +14,7 @@ class InfoController < ApplicationController
       if InfoFrontend::FeatureFlags.needs_to_show == :only_validated
         @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
       end
-      part_urls = get_part_urls(@artefact, @slug)
+      part_urls, @format = get_part_urls(@artefact, @slug)
       calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
@@ -30,14 +30,16 @@ private
   def get_part_urls(artefact, slug)
     details = artefact.fetch("details")
     part_urls = []
+    format = nil
     if details.key?("parts")
       part_urls = details.fetch("parts") || []
       if !part_urls.empty?
         part_urls.map! {|part_url| URI(part_url["web_url"]).path }
         part_urls.unshift(slug.insert(0, "/"))
+        format = 'guide'
       end
     end
-    return part_urls
+    return part_urls, format
   end
 
   def metrics_from(artefact, performance_data, part_urls = [])
