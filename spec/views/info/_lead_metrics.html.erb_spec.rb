@@ -6,13 +6,10 @@ RSpec.describe "info/lead_metrics" do
     unique_pageviews_average: 0,
     exits_via_search_average: 0,
     problem_reports_weekly_average: 0,
-    unique_pageviews_multipart_average: 0,
-    exits_via_search_multipart_average: 0,
-    problem_reports_multipart_weekly_average: 0,
     top_10_search_terms: []
     }
   }
-  let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)), format: nil } }
+  let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)), is_multipart: false } }
 
   context "when there's very little traffic" do
     let(:data) { { unique_pageviews_average: 0.5 } }
@@ -56,10 +53,10 @@ RSpec.describe "info/lead_metrics" do
   end
 
   context "when the format is a multi-part guide" do
-    let(:data) { { unique_pageviews_multipart_average: 13245, exits_via_search_multipart_average: 12, problem_reports_multipart_weekly_average: 33 } }
+    let(:data) { { unique_pageviews_average: 13245, exits_via_search_average: 12, problem_reports_weekly_average: 33 } }
 
     it "uses multipart metrics" do
-      locals[:format] = 'guide'
+      locals[:@is_multipart] = true
       render partial: "info/lead_metrics", locals: locals
 
       expect(rendered).to have_text("Unique pageviews 13.2k per day")

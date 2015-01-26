@@ -14,12 +14,12 @@ class InfoController < ApplicationController
       if InfoFrontend::FeatureFlags.needs_to_show == :only_validated
         @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
       end
-      part_urls, @format = get_part_urls(@artefact, @slug)
-      calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls)
+      part_urls = get_part_urls(@artefact, @slug)
+      @is_multipart = is_multipart(part_urls)
+      calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
       @show_needs = [:all, :only_validated].include?(InfoFrontend::FeatureFlags.needs_to_show)
-
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404
@@ -30,20 +30,22 @@ private
   def get_part_urls(artefact, slug)
     details = artefact.fetch("details")
     part_urls = []
-    format = nil
     if details.key?("parts")
       part_urls = details.fetch("parts") || []
       if !part_urls.empty?
         part_urls.map! {|part_url| URI(part_url["web_url"]).path }
         part_urls.unshift(slug.insert(0, "/"))
-        format = 'guide'
       end
     end
-    return part_urls, format
+    return part_urls
   end
 
-  def metrics_from(artefact, performance_data, part_urls = [])
-    all_metrics = AllMetrics.new(performance_data, part_urls)
+  def is_multipart(part_urls)
+    return (part_urls.length != 0)
+  end
+
+  def metrics_from(artefact, performance_data, part_urls, is_multipart)
+    all_metrics = AllMetrics.new(performance_data, part_urls, is_multipart)
     { lead_metrics: all_metrics.lead_metrics }.tap do |metrics|
       metrics[:per_page_metrics] = {}
       part_urls.each do |path|
@@ -57,37 +59,40 @@ private
 end
 
 class AllMetrics
-  def initialize(performance_data, part_urls)
+  def initialize(performance_data, part_urls, is_multipart)
     @performance_data = performance_data
     @part_urls = part_urls
-    @number_of_days = number_of_days
+    @is_multipart = is_multipart
   end
 
   def lead_metrics
-    PerformanceData::Metrics.new(
-      unique_pageviews: performance_data_for("page_views", @part_urls).map {|l| l["value"] },
-      exits_via_search: performance_data_for("searches", @part_urls).map {|l| l["value"] },
-      problem_reports: performance_data_for("problem_reports", @part_urls).map {|l| l["value"] },
-      search_terms: performance_data_for("search_terms", []).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } },
-      number_of_days: @number_of_days,
-    )
+    pageview_data = performance_data_for("page_views", @part_urls)
+    search_data = performance_data_for("searches", @part_urls)
+    problem_data = performance_data_for("problem_reports", @part_urls)
+    search_term_data = performance_data_for("search_terms", [])
+    if @is_multipart
+      return PerformanceData::MultiPartMetrics.new(
+        unique_pageviews: pageview_data,
+        exits_via_search: search_data,
+        problem_reports: problem_data,
+        search_terms: search_term_data
+      )
+    else
+      return PerformanceData::Metrics.new(
+        unique_pageviews: pageview_data,
+        exits_via_search: search_data,
+        problem_reports: problem_data,
+        search_terms: search_term_data
+      )
+    end
   end
 
   def metrics_for(path)
     PerformanceData::Metrics.new(
-      unique_pageviews: performance_data_for("page_views", [path]).map {|l| l["value"] },
-      exits_via_search: performance_data_for("searches", [path]).map {|l| l["value"] },
-      problem_reports: performance_data_for("problem_reports", [path]).map {|l| l["value"] },
-      number_of_days: @number_of_days,
+      unique_pageviews: performance_data_for("page_views", [path]),
+      exits_via_search: performance_data_for("searches", [path]),
+      problem_reports: performance_data_for("problem_reports", [path]),
     )
-  end
-
-  def number_of_days
-    number_of_entries_for_one_url = []
-    if @performance_data["page_views"]
-      number_of_entries_for_one_url = @performance_data["page_views"].select { |record| @part_urls[0] == record["path"] }
-    end
-    number_of_entries_for_one_url.length
   end
 
   def performance_data_for(metric, part_urls)

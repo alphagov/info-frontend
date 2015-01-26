@@ -45,7 +45,7 @@ feature "Info page" do
       # across all pages in the format
       expect(page).to have_text("Unique pageviews 67.7k per day")
       expect(page).to have_text("Searches started 19.4k per day")
-      expect(page).to have_text("Problem reports 95.7 per week")
+      expect(page).to have_text("Problem reports 41 per week")
       expect(page).to have_text("login (180)")
       expect(page).to have_text("spouse visa (100)")
     end
