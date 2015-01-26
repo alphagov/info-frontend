@@ -15,7 +15,7 @@ class InfoController < ApplicationController
         @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
       end
       part_urls = get_part_urls(@artefact, @slug)
-      @is_multipart = is_multipart(part_urls)
+      @is_multipart = is_multipart(part_urls, @artefact.fetch("format"))
       calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
@@ -40,8 +40,8 @@ private
     return part_urls
   end
 
-  def is_multipart(part_urls)
-    return (part_urls.length != 0)
+  def is_multipart(part_urls, format)
+    return (part_urls.length != 0) || (format == 'smart-answer')
   end
 
   def metrics_from(artefact, performance_data, part_urls, is_multipart)

@@ -103,6 +103,12 @@ module MetadataAPIHelpers
     end
   end
 
+  def metadata_api_response_for_smart_answer
+    metadata_api_response_for_apply_uk_visa.tap do |response|
+      response["artefact"]["format"] = 'smart-answer'
+    end
+  end
+
   def metadata_api_response_for_multipart_artefact
     metadata_api_response_for_apply_uk_visa.tap do |response|
       response["artefact"]["details"]["parts"] = [

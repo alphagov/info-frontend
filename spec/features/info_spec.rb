@@ -35,6 +35,15 @@ feature "Info page" do
     expect(page).to have_text("Unique pageviews 25k per day")
   end
 
+  scenario "Seeing response for a smart answer" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_smart_answer)
+
+    visit "/info/apply-uk-visa"
+
+    # Check a smart answer is treated as a multipart format
+    expect(page).to have_text("Metrics across all pages")
+  end
+
   scenario "Seeing metrics for multi-part formats" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_multipart_artefact)
 
