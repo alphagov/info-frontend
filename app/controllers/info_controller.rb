@@ -1,19 +1,24 @@
+require 'uri'
 require 'govuk/client/metadata_api'
-require 'performance_data/lead_metrics'
+require 'performance_data/metrics'
 
 class InfoController < ApplicationController
   before_filter :set_expiry, only: :show
 
   def show
-    slug = URI.encode(params[:slug])
-    metadata = GOVUK::Client::MetadataAPI.new.info(slug)
+    @slug = URI.encode(params[:slug])
+    metadata = GOVUK::Client::MetadataAPI.new.info(@slug)
     if metadata
       @artefact = metadata.fetch("artefact")
       @needs = metadata.fetch("needs")
       if InfoFrontend::FeatureFlags.needs_to_show == :only_validated
         @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
       end
-      @lead_metrics = lead_metrics_from(@artefact, metadata.fetch("performance"))
+      part_urls = get_part_urls(@artefact, @slug)
+      @is_multipart = is_multipart(part_urls, @artefact.fetch("format"))
+      calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls, @is_multipart)
+      @lead_metrics = calculated_metrics[:lead_metrics]
+      @per_page_metrics = calculated_metrics[:per_page_metrics]
       @show_needs = [:all, :only_validated].include?(InfoFrontend::FeatureFlags.needs_to_show)
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
@@ -22,20 +27,76 @@ class InfoController < ApplicationController
   end
 
 private
-  def lead_metrics_from(artefact, performance_data)
-    if artefact.fetch("details")["parts"]
-      return nil # can't present metrics for multi-part content yet
+  def get_part_urls(artefact, slug)
+    details = artefact.fetch("details")
+    part_urls = []
+    if details.key?("parts")
+      part_urls = details.fetch("parts") || []
+      if !part_urls.empty?
+        part_urls.map! {|part_url| URI(part_url["web_url"]).path }
+        part_urls.unshift(slug.insert(0, "/"))
+      end
+    end
+    return part_urls
+  end
+
+  def is_multipart(part_urls, format)
+    return (part_urls.length != 0) || (format == 'smart-answer')
+  end
+
+  def metrics_from(artefact, performance_data, part_urls, is_multipart)
+    all_metrics = AllMetrics.new(performance_data, part_urls, is_multipart)
+    { lead_metrics: all_metrics.lead_metrics }.tap do |metrics|
+      metrics[:per_page_metrics] = {}
+      part_urls.each do |path|
+        metrics[:per_page_metrics][path] = all_metrics.metrics_for(path)
+      end
+      if metrics[:per_page_metrics] == {}
+        metrics[:per_page_metrics] = nil
+      end
+    end
+  end
+end
+
+class AllMetrics
+  def initialize(performance_data, part_urls, is_multipart)
+    @performance_data = performance_data
+    @part_urls = part_urls
+    @is_multipart = is_multipart
+  end
+
+  def lead_metrics
+    pageview_data = performance_data_for("page_views", @part_urls)
+    search_data = performance_data_for("searches", @part_urls)
+    problem_data = performance_data_for("problem_reports", @part_urls)
+    search_term_data = performance_data_for("search_terms", [])
+    if @is_multipart
+      return PerformanceData::MultiPartMetrics.new(
+        unique_pageviews: pageview_data,
+        exits_via_search: search_data,
+        problem_reports: problem_data,
+        search_terms: search_term_data
+      )
     else
-      uniques = (performance_data["page_views"] || []).map {|l| l["value"] }
-      searches = (performance_data["searches"] || []).map {|l| l["value"] }
-      problem_reports = (performance_data["problem_reports"] || []).map {|l| l["value"] }
-      search_terms = (performance_data["search_terms"] || []).map {|term| { keyword: term["Keyword"], total: term["TotalSearches"] } }
-      PerformanceData::LeadMetrics.new(
-        unique_pageviews: uniques,
-        exits_via_search: searches,
-        search_terms: search_terms,
-        problem_reports: problem_reports,
+      return PerformanceData::Metrics.new(
+        unique_pageviews: pageview_data,
+        exits_via_search: search_data,
+        problem_reports: problem_data,
+        search_terms: search_term_data
       )
     end
+  end
+
+  def metrics_for(path)
+    PerformanceData::Metrics.new(
+      unique_pageviews: performance_data_for("page_views", [path]),
+      exits_via_search: performance_data_for("searches", [path]),
+      problem_reports: performance_data_for("problem_reports", [path]),
+    )
+  end
+
+  def performance_data_for(metric, part_urls)
+    data = @performance_data[metric] || []
+    part_urls.empty? ? data : data.select { |record| part_urls.include? record["path"] }
   end
 end

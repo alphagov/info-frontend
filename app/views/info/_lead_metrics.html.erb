@@ -1,16 +1,25 @@
 <section id="lead-metrics">
   <% if lead_metrics %>
+    <%- if @is_multipart %>
+    <h2>Metrics across all pages</h2>
+    <%- end %>
     <div class="metrics-panel">
       <div class="lead-metric">
         <h2>Unique pageviews</h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.unique_pageviews_average) %> <span class="unit">per day</span>
+            <%= human_readable_number(lead_metrics.unique_pageviews_average) %>
+          <span class="unit">per day</span>
         </p>
       </div>
       <div class="wide-lead-metric">
-        <h2>Searches started from this page</h2>
+        <h2>Searches started
+          <%- if !@is_multipart %>
+            from this page
+          <%- end %>
+        </h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.exits_via_search_average) %> <span class="unit">per day</span>
+            <%= human_readable_number(lead_metrics.exits_via_search_average) %>
+          <span class="unit">per day</span>
         </p>
       </div>
     </div>
@@ -18,12 +27,13 @@
       <div class="lead-metric">
         <h2>Problem reports</h2>
         <p class="count">
-          <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %> <span class="unit">per week</span>
+            <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %>
+          <span class="unit">per week</span>
         </p>
       </div>
       <% if lead_metrics.top_10_search_terms.present? %>
         <div class="wide-lead-metric search-terms">
-          <h2>Users left this page by searching for:</h2>
+          <h2>Users left by searching for:</h2>
 
           <div class="search-terms-list">
             <ul>
@@ -34,16 +44,6 @@
           </div>
         </div>
       <% end %>
-
-      <p class="time-interval-explanation">
-        Measured over the last 6 weeks
-      </p>
-    </div>
-  <% else %>
-    <div class="metrics-panel">
-      <div class="no-metrics">
-        <p>Accurate metrics for multi-part formats aren’t available yet.</p>
-      </div>
     </div>
   <% end %>
 </section>
