@@ -29,6 +29,9 @@ module MetadataAPIHelpers
          ["Finds out how whether they're eligible",
           "How to apply",
           "What documents to provide"],
+        "status"=>{
+          "description"=>"valid",
+        },
         "yearly_user_contacts"=>0,
         "yearly_site_views"=>0,
         "yearly_need_views"=>0,
@@ -100,6 +103,12 @@ module MetadataAPIHelpers
   def metadata_api_response_with_no_performance_data
     metadata_api_response_for_apply_uk_visa.tap do |response|
       response["performance"] = {}
+    end
+  end
+
+  def metadata_api_response_with_an_invalid_need
+    metadata_api_response_for_apply_uk_visa.tap do |response|
+      response["needs"].first["status"]["description"] = "proposed"
     end
   end
 
