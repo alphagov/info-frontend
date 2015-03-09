@@ -36,8 +36,6 @@ module MetadataAPIHelpers
         "other_evidence"=>"",
         "legislation"=>"",
         "applies_to_all_organisations"=>false,
-        "in_scope"=>false,
-        "out_of_scope_reason"=>"",
         "duplicate_of"=>0}],
      "performance"=>
       {"page_views"=>
