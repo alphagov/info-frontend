@@ -10,16 +10,12 @@ class InfoController < ApplicationController
     metadata = GOVUK::Client::MetadataAPI.new.info(@slug)
     if metadata
       @artefact = metadata.fetch("artefact")
-      @needs = metadata.fetch("needs")
-      if InfoFrontend::FeatureFlags.needs_to_show == :only_validated
-        @needs.select! { |need| InfoFrontend::FeatureFlags.validated_need_ids.include?(need["id"]) }
-      end
+      @needs = metadata.fetch("needs").select {|need| need["status"]["description"] == "valid" }
       part_urls = get_part_urls(@artefact, @slug)
       @is_multipart = is_multipart(part_urls, @artefact.fetch("format"))
       calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
-      @show_needs = [:all, :only_validated].include?(InfoFrontend::FeatureFlags.needs_to_show)
     else
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404

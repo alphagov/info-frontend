@@ -1,4 +1,3 @@
-<%- if show_needs %>
 <section id="needs">
   <header class="needs-heading">
     <h1>Why <%- if is_multipart %> are these pages <%- else %> is this page <%- end %> on GOV.UK?</h1>
@@ -8,9 +7,8 @@
     <%= render partial: "need_details", collection: needs, as: 'need', spacer_template: "spacer" %>
     <% else %>
     <div class="role-goal-benefit-panel">
-      <h2 class="no-need">There aren’t any recorded needs for this page.</h2>
+      <h2 class="no-need">There aren’t any validated needs for this page.</h2>
     </div>
     <% end %>
   </div>
 </section>
-<%- end %>

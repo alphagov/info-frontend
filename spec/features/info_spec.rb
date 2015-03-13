@@ -118,7 +118,7 @@ feature "Info page" do
 
     visit "/info/some-slug"
 
-    expect(page).to have_text("There aren’t any recorded needs for this page.")
+    expect(page).to have_text("There aren’t any validated needs for this page.")
   end
 
   scenario "When there isn't any performance data available" do
@@ -146,61 +146,27 @@ feature "Info page" do
     expect(page.status_code).to eq(200)
   end
 
-  context "configuring whether or not to show the user need" do
-    after(:each) do
-      InfoFrontend::FeatureFlags.needs_to_show = :all
-    end
+  scenario "shows the user need when it's valid" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
 
-    scenario "shows the user need by default" do
-      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    visit "/info/apply-uk-visa"
 
-      visit "/info/apply-uk-visa"
+    expect(page).to have_text("User needs and metrics")
+    expect(page).to have_text("non-EEA national")
+    expect(page).to have_text("apply for a UK visa")
+    expect(page).to have_text("I can come to the UK to visit, study or work")
+  end
 
-      expect(page).to have_text("User needs and metrics")
-      expect(page).to have_text("non-EEA national")
-      expect(page).to have_text("apply for a UK visa")
-      expect(page).to have_text("I can come to the UK to visit, study or work")
-    end
+  scenario "doesn't show the user need when it isn't valid" do
+    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_with_an_invalid_need)
 
-    scenario "doesn't show the user need if needs are hidden" do
-      InfoFrontend::FeatureFlags.needs_to_show = :none
+    visit "/info/apply-uk-visa"
 
-      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    expect(page).to have_text("User needs and metrics")
+    expect(page).to_not have_text("non-EEA national")
+    expect(page).to_not have_text("apply for a UK visa")
+    expect(page).to_not have_text("I can come to the UK to visit, study or work")
 
-      visit "/info/apply-uk-visa"
-
-      expect(page).to_not have_text("User needs and metrics")
-      expect(page).to_not have_text("non-EEA national")
-      expect(page).to_not have_text("apply for a UK visa")
-      expect(page).to_not have_text("I can come to the UK to visit, study or work")
-
-      expect(page).to have_text("Metrics")
-    end
-
-    scenario "doesn't show the user need if it's not validated" do
-      InfoFrontend::FeatureFlags.needs_to_show = :only_validated
-      InfoFrontend::FeatureFlags.validated_need_ids = [ 100999 ]
-
-      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
-
-      visit "/info/apply-uk-visa"
-
-      expect(page).to have_text("User needs and metrics")
-      expect(page).to_not have_text("apply for a UK visa")
-    end
-
-    scenario "shows the user need if it's validated" do
-      InfoFrontend::FeatureFlags.needs_to_show = :only_validated
-      InfoFrontend::FeatureFlags.validated_need_ids = [
-        metadata_api_response_for_apply_uk_visa["needs"].first["id"]
-      ]
-
-      stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
-
-      visit "/info/apply-uk-visa"
-
-      expect(page).to have_text("User needs and metrics")
-      expect(page).to have_text("apply for a UK visa")
-    end
+    expect(page).to have_text("There aren’t any validated needs for this page.")
   end
 end
