@@ -7,7 +7,7 @@ gem 'sass-rails', '4.0.3'
 gem 'uglifier', '2.5.3'
 gem 'spring', group: :development
 gem 'airbrake', '4.0.0'
-gem 'slimmer', '5.0.0'
+gem 'slimmer', '8.1.0'
 gem 'plek', '1.9.0'
 gem 'govuk-client-url_arbiter', '0.0.2'
 gem 'govuk_frontend_toolkit', '1.6.1'
