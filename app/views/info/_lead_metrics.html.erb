@@ -38,7 +38,9 @@
           <div class="search-terms-list">
             <ul>
               <% lead_metrics.top_10_search_terms.each do |search_term| %>
-                <li><%= search_term[:keyword] %> (<%= search_term[:total] %>)</li>
+                <li>
+                  <%= link_to search_term[:keyword], "/search?q=#{search_term[:keyword]}" %> (<%= search_term[:total] %>)
+                </li>
               <% end %>
             </ul>
           </div>
