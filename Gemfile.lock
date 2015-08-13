@@ -47,7 +47,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.2.1)
-    gds-api-adapters (20.1.1)
+    gds-api-adapters (23.2.2)
       link_header
       lrucache (~> 0.1.1)
       null_logger
@@ -84,7 +84,7 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     null_logger (0.0.1)
-    plek (1.9.0)
+    plek (1.11.0)
     rack (1.5.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -183,11 +183,11 @@ PLATFORMS
 DEPENDENCIES
   airbrake (= 4.0.0)
   capybara (= 2.4.1)
-  gds-api-adapters (= 20.1.1)
+  gds-api-adapters (= 23.2.2)
   govuk-client-url_arbiter (= 0.0.2)
   govuk_frontend_toolkit (= 1.6.1)
   logstasher (= 0.6.0)
-  plek (= 1.9.0)
+  plek (= 1.11.0)
   rails (= 4.1.11)
   rspec-its (= 1.0.1)
   rspec-rails (= 3.1.0)
