@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Slimmer::Template
   include Slimmer::SharedTemplates
-
-  slimmer_template "header_footer_only"
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

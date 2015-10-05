@@ -1,16 +1,9 @@
-@import "grid_layout";
+@import "measurements";
 @import "typography";
 @import "colours";
 @import "reset";
 @import "shims";
 
-.outer-block {
-  @include outer-block;
-}
-
-.inner-block {
-  @include inner-block;
-}
 
 .info-frontend {
   padding-top: $gutter-half;

@@ -8,14 +8,10 @@
 <body>
   <div id="global-breadcrumb" class="header-context"></div>
   <div id="wrapper">
-    <div class="outer-block">
-      <div class="inner-block">
-        <%= render 'govuk_component/alpha_label' %>
-        <main role="main" class="info-frontend">
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+    <%= render 'govuk_component/alpha_label' %>
+    <main role="main" class="info-frontend">
+      <%= yield %>
+    </main>
   </div>
 </body>
 </html>
