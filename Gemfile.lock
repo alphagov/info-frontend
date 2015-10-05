@@ -138,7 +138,7 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    slimmer (8.2.1)
+    slimmer (9.0.0)
       activesupport
       json
       nokogiri (>= 1.5.0, < 1.7.0)
@@ -192,7 +192,7 @@ DEPENDENCIES
   rspec-its (= 1.0.1)
   rspec-rails (= 3.1.0)
   sass-rails (= 4.0.3)
-  slimmer (= 8.2.1)
+  slimmer (= 9.0.0)
   spring
   uglifier (= 2.5.3)
   unicorn (= 4.8.3)
