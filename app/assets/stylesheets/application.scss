@@ -6,10 +6,9 @@
 
 
 .info-frontend {
-  padding-top: $gutter-half;
   margin-bottom: $gutter;
   @include media(tablet){
-    padding-top: $gutter;
+    padding-top: $gutter-half;
     margin-bottom: $gutter * 2;
   }
   @extend %contain-floats;
@@ -190,15 +189,6 @@
 
   .need-heading {
     margin-bottom: $gutter;
-
-    p.type {
-      @include core-24;
-      color: $secondary-text-colour;
-    }
-    h1 {
-      @include bold-48;
-      margin-bottom: $gutter-one-third;
-    }
   }
 
   .role-goal-benefit-panel {
