@@ -1,9 +1,9 @@
-<div class="padding-for-tablets">
-  <div class="need-heading">
-  <p class="type">User needs and metrics</p>
-  <h1><%= artefact["title"] %></h1>
+<div class="need-heading">
+  <%= render partial: 'govuk_component/title', locals: {
+  context: "User needs and metrics",
+  title: artefact["title"]
+  } %>
   <p class="introduction">
     All metrics are recorded over the past 6 weeks.
   </p>
-  </div>
 </div>
