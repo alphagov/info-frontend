@@ -6,7 +6,15 @@ namespace :publishing_api do
   desc 'Publish special routes via publishing api'
   task :publish_special_routes do
     logger = Logger.new(STDOUT)
-    special_route_publisher = GdsApi::PublishingApi::SpecialRoutePublisher.new(logger: logger)
+    publishing_api = GdsApi::PublishingApiV2.new(
+      Plek.new.find('publishing-api'),
+      bearer_token: ENV['PUBLISHING_API_BEARER_TOKEN'] || 'example'
+    )
+    special_route_publisher = GdsApi::PublishingApi::SpecialRoutePublisher.new(
+      logger: logger,
+      publishing_api: publishing_api
+    )
+
     special_route_publisher.publish(
       content_id: "bce40c1f-2259-4404-b275-8c5e04afef34",
       title: "Info pages",
