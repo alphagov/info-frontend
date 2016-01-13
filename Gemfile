@@ -11,7 +11,7 @@ gem 'slimmer', '9.0.0'
 gem 'plek', '1.11.0'
 gem 'govuk-client-url_arbiter', '0.0.2'
 gem 'govuk_frontend_toolkit', '1.6.1'
-gem 'gds-api-adapters', '23.2.2'
+gem 'gds-api-adapters', '26.7.0'
 
 group :development, :test do
   gem 'rspec-rails', '3.1.0'
