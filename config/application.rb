@@ -15,6 +15,5 @@ Bundler.require(*Rails.groups)
 
 module InfoFrontend
   class Application < Rails::Application
-    config.assets.prefix = "/info-frontend"
   end
 end
