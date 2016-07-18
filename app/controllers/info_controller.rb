@@ -3,7 +3,7 @@ require 'govuk/client/metadata_api'
 require 'performance_data/metrics'
 
 class InfoController < ApplicationController
-  before_filter :set_expiry, only: :show
+  before_action :set_expiry, only: :show
 
   def show
     @slug = URI.encode(params[:slug])
