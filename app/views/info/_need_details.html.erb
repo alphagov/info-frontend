@@ -1,17 +1,17 @@
 <div class="role-goal-benefit-panel">
   <p class="need-label">The user need for this page:</p>
   <p class="need">
-    <span class="role">As a <%= need["role"] %></span>
-    <span class="goal">I need to <%= need["goal"] %></span>
-    <span class="benefit">So that <%= need["benefit"] %></span>
+    <span class="role">As a <%= need["details"]["role"] %></span>
+    <span class="goal">I need to <%= need["details"]["goal"] %></span>
+    <span class="benefit">So that <%= need["details"]["benefit"] %></span>
   </p>
 </div>
 
 <div class="reason-block first">
-  <% if need["met_when"].present? %>
+  <% if need["details"]["met_when"].present? %>
     <h2>The need is met when the user:</h2>
     <ul>
-      <% need["met_when"].each do |met| %>
+      <% need["details"]["met_when"].each do |met| %>
         <li><%= met %></li>
       <% end %>
     </ul>
@@ -21,10 +21,10 @@
 </div>
 
 <div class="reason-block">
-  <% if need["justifications"].present? %>
+  <% if need["details"]["justifications"].present? %>
     <h2>This need is <%= link_to "in proposition", "https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition" %> because:</h2>
     <ul>
-      <% need["justifications"].each do |justification| %>
+      <% need["details"]["justifications"].each do |justification| %>
         <li><%= justification %></li>
       <% end %>
     </ul>
