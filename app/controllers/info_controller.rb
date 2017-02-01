@@ -1,30 +1,58 @@
 require 'uri'
+require 'gds_api/helpers'
 require 'govuk/client/metadata_api'
 require 'performance_data/metrics'
 
 class InfoController < ApplicationController
+  include GdsApi::Helpers
   before_action :set_expiry, only: :show
 
   def show
     @slug = URI.encode(params[:slug])
-    metadata = GOVUK::Client::MetadataAPI.new.info(@slug)
+
+    @content = content_store.content_item("/#{@slug}").try(:to_h)
+
+    if @content
+      @needs = @content["links"]["meets_user_needs"]
+    end
+
+    begin
+      metadata = GOVUK::Client::MetadataAPI.new.info(@slug)
+    rescue StandardError
+      metadata = nil
+    end
+
     if metadata
-      @artefact = metadata.fetch("artefact")
-      @needs = metadata.fetch("needs").select {|need| need["status"]["description"] == "valid" }
-      part_urls = get_part_urls(@artefact, @slug)
-      @is_multipart = is_multipart(part_urls, @artefact.fetch("format"))
-      calculated_metrics = metrics_from(@artefact, metadata.fetch("performance"), part_urls, @is_multipart)
+      unless @content
+        # If the content store does not have this content, fall back
+        # to the Metadata API, which may be able to fetch the content
+        # from the content-api
+        @content = metadata.fetch("artefact")
+        valid_needs = metadata.fetch("needs").select do |need|
+          need["status"]["description"] == "valid"
+        end
+        @needs = valid_needs.map { |need| { "details" => need } }
+      end
+
+      document_type = @content["document_type"] || @content["format"]
+
+      part_urls = get_part_urls(@content, @slug)
+      @is_multipart = is_multipart(part_urls, document_type)
+      calculated_metrics = metrics_from(metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
-    else
+    end
+
+    unless @content || metadata
       response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
       head 404
     end
   end
 
 private
-  def get_part_urls(artefact, slug)
-    details = artefact.fetch("details")
+
+  def get_part_urls(content, slug)
+    details = content.fetch("details")
     part_urls = []
     if details.key?("parts")
       part_urls = details.fetch("parts") || []
@@ -36,8 +64,8 @@ private
     return part_urls
   end
 
-  def is_multipart(part_urls, format)
-    return (part_urls.length != 0) || (format == 'smart-answer')
+  def is_multipart(part_urls, document_type)
+    return (part_urls.length != 0) || (document_type == 'smart-answer')
   end
 
   def metrics_from(performance_data, part_urls, is_multipart)
