@@ -40,7 +40,7 @@ private
     return (part_urls.length != 0) || (format == 'smart-answer')
   end
 
-  def metrics_from(artefact, performance_data, part_urls, is_multipart)
+  def metrics_from(performance_data, part_urls, is_multipart)
     all_metrics = AllMetrics.new(performance_data, part_urls, is_multipart)
     { lead_metrics: all_metrics.lead_metrics }.tap do |metrics|
       metrics[:per_page_metrics] = {}
