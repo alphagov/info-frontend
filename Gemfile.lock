@@ -65,11 +65,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.2.1)
-    gds-api-adapters (26.7.0)
+    gds-api-adapters (33.1.0)
       link_header
       lrucache (~> 0.1.1)
       null_logger
-      plek
+      plek (>= 1.9.0)
       rack-cache
       rest-client (~> 1.8.0)
     globalid (0.3.7)
@@ -118,7 +118,7 @@ GEM
     plek (1.11.0)
     powerpack (0.1.1)
     rack (2.0.1)
-    rack-cache (1.5.1)
+    rack-cache (1.7.0)
       rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -243,7 +243,7 @@ DEPENDENCIES
   airbrake (= 4.0.0)
   capybara (= 2.4.1)
   ci_reporter_rspec
-  gds-api-adapters (= 26.7.0)
+  gds-api-adapters (= 33.1.0)
   govuk-client-url_arbiter (= 0.0.2)
   govuk-lint
   govuk_frontend_toolkit (= 1.6.1)
