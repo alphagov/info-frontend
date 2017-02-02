@@ -15,6 +15,8 @@ gem 'gds-api-adapters', '26.7.0'
 
 group :development, :test do
   gem 'rspec-rails', '3.1.0'
+  gem 'govuk-lint'
+  gem 'ci_reporter_rspec'
 end
 
 group :test do
