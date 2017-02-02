@@ -65,7 +65,7 @@ private
   end
 
   def is_multipart(part_urls, document_type)
-    (part_urls.length != 0) || (document_type == 'smart-answer')
+    part_urls.any? || (document_type == 'smart-answer')
   end
 
   def metrics_from(performance_data, part_urls, is_multipart)
