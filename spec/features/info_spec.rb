@@ -1,11 +1,56 @@
 require "rails_helper"
 require "govuk/client/test_helpers/metadata_api"
+require "gds_api/test_helpers/content_store"
 
 feature "Info page" do
   include GOVUK::Client::TestHelpers::MetadataAPI
+  include GdsApi::TestHelpers::ContentStore
+
+  before do
+    random_need = GovukSchemas::RandomExample.for_schema(
+      frontend_schema: "need"
+    )
+
+    @apply_for_a_uk_visa_need = random_need.merge_and_validate(
+      "details" => {
+        "role" => "As a non-EEA national",
+        "goal" => "I need to apply for a UK visa",
+        "benefit" => "So that I can come to the UK to visit, study or work",
+        "justifications" => ["It's something only government does"],
+        "met_when" => [
+          "Finds out how whether they're eligible",
+          "How to apply",
+          "What documents to provide"
+        ],
+      }
+    )
+
+    random_content = GovukSchemas::RandomExample.for_schema(
+      frontend_schema: "specialist_document"
+    )
+
+    fields_to_exclude = %w(
+      rendering_app
+      withdrawn_notice
+      last_edited_at
+      updated_at
+      first_published_at
+      publishing_app
+      need_ids
+      format phase
+    )
+
+    @apply_uk_visa_content = random_content.merge_and_validate(
+      "title" => "Apply for a UK visa",
+      "links" => {
+        "meets_user_needs": [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+      }
+    )
+  end
 
   scenario "Understanding the needs of a page" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -29,6 +74,7 @@ feature "Info page" do
 
   scenario "Seeing how many visits are made to a page" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -37,6 +83,7 @@ feature "Info page" do
 
   scenario "Seeing response for a smart answer" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_smart_answer)
+    content_store_does_not_have_item('/apply-uk-visa')
 
     visit "/info/apply-uk-visa"
 
@@ -46,6 +93,7 @@ feature "Info page" do
 
   scenario "Seeing metrics for multi-part formats" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_multipart_artefact)
+    content_store_does_not_have_item('/apply-uk-visa')
 
     visit "/info/apply-uk-visa"
 
@@ -90,6 +138,7 @@ feature "Info page" do
 
   scenario "Seeing how many users are leaving via the site search" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -98,6 +147,7 @@ feature "Info page" do
 
   scenario "Seeing how problem reports are left" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -106,6 +156,7 @@ feature "Info page" do
 
   scenario "Seeing what terms users are searching for" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -115,6 +166,7 @@ feature "Info page" do
 
   scenario "Seeing where there aren’t any recorded user needs" do
     stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
+    content_store_does_not_have_item('/some-slug')
 
     visit "/info/some-slug"
 
@@ -123,6 +175,7 @@ feature "Info page" do
 
   scenario "When there isn't any performance data available" do
     stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_performance_data)
+    content_store_has_item('/some-slug', @apply_uk_visa_content)
 
     visit "/info/some-slug"
 
@@ -132,6 +185,7 @@ feature "Info page" do
 
   scenario "When no information is available for a given slug" do
     stub_metadata_api_has_no_data_for_slug('slug-without-info')
+    content_store_does_not_have_item('/slug-without-info')
 
     visit "/info/slug-without-info"
 
@@ -140,6 +194,7 @@ feature "Info page" do
 
   scenario "when a slug that needs encoding is provided" do
     stub_metadata_api_has_slug('government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8', metadata_api_response_for_apply_uk_visa)
+    content_store_does_not_have_item('/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8')
 
     visit '/info/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8'
 
@@ -148,6 +203,7 @@ feature "Info page" do
 
   scenario "shows the user need when it's valid" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
 
@@ -159,6 +215,7 @@ feature "Info page" do
 
   scenario "doesn't show the user need when it isn't valid" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_with_an_invalid_need)
+    content_store_does_not_have_item('/apply-uk-visa')
 
     visit "/info/apply-uk-visa"
 
