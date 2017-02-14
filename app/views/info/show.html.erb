@@ -1,6 +1,6 @@
 <% content_for :title do "Information about “#{@content["title"]}”" end %>
 
+<%= render partial: "content", locals: { content: @content } %>
 <%= render partial: "lead_metrics", locals: { lead_metrics: @lead_metrics, is_multipart: @is_multipart } %>
 <%= render partial: "per_page_metrics", locals: { per_page_metrics: @per_page_metrics } %>
-<%= render partial: "content", locals: { content: @content } %>
 <%= render partial: "needs", locals: { needs: @needs, is_multipart: @is_multipart } %>
