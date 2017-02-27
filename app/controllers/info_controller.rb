@@ -53,15 +53,18 @@ private
 
   def get_part_urls(content, slug)
     details = content.fetch("details")
-    part_urls = []
-    if details.key?("parts")
-      part_urls = details.fetch("parts") || []
-      if !part_urls.empty?
-        part_urls.map! {|part_url| URI(part_url["web_url"]).path }
-        part_urls.unshift(slug.insert(0, "/"))
+    return [] unless details.key?("parts")
+
+    parts = details.fetch("parts")
+
+    part_urls = parts.map! do |part|
+      if part.key?("web_url")
+        URI(part["web_url"]).path
+      else
+        "/#{slug}/#{part['slug']}"
       end
     end
-    return part_urls
+    part_urls.unshift(slug.insert(0, "/"))
   end
 
   def is_multipart(part_urls, document_type)
