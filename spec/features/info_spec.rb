@@ -29,6 +29,7 @@ feature "Info page" do
       frontend_schema: "specialist_document"
     )
 
+    supertype_fields = @apply_for_a_uk_visa_need.keys.select { |field| field.end_with? "supertype" }
     fields_to_exclude = %w(
       rendering_app
       withdrawn_notice
@@ -37,13 +38,14 @@ feature "Info page" do
       first_published_at
       publishing_app
       need_ids
-      format phase
-    )
+      format
+      phase
+    ) + supertype_fields
 
     @apply_uk_visa_content = random_content.merge_and_validate(
-      "title" => "Apply for a UK visa",
-      "links" => {
-        "meets_user_needs": [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+      title: "Apply for a UK visa",
+      links: {
+        meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
       }
     )
   end
