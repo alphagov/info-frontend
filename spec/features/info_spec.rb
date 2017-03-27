@@ -43,9 +43,9 @@ feature "Info page" do
     ) + supertype_fields
 
     @apply_uk_visa_content = random_content.merge_and_validate(
-      "title" => "Apply for a UK visa",
-      "links" => {
-        "meets_user_needs": [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+      title: "Apply for a UK visa",
+      links: {
+        meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
       }
     )
   end

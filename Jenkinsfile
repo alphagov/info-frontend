@@ -2,5 +2,6 @@
 
 node {
   def govuk = load '/var/lib/jenkins/groovy_scripts/govuk_jenkinslib.groovy'
-  govuk.buildProject()
+  // 'false' parameter prevents the SASS from being linted
+  govuk.buildProject(false)
 }
