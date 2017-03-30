@@ -9,9 +9,8 @@ gem 'spring', group: :development
 gem 'airbrake', '4.0.0'
 gem 'slimmer', '~> 9.0'
 gem 'plek', '1.11.0'
-gem 'govuk-client-url_arbiter', '0.0.2'
 gem 'govuk_frontend_toolkit', '1.6.1'
-gem 'gds-api-adapters', '33.1.0'
+gem 'gds-api-adapters', '41.2.0'
 
 group :development, :test do
   gem 'rspec-rails', '3.1.0'
