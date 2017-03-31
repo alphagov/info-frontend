@@ -61,23 +61,19 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20170223)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.2.1)
-    gds-api-adapters (33.1.0)
+    gds-api-adapters (41.2.0)
       link_header
       lrucache (~> 0.1.1)
       null_logger
       plek (>= 1.9.0)
       rack-cache
-      rest-client (~> 1.8.0)
+      rest-client (~> 2.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    govuk-client-url_arbiter (0.0.2)
-      multi_json (~> 1.0)
-      plek (~> 1.8)
-      rest-client (~> 1.6)
     govuk-lint (1.2.1)
       rubocop (~> 0.39.0)
       scss_lint
@@ -87,7 +83,7 @@ GEM
     govuk_schemas (2.1.0)
       json-schema (~> 2.5.0)
     hashdiff (0.3.2)
-    http-cookie (1.0.2)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.7.0)
     json (2.0.1)
@@ -106,7 +102,9 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -153,10 +151,10 @@ GEM
     raindrops (0.13.0)
     rake (11.2.2)
     request_store (1.1.0)
-    rest-client (1.8.0)
+    rest-client (2.0.1)
       http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -247,8 +245,7 @@ DEPENDENCIES
   airbrake (= 4.0.0)
   capybara (= 2.4.1)
   ci_reporter_rspec
-  gds-api-adapters (= 33.1.0)
-  govuk-client-url_arbiter (= 0.0.2)
+  gds-api-adapters (= 41.2.0)
   govuk-lint
   govuk_frontend_toolkit (= 1.6.1)
   govuk_schemas (~> 2.1.0)
@@ -265,4 +262,4 @@ DEPENDENCIES
   webmock (~> 2.3.2)
 
 BUNDLED WITH
-   1.11.2
+   1.14.5

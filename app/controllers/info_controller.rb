@@ -10,20 +10,17 @@ class InfoController < ApplicationController
   def show
     @slug = URI.encode(params[:slug])
 
-    @content = content_store.content_item("/#{@slug}").try(:to_h)
-
-    if @content
-      @needs = @content["links"]["meets_user_needs"]
-    end
-
     begin
-      metadata = GOVUK::Client::MetadataAPI.new.info(@slug)
+      metadata = GOVUK::Client::MetadataAPI.new.info(@slug).to_h
     rescue StandardError
       metadata = nil
     end
 
-    if metadata
-      unless @content
+    begin
+      @content = content_store.content_item("/#{@slug}").to_h
+      @needs = @content["links"]["meets_user_needs"]
+    rescue GdsApi::ContentStore::ItemNotFound
+      if metadata
         # If the content store does not have this content, fall back
         # to the Metadata API, which may be able to fetch the content
         # from the content-api
@@ -33,7 +30,9 @@ class InfoController < ApplicationController
         end
         @needs = valid_needs.map { |need| { "details" => need } }
       end
+    end
 
+    if metadata
       document_type = @content["document_type"] || @content["format"]
 
       part_urls = get_part_urls(@content, @slug)

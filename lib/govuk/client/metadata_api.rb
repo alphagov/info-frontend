@@ -1,9 +1,4 @@
-require "govuk/client/response"
-require "govuk/client/errors"
-
 require "plek"
-require "rest-client"
-require "multi_json"
 
 module GOVUK
   module Client
@@ -18,18 +13,7 @@ module GOVUK
       end
 
       def info(slug)
-        get_json("/info/#{slug}")
-      end
-
-    private
-
-      def get_json(path)
-        response = RestClient.get(@base_url.merge(path).to_s)
-        Response.new(response.code, response.body)
-      rescue RestClient::ResourceNotFound, RestClient::Gone
-        nil
-      rescue RestClient::Exception => e
-        raise Errors.create_for(e)
+        GdsApi::JsonClient.new.get_json(@base_url.merge("/info/#{slug}").to_s)
       end
     end
   end
