@@ -5,6 +5,7 @@ require 'performance_data/metrics'
 
 class InfoController < ApplicationController
   include GdsApi::Helpers
+  rescue_from GdsApi::ContentStore::ItemNotFound, with: :not_found
   before_action :set_expiry, only: :show
 
   def show
@@ -16,21 +17,8 @@ class InfoController < ApplicationController
       metadata = nil
     end
 
-    begin
-      @content = content_store.content_item("/#{@slug}").to_h
-      @needs = @content["links"]["meets_user_needs"]
-    rescue GdsApi::ContentStore::ItemNotFound
-      if metadata
-        # If the content store does not have this content, fall back
-        # to the Metadata API, which may be able to fetch the content
-        # from the content-api
-        @content = metadata.fetch("artefact")
-        valid_needs = metadata.fetch("needs").select do |need|
-          need["status"]["description"] == "valid"
-        end
-        @needs = valid_needs.map { |need| { "details" => need } }
-      end
-    end
+    @content = content_store.content_item("/#{@slug}").to_h
+    @needs = @content["links"]["meets_user_needs"]
 
     if metadata
       document_type = @content["document_type"] || @content["format"]
@@ -40,11 +28,6 @@ class InfoController < ApplicationController
       calculated_metrics = metrics_from(metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
-    end
-
-    unless @content || metadata
-      response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
-      head 404
     end
   end
 
@@ -81,6 +64,11 @@ private
         metrics[:per_page_metrics] = nil
       end
     end
+  end
+
+  def not_found
+    response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
+    head 404
   end
 end
 

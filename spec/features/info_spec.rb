@@ -48,6 +48,41 @@ feature "Info page" do
         meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
       }
     )
+
+    @apply_uk_visa_content_multipart = GovukSchemas::RandomExample.for_schema(
+      frontend_schema: "guide"
+    ).merge_and_validate(
+      title: "Apply for a UK visa",
+      links: {
+        meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+      },
+      details: {
+        parts: [
+          {
+            slug: 'part-1',
+            title: 'Part 1',
+            body: 'Part 1',
+          },
+          {
+            slug: 'part-2',
+            title: 'Part 2',
+            body: 'Part 2',
+          },
+          {
+            slug: 'part-3',
+            title: 'Part 3',
+            body: 'Part 3',
+          },
+        ]
+      },
+    )
+
+    @apply_uk_visa_content_with_no_needs = random_content.merge_and_validate(
+      title: "Apply for a UK visa",
+      links: {
+        meets_user_needs: []
+      }
+    )
   end
 
   scenario "Understanding the needs of a page" do
@@ -83,19 +118,9 @@ feature "Info page" do
     expect(page).to have_text("Unique pageviews 25k per day")
   end
 
-  scenario "Seeing response for a smart answer" do
-    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_smart_answer)
-    content_store_does_not_have_item('/apply-uk-visa')
-
-    visit "/info/apply-uk-visa"
-
-    # Check a smart answer is treated as a multipart format
-    expect(page).to have_text("Metrics across all pages")
-  end
-
   scenario "Seeing metrics for multi-part formats" do
     stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_for_multipart_artefact)
-    content_store_does_not_have_item('/apply-uk-visa')
+    content_store_has_item('/apply-uk-visa', @apply_uk_visa_content_multipart)
 
     visit "/info/apply-uk-visa"
 
@@ -167,8 +192,8 @@ feature "Info page" do
   end
 
   scenario "Seeing where there aren’t any recorded user needs" do
-    stub_metadata_api_has_slug('some-slug', metadata_api_response_with_no_needs)
-    content_store_does_not_have_item('/some-slug')
+    stub_metadata_api_has_slug('some-slug', metadata_api_response_for_apply_uk_visa)
+    content_store_has_item('/some-slug', @apply_uk_visa_content_with_no_needs)
 
     visit "/info/some-slug"
 
@@ -196,7 +221,7 @@ feature "Info page" do
 
   scenario "when a slug that needs encoding is provided" do
     stub_metadata_api_has_slug('government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8', metadata_api_response_for_apply_uk_visa)
-    content_store_does_not_have_item('/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8')
+    content_store_has_item('/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8', @apply_uk_visa_content)
 
     visit '/info/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8'
 
@@ -213,19 +238,5 @@ feature "Info page" do
     expect(page).to have_text("non-EEA national")
     expect(page).to have_text("apply for a UK visa")
     expect(page).to have_text("I can come to the UK to visit, study or work")
-  end
-
-  scenario "doesn't show the user need when it isn't valid" do
-    stub_metadata_api_has_slug('apply-uk-visa', metadata_api_response_with_an_invalid_need)
-    content_store_does_not_have_item('/apply-uk-visa')
-
-    visit "/info/apply-uk-visa"
-
-    expect(page).to have_text("User needs and metrics")
-    expect(page).to_not have_text("non-EEA national")
-    expect(page).to_not have_text("apply for a UK visa")
-    expect(page).to_not have_text("I can come to the UK to visit, study or work")
-
-    expect(page).to have_text("There aren’t any validated needs for this page.")
   end
 end
