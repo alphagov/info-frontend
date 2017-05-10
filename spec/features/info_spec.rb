@@ -40,6 +40,7 @@ feature "Info page" do
       need_ids
       format
       phase
+      publishing_request_id
     ) + supertype_fields
 
     @apply_uk_visa_content = random_content.merge_and_validate(
