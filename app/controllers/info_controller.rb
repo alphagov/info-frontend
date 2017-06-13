@@ -11,16 +11,12 @@ class InfoController < ApplicationController
   def show
     @slug = URI.encode(params[:slug])
 
-    begin
-      metadata = GOVUK::Client::MetadataAPI.new.info(@slug).to_h
-    rescue StandardError
-      metadata = nil
-    end
-
     @content = content_store.content_item("/#{@slug}").to_h
     @needs = @content["links"]["meets_user_needs"]
 
-    if metadata
+    begin
+      metadata = GOVUK::Client::MetadataAPI.new.info(@slug).to_h
+
       document_type = @content["document_type"] || @content["format"]
 
       part_urls = get_part_urls(@content, @slug)
@@ -28,6 +24,9 @@ class InfoController < ApplicationController
       calculated_metrics = metrics_from(metadata.fetch("performance"), part_urls, @is_multipart)
       @lead_metrics = calculated_metrics[:lead_metrics]
       @per_page_metrics = calculated_metrics[:per_page_metrics]
+    rescue StandardError => e
+      logger.error "Metadata related error for #{@slug}"
+      logger.error e.message
     end
   end
 
