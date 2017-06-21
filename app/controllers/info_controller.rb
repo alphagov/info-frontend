@@ -6,6 +6,7 @@ require 'performance_data/metrics'
 class InfoController < ApplicationController
   include GdsApi::Helpers
   rescue_from GdsApi::ContentStore::ItemNotFound, with: :not_found
+  rescue_from GdsApi::HTTPGone, with: :not_found
   before_action :set_expiry, only: :show
 
   def show
