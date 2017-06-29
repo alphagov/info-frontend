@@ -12,7 +12,7 @@ module PerformanceData
       @data_out = GdsApi::PerformancePlatform::DataOut.new("http://www.performance.service.gov.uk")
       @slug = slug
       @part_urls = get_part_urls(content, slug)
-      @is_multipart = @part_urls.any? || (content["document_type"] == 'smart_answer')
+      @is_multipart = @part_urls.any? || ALLOWED_DOC_TYPES.include?(content["document_type"])
     end
 
     def searches
