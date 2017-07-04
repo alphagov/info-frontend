@@ -5,8 +5,6 @@ module PerformanceData
     module Statistics
       include GdsApi::TestHelpers::PerformancePlatform::DataOut
 
-      PP_DATA_OUT_ENDPOINT = "http://www.performance.service.gov.uk".freeze
-
       def stub_performance_platform_has_slug(slug, response)
         stub_search_terms(slug, response[:search_terms])
         stub_searches(slug, false, response[:searches])

@@ -9,7 +9,7 @@ module PerformanceData
                   :searches, :page_views, :problem_reports, :search_terms
 
     def initialize(content, slug)
-      @data_out = GdsApi::PerformancePlatform::DataOut.new("http://www.performance.service.gov.uk")
+      @data_out = GdsApi::PerformancePlatform::DataOut.new("https://www.performance.service.gov.uk")
       @slug = slug
       @part_urls = get_part_urls(content, slug)
       @is_multipart = @part_urls.any? || ALLOWED_DOC_TYPES.include?(content["document_type"])
