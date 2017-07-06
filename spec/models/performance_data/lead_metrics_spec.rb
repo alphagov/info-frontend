@@ -208,7 +208,6 @@ module PerformanceData
         ] } }
       its(:problem_reports_weekly_average) { should eq(14) }
     end
-
   end
 
 end

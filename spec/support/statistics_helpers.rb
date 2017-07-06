@@ -8,12 +8,30 @@ module StatisticsHelpers
     }
   end
 
+  def performance_platform_response_with_nil_values
+    {
+        search_terms: performance_platform_response_for_search_terms_with_nil_values,
+        searches: performance_platform_response_for_searches_with_nil_values,
+        page_views: performance_platform_response_for_page_views_with_nil_values,
+        problem_reports: performance_platform_response_for_problem_reports_with_nil_values
+    }
+  end
+
   def performance_platform_response_for_multipart_artefact
     {
         search_terms: performance_platform_response_for_search_terms,
         searches: performance_platform_response_for_multipart_searches,
         page_views: performance_platform_response_for_multipart_page_views,
         problem_reports: performance_platform_response_for_multipart_problem_reports
+    }
+  end
+
+  def performance_platform_response_for_multipart_with_nil_values
+    {
+        search_terms: performance_platform_response_for_search_terms_with_nil_values,
+        searches: performance_platform_response_for_multipart_searches_with_nil_values,
+        page_views: performance_platform_response_for_multipart_page_views_with_nil_values,
+        problem_reports: performance_platform_response_for_multipart_problem_reports_with_nil_values
     }
   end
 
@@ -182,6 +200,79 @@ module StatisticsHelpers
                          {
                              _count: 3,
                              'searchUniques:sum': 15,
+                             _end_at: '2014-09-04T00:00:00+00:00',
+                             _start_at: '2014-09-03T00:00:00+00:00'
+                         }]
+            }
+        ]
+    }
+  end
+
+  def performance_platform_response_for_searches_with_nil_values
+    {
+        data: [
+            {
+                pagePath: '/apply-uk-visa',
+                values: [
+                    {
+                        _count: 6,
+                        _end_at: '2014-09-07T00:00:00+00:00',
+                        _start_at: '2014-09-06T00:00:00+00:00',
+                        'searchUniques:sum': nil
+                    }
+                ]
+            }
+        ]
+    }
+  end
+
+  def performance_platform_response_for_page_views_with_nil_values
+    {
+        data: [
+            {
+                pagePath: '/apply-uk-visa',
+                values: [
+                    {
+                        _count: 3,
+                        _end_at: '2014-07-03T00:00:00+00:00',
+                        _start_at: '2014-07-02T00:00:00+00:00',
+                        'uniquePageviews:sum': nil
+                    }
+                ]
+            }
+        ]
+    }
+  end
+
+  def performance_platform_response_for_problem_reports_with_nil_values
+    {
+        data: [
+            {
+                pagePath: '/apply-uk-visa',
+                values: [
+                    {
+                        _count: 5,
+                        _end_at: '2014-09-05T00:00:00+00:00',
+                        _start_at: '2014-09-04T00:00:00+00:00',
+                        'total:sum': nil
+                    }
+                ]
+            }
+        ]
+    }
+  end
+
+  def performance_platform_response_for_search_terms_with_nil_values
+    {
+        data: [
+            {
+                _count: 4,
+                _group_count: 4,
+                searchKeyword: 's2s',
+                'searchUniques:sum': nil,
+                values: [{
+                             _count: 3,
+                             'searchUniques:sum': nil,
                              _end_at: '2014-09-04T00:00:00+00:00',
                              _start_at: '2014-09-03T00:00:00+00:00'
                          }]
@@ -403,6 +494,126 @@ module StatisticsHelpers
                 ]
             }
         ]
+    end
+  end
+
+  def performance_platform_response_for_multipart_searches_with_nil_values
+    performance_platform_response_for_searches.tap do |response|
+      response[:data] += [
+          {
+              pagePath: '/apply-uk-visa/part-1',
+              values: [
+                  {
+                      _count: 3,
+                      _end_at: '2014-09-01T00:00:00+00:00',
+                      _start_at: '2014-09-01T00:00:00+00:00',
+                      'searchUniques:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-2',
+              values: [
+                  {
+                      _count: 5,
+                      _end_at: '2014-09-04T00:00:00+00:00',
+                      _start_at: '2014-09-03T00:00:00+00:00',
+                      'searchUniques:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-3',
+              values: [
+                  {
+                      _count: 1,
+                      _end_at: '2014-09-02T00:00:00+00:00',
+                      _start_at: '2014-09-01T00:00:00+00:00',
+                      'searchUniques:sum': nil
+                  }
+              ]
+          }
+      ]
+    end
+  end
+
+  def performance_platform_response_for_multipart_problem_reports_with_nil_values
+    performance_platform_response_for_problem_reports.tap do |response|
+      response[:data] += [
+          {
+              pagePath: '/apply-uk-visa/part-1',
+              values: [
+                  {
+                      _count: 4,
+                      _end_at: '2014-09-03T00:00:00+00:00',
+                      _start_at: '2014-09-02T00:00:00+00:00',
+                      'total:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-2',
+              values: [
+                  {
+                      _count: 4,
+                      _end_at: '2014-09-03T00:00:00+00:00',
+                      _start_at: '2014-09-02T00:00:00+00:00',
+                      'total:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-3',
+              values: [
+                  {
+                      _count: 4,
+                      _end_at: '2014-09-03T00:00:00+00:00',
+                      _start_at: '2014-09-02T00:00:00+00:00',
+                      'total:sum': nil
+                  }
+              ]
+          }
+      ]
+    end
+  end
+
+  def performance_platform_response_for_multipart_page_views_with_nil_values
+    performance_platform_response_for_page_views.tap do |response|
+      response[:data] += [
+          {
+              pagePath: '/apply-uk-visa/part-1',
+              values: [
+                  {
+                      _count: 5,
+                      _end_at: '2014-07-03T00:00:00+00:00',
+                      _start_at: '2014-07-02T00:00:00+00:00',
+                      'uniquePageviews:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-2',
+              values: [
+                  {
+                      _count: 3,
+                      _end_at: '2014-07-03T00:00:00+00:00',
+                      _start_at: '2014-07-02T00:00:00+00:00',
+                      'uniquePageviews:sum': nil
+                  }
+              ]
+          },
+          {
+              pagePath: '/apply-uk-visa/part-3',
+              values: [
+                  {
+                      _count: 1,
+                      _end_at: '2014-07-03T00:00:00+00:00',
+                      _start_at: '2014-07-02T00:00:00+00:00',
+                      'uniquePageviews:sum': nil
+                  }
+              ]
+          }
+      ]
     end
   end
 end

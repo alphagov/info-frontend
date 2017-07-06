@@ -75,7 +75,7 @@ module PerformanceData
         data.map do |item|
           item["values"].each do |value_item|
             stats << {
-               value: value_item[value_name],
+               value: value_item[value_name].to_i,
                path: item["pagePath"],
                timestamp: value_item["_start_at"].to_datetime
             }
@@ -129,6 +129,7 @@ module PerformanceData
       search_data = performance_data_for(searches, part_urls)
       problem_data = performance_data_for(problem_reports, part_urls)
       search_term_data = performance_data_for(search_terms, [])
+
       if is_multipart
         return PerformanceData::MultiPartMetrics.new(
           unique_pageviews: pageview_data,
@@ -169,12 +170,12 @@ module PerformanceData
           item["values"].each do |value_item|
             searches << {
                 timestamp: value_item["_start_at"].to_datetime,
-                value: value_item["searchUniques:sum"]
+                value: value_item["searchUniques:sum"].to_i
             }
           end
 
           stats << {
-              total_searches: item["searchUniques:sum"],
+              total_searches: item["searchUniques:sum"].to_i,
               keyword: item["searchKeyword"],
               searches: searches
           }
