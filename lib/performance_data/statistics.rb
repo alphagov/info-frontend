@@ -195,10 +195,10 @@ module PerformanceData
         if part.key?("web_url")
           URI(part["web_url"]).path
         else
-          "/#{slug}/#{part['slug']}"
+          "#{slug}/#{part['slug']}"
         end
       end
-      part_urls.unshift(slug.insert(0, "/"))
+      part_urls.unshift(slug)
     end
 
     # For individual page metrics, we don't include search terms

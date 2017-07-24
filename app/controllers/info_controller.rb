@@ -10,9 +10,9 @@ class InfoController < ApplicationController
   before_action :set_expiry, only: :show
 
   def show
-    @slug = URI.encode(params[:slug])
+    @slug = parse_slug
 
-    @content = content_store.content_item("/#{@slug}").to_h
+    @content = content_store.content_item(@slug).to_h
     @needs = @content["links"]["meets_user_needs"]
 
     begin
@@ -28,6 +28,11 @@ class InfoController < ApplicationController
   end
 
 private
+
+  def parse_slug
+    slug = URI.encode(params[:slug])
+    slug[0] != '/' ? "/#{slug}" : slug
+  end
 
   def not_found
     response.headers[Slimmer::Headers::SKIP_HEADER] = "1"

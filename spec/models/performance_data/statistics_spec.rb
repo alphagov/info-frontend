@@ -11,9 +11,9 @@ module PerformanceData
     context "getting a response from the performance platform" do
       context "with nil values" do
         it "should replace nil values with zero" do
-          statistics = Statistics.new(apply_uk_visa_content, 'apply-uk-visa')
+          statistics = Statistics.new(apply_uk_visa_content, '/apply-uk-visa')
 
-          stub_performance_platform_has_slug('apply-uk-visa', performance_platform_response_with_nil_values)
+          stub_performance_platform_has_slug('/apply-uk-visa', performance_platform_response_with_nil_values)
 
           problems = statistics.problem_reports
           page_views = statistics.page_views
@@ -34,7 +34,7 @@ module PerformanceData
         end
 
         it "should replace nil values with zero for multipart links" do
-          statistics = Statistics.new(apply_uk_visa_content_multipart, 'apply-uk-visa')
+          statistics = Statistics.new(apply_uk_visa_content_multipart, '/apply-uk-visa')
 
           stub_performance_platform_has_slug_multipart('/apply-uk-visa', performance_platform_response_for_multipart_with_nil_values)
 
