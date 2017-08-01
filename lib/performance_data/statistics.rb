@@ -191,13 +191,7 @@ module PerformanceData
 
       parts = details.fetch("parts")
 
-      part_urls = parts.map! do |part|
-        if part.key?("web_url")
-          URI(part["web_url"]).path
-        else
-          "#{slug}/#{part['slug']}"
-        end
-      end
+      part_urls = parts.map! { |part| "#{slug}/#{part['slug']}" }
       part_urls.unshift(slug)
     end
 
