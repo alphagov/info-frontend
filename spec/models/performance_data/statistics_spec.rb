@@ -11,46 +11,38 @@ module PerformanceData
     context "getting a response from the performance platform" do
       context "with nil values" do
         it "should replace nil values with zero" do
-          statistics = Statistics.new(apply_uk_visa_content, '/apply-uk-visa')
-
           stub_performance_platform_has_slug('/apply-uk-visa', performance_platform_response_with_nil_values)
 
-          problems = statistics.problem_reports
-          page_views = statistics.page_views
-          searches = statistics.searches
-          search_terms = statistics.search_terms
+          statistics = Statistics.new(apply_uk_visa_content, '/apply-uk-visa')
 
-          expect(problems.last[:value]).to eql(0)
-          expect(problems.last[:path]).to eql("/apply-uk-visa")
+          expect(statistics.problem_reports.last[:value]).to eql(0)
+          expect(statistics.problem_reports.last[:path]).to eql("/apply-uk-visa")
 
-          expect(page_views.last[:value]).to eql(0)
-          expect(page_views.last[:path]).to eql("/apply-uk-visa")
+          expect(statistics.page_views.last[:value]).to eql(0)
+          expect(statistics.page_views.last[:path]).to eql("/apply-uk-visa")
 
-          expect(searches.last[:value]).to eql(0)
-          expect(searches.last[:path]).to eql("/apply-uk-visa")
+          expect(statistics.searches.last[:value]).to eql(0)
+          expect(statistics.searches.last[:path]).to eql("/apply-uk-visa")
 
-          expect(search_terms.last[:total_searches]).to eql(0)
-          expect(search_terms.last[:searches].last[:value]).to eql(0)
+          expect(statistics.search_terms.last[:total_searches]).to eql(0)
+          expect(statistics.search_terms.last[:searches].last[:value]).to eql(0)
         end
 
         it "should replace nil values with zero for multipart links" do
-          statistics = Statistics.new(apply_uk_visa_content_multipart, '/apply-uk-visa')
-
           stub_performance_platform_has_slug_multipart('/apply-uk-visa', performance_platform_response_for_multipart_with_nil_values)
 
-          problems = statistics.problem_reports
-          page_views = statistics.page_views
-          searches = statistics.searches
+          statistics = Statistics.new(apply_uk_visa_content_multipart, '/apply-uk-visa')
+
+          expect(statistics.problem_reports.last[:value]).to eql(0)
+          expect(statistics.problem_reports.last[:path]).to eql("/apply-uk-visa/part-3")
+
+          expect(statistics.page_views.last[:value]).to eql(0)
+          expect(statistics.page_views.last[:path]).to eql("/apply-uk-visa/part-3")
+
+          expect(statistics.searches.last[:value]).to eql(0)
+          expect(statistics.searches.last[:path]).to eql("/apply-uk-visa/part-3")
+
           # there is no multipart version of search-terms
-
-          expect(problems.last[:value]).to eql(0)
-          expect(problems.last[:path]).to eql("/apply-uk-visa/part-3")
-
-          expect(page_views.last[:value]).to eql(0)
-          expect(page_views.last[:path]).to eql("/apply-uk-visa/part-3")
-
-          expect(searches.last[:value]).to eql(0)
-          expect(searches.last[:path]).to eql("/apply-uk-visa/part-3")
         end
       end
     end

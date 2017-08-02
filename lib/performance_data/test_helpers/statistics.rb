@@ -13,12 +13,12 @@ module PerformanceData
       end
 
       def stub_performance_platform_has_slug_multipart(slug, response)
-        is_multipart = true
+        multipart = true
 
         stub_search_terms(slug, response[:search_terms])
-        stub_searches(slug, is_multipart, response[:searches])
-        stub_page_views(slug, is_multipart, response[:page_views])
-        stub_problem_reports(slug, is_multipart, response[:problem_reports])
+        stub_searches(slug, multipart, response[:searches])
+        stub_page_views(slug, multipart, response[:page_views])
+        stub_problem_reports(slug, multipart, response[:problem_reports])
       end
 
       def stub_performance_platform_has_no_data_for_slug(slug)
