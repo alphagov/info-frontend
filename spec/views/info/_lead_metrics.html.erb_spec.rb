@@ -9,7 +9,7 @@ RSpec.describe "info/lead_metrics" do
     top_10_search_terms: []
     }
   }
-  let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)), is_multipart: false } }
+  let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)), multipart: false } }
 
   context "when there's very little traffic" do
     let(:data) { { unique_pageviews_average: 0.5 } }
@@ -56,7 +56,7 @@ RSpec.describe "info/lead_metrics" do
     let(:data) { { unique_pageviews_average: 13245, exits_via_search_average: 12, problem_reports_weekly_average: 33 } }
 
     it "uses multipart metrics" do
-      locals[:@is_multipart] = true
+      locals[:multipart] = true
       render partial: "info/lead_metrics", locals: locals
 
       expect(rendered).to have_text("Unique pageviews 13.2k per day")

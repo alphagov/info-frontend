@@ -1,19 +1,19 @@
 <section id="lead-metrics">
   <% if lead_metrics %>
-    <%- if @is_multipart %>
+    <%- if multipart %>
     <h2>Metrics across all pages</h2>
     <%- end %>
     <div class="metrics-panel">
       <div class="lead-metric">
         <h2>Unique pageviews</h2>
         <p class="count">
-            <%= human_readable_number(lead_metrics.unique_pageviews_average) %>
+          <%= human_readable_number(lead_metrics.unique_pageviews_average) %>
           <span class="unit">per day</span>
         </p>
       </div>
       <div class="wide-lead-metric">
         <h2>Searches started
-          <%- if !@is_multipart %>
+          <%- if !multipart %>
             from this page
           <%- end %>
         </h2>

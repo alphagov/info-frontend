@@ -16,11 +16,7 @@ class InfoController < ApplicationController
     @needs = @content["links"]["meets_user_needs"]
 
     begin
-      statistics = PerformanceData::Statistics.new(@content, @slug)
-
-      @is_multipart = statistics.is_multipart
-      @lead_metrics = statistics.lead_metrics
-      @per_page_metrics = statistics.per_page_metrics
+      @statistics = PerformanceData::Statistics.new(@content, @slug)
     rescue StandardError => e
       logger.error "Performance data related error for #{@slug}"
       logger.error e.message
