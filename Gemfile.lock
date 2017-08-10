@@ -44,6 +44,9 @@ GEM
       builder
       multi_json
     arel (7.1.1)
+    asset_bom_removal-rails (1.0.2)
+      rails (>= 4.2)
+      sass (> 3.4)
     ast (2.3.0)
     builder (3.2.2)
     capybara (2.4.1)
@@ -243,6 +246,7 @@ PLATFORMS
 
 DEPENDENCIES
   airbrake (= 4.0.0)
+  asset_bom_removal-rails (~> 1.0.0)
   capybara (= 2.4.1)
   ci_reporter_rspec
   gds-api-adapters (= 47.1.1)
@@ -262,4 +266,4 @@ DEPENDENCIES
   webmock (~> 2.3.2)
 
 BUNDLED WITH
-   1.14.5
+   1.15.1
