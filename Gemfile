@@ -7,10 +7,10 @@ gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '2.5.3'
 gem 'spring', group: :development
 gem 'airbrake', '4.0.0'
-gem 'slimmer', '~> 9.0'
+gem 'slimmer', '~> 11.0.2'
 gem 'plek', '1.11.0'
 gem 'govuk_frontend_toolkit', '1.6.1'
-gem 'gds-api-adapters', '47.1.1'
+gem 'gds-api-adapters', '47.9.1'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
 
 group :development, :test do
