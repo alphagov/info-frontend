@@ -14,7 +14,7 @@ gem 'gds-api-adapters', '47.9.1'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
 
 group :development, :test do
-  gem 'rspec-rails', '3.1.0'
+  gem 'rspec-rails', '3.7.2'
   gem 'govuk-lint'
   gem 'ci_reporter_rspec'
 end
