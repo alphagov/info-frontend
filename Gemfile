@@ -8,7 +8,7 @@ gem 'uglifier', '2.5.3'
 gem 'spring', group: :development
 gem 'slimmer', '~> 11.0.2'
 gem 'plek', '1.11.0'
-gem "govuk_app_config", "~> 0.2.0"
+gem "govuk_app_config", "~> 0.3.0"
 gem 'govuk_frontend_toolkit', '1.6.1'
 gem 'gds-api-adapters', '47.9.1'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
