@@ -243,9 +243,8 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (2.5.3)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (4.0.2)
+      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
@@ -284,7 +283,7 @@ DEPENDENCIES
   sass-rails (~> 5.0.5)
   slimmer (~> 11.0.2)
   spring
-  uglifier (= 2.5.3)
+  uglifier (= 4.0.2)
   unicorn (= 4.8.3)
   webmock (~> 2.3.2)
 
