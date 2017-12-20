@@ -7,7 +7,7 @@ gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '2.5.3'
 gem 'spring', group: :development
 gem 'slimmer', '~> 11.0.2'
-gem 'plek', '1.11.0'
+gem 'plek', '2.0.0'
 gem "govuk_app_config", "~> 0.2.0"
 gem 'govuk_frontend_toolkit', '7.2.0'
 gem 'gds-api-adapters', '50.6.0'
