@@ -10,7 +10,7 @@ gem 'slimmer', '~> 11.0.2'
 gem 'plek', '2.0.0'
 gem "govuk_app_config", "~> 0.2.0"
 gem 'govuk_frontend_toolkit', '7.2.0'
-gem 'gds-api-adapters', '50.7.0'
+gem 'gds-api-adapters', '50.8.0'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
 
 group :development, :test do
