@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'logstasher', '1.2.2'
-gem 'unicorn', '4.8.3'
+gem 'unicorn', '5.4.0'
 gem 'rails', '~> 5.0'
 gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '2.5.3'
