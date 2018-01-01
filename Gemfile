@@ -4,7 +4,7 @@ gem 'logstasher', '1.2.2'
 gem 'unicorn', '5.4.0'
 gem 'rails', '~> 5.0'
 gem 'sass-rails', '~> 5.0.5'
-gem 'uglifier', '2.5.3'
+gem 'uglifier', '4.1.2'
 gem 'spring', group: :development
 gem 'slimmer', '~> 11.1.1'
 gem 'plek', '2.0.0'
