@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'logstasher', '1.2.2'
-gem 'unicorn', '5.4.0'
 gem 'rails', '~> 5.0'
 gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '4.1.4'
 gem 'spring', group: :development
 gem 'slimmer', '~> 11.1.1'
 gem 'plek', '2.1.0'
-gem "govuk_app_config", "~> 0.2.0"
+gem "govuk_app_config", "~> 1.3.0"
 gem 'govuk_frontend_toolkit', '7.2.0'
 gem 'gds-api-adapters', '51.2.0'
 gem 'asset_bom_removal-rails', '~> 1.0.0'

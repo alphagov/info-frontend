@@ -68,7 +68,6 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
@@ -76,16 +75,12 @@ Rails.application.configure do
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
+    config.log_formatter = ::Logger::Formatter.new
   end
 
   # Do not dump schema after migrations.
   # config.active_record.dump_schema_after_migration = false
-
-  config.logstasher.enabled = true
-  config.logstasher.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.json.log")
-  config.logstasher.suppress_app_log = true
 
   config.slimmer.use_cache = true
   config.slimmer.asset_host = Plek.current.find('static')
