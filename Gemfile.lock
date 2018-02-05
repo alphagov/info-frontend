@@ -70,7 +70,7 @@ GEM
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    gds-api-adapters (51.0.0)
+    gds-api-adapters (51.2.0)
       addressable
       link_header
       lrucache (~> 0.1.1)
@@ -132,7 +132,7 @@ GEM
       ast (~> 2.3)
     plek (2.1.0)
     powerpack (0.1.1)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-cache (1.7.1)
       rack (>= 0.4)
     rack-test (0.8.2)
@@ -272,7 +272,7 @@ DEPENDENCIES
   asset_bom_removal-rails (~> 1.0.0)
   capybara (= 2.17.0)
   ci_reporter_rspec
-  gds-api-adapters (= 51.0.0)
+  gds-api-adapters (= 51.2.0)
   govuk-lint
   govuk_app_config (~> 0.2.0)
   govuk_frontend_toolkit (= 7.2.0)
