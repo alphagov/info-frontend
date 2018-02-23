@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0'
 gem 'sass-rails', '~> 5.0.5'
-gem 'uglifier', '4.1.5'
+gem 'uglifier', '4.1.6'
 gem 'spring', group: :development
 gem 'slimmer', '~> 11.1.1'
 gem 'plek', '2.1.1'
