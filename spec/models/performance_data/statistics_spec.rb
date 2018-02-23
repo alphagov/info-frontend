@@ -50,60 +50,66 @@ module PerformanceData
     def apply_uk_visa_content
       GovukSchemas::RandomExample.for_schema(
         frontend_schema: "specialist_document"
-      ).merge_and_validate(
-        title: "Apply for a UK visa",
-        links: {
+      ) do |payload|
+        payload.merge(
+          title: "Apply for a UK visa",
+          links: {
             meets_user_needs: [apply_for_a_uk_visa_need]
-        }
-      )
+          }
+        )
+      end
     end
 
     def apply_uk_visa_content_multipart
       GovukSchemas::RandomExample.for_schema(
         frontend_schema: "guide"
-      ).merge_and_validate(
-        title: "Apply for a UK visa 1",
-        links: {
+      ) do |payload|
+        payload.merge(
+          title: "Apply for a UK visa 1",
+          links: {
             meets_user_needs: [apply_for_a_uk_visa_need]
-        },
-        "details" => {
+          },
+          "details" => {
             "parts" => [
-                {
-                    "slug" => 'part-1',
-                    "title" => 'Part 1',
-                    "body" => 'Part 1',
-                },
-                {
-                    "slug" => 'part-2',
-                    "title" => 'Part 2',
-                    "body" => 'Part 2',
-                },
-                {
-                    "slug" => 'part-3',
-                    "title" => 'Part 3',
-                    "body" => 'Part 3',
-                },
+              {
+                "slug" => 'part-1',
+                "title" => 'Part 1',
+                "body" => 'Part 1',
+              },
+              {
+                "slug" => 'part-2',
+                "title" => 'Part 2',
+                "body" => 'Part 2',
+              },
+              {
+                "slug" => 'part-3',
+                "title" => 'Part 3',
+                "body" => 'Part 3',
+              },
             ]
-        },
-      )
+          },
+        )
+      end
     end
 
     def apply_for_a_uk_visa_need
       random_need = GovukSchemas::RandomExample.for_schema(
         frontend_schema: "need"
-      ).merge_and_validate(
-        "details" => {
+      ) do |payload|
+        payload.merge(
+          "details" => {
             "role" => "As a non-EEA national",
             "goal" => "I need to apply for a UK visa",
             "benefit" => "So that I can come to the UK to visit, study or work",
             "justifications" => ["It's something only government does"],
             "met_when" => [
-                "Finds out how whether they're eligible",
-                "How to apply",
-                "What documents to provide"
+              "Finds out how whether they're eligible",
+              "How to apply",
+              "What documents to provide"
             ],
-        }
-      )
+          }
+        )
+      end
 
       clean_up_need(random_need)
     end

@@ -1,3 +1,4 @@
+# coding: utf-8
 require "rails_helper"
 require "performance_data/test_helpers/statistics"
 require "gds_api/test_helpers/content_store"
@@ -7,27 +8,23 @@ feature "Info page" do
   include GdsApi::TestHelpers::ContentStore
 
   before do
-    random_need = GovukSchemas::RandomExample.for_schema(
+    @apply_for_a_uk_visa_need = GovukSchemas::RandomExample.for_schema(
       frontend_schema: "need"
-    )
-
-    @apply_for_a_uk_visa_need = random_need.merge_and_validate(
-      "details" => {
-        "role" => "As a non-EEA national",
-        "goal" => "I need to apply for a UK visa",
-        "benefit" => "So that I can come to the UK to visit, study or work",
-        "justifications" => ["It's something only government does"],
-        "met_when" => [
-          "Finds out how whether they're eligible",
-          "How to apply",
-          "What documents to provide"
-        ],
-      }
-    )
-
-    random_content = GovukSchemas::RandomExample.for_schema(
-      frontend_schema: "specialist_document"
-    )
+    ) do |payload|
+      payload.merge(
+        "details" => {
+          "role" => "As a non-EEA national",
+          "goal" => "I need to apply for a UK visa",
+          "benefit" => "So that I can come to the UK to visit, study or work",
+          "justifications" => ["It's something only government does"],
+          "met_when" => [
+            "Finds out how whether they're eligible",
+            "How to apply",
+            "What documents to provide"
+          ],
+        }
+      )
+    end
 
     supertype_fields = @apply_for_a_uk_visa_need.keys.select { |field| field.end_with? "supertype" }
     fields_to_exclude = %w(
@@ -43,42 +40,48 @@ feature "Info page" do
       publishing_request_id
     ) + supertype_fields
 
-    @apply_uk_visa_content = random_content.merge_and_validate(
-      title: "Apply for a UK visa",
-      links: {
-        meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
-      }
-    )
+    @apply_uk_visa_content = GovukSchemas::RandomExample.for_schema(
+      frontend_schema: "specialist_document"
+    ) do |payload|
+      payload.merge(
+        title: "Apply for a UK visa",
+        links: {
+          meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+        }
+      )
+    end
 
     @apply_uk_visa_content_multipart = GovukSchemas::RandomExample.for_schema(
       frontend_schema: "guide"
-    ).merge_and_validate(
-      title: "Apply for a UK visa",
-      links: {
-        meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
-      },
-      details: {
-        parts: [
-          {
-            slug: 'part-1',
-            title: 'Part 1',
-            body: 'Part 1',
-          },
-          {
-            slug: 'part-2',
-            title: 'Part 2',
-            body: 'Part 2',
-          },
-          {
-            slug: 'part-3',
-            title: 'Part 3',
-            body: 'Part 3',
-          },
-        ]
-      },
-    )
+    ) do |payload|
+      payload.merge(
+        title: "Apply for a UK visa",
+        links: {
+          meets_user_needs: [@apply_for_a_uk_visa_need.except(*fields_to_exclude)]
+        },
+        details: {
+          parts: [
+            {
+              slug: 'part-1',
+              title: 'Part 1',
+              body: 'Part 1',
+            },
+            {
+              slug: 'part-2',
+              title: 'Part 2',
+              body: 'Part 2',
+            },
+            {
+              slug: 'part-3',
+              title: 'Part 3',
+              body: 'Part 3',
+            },
+          ]
+        },
+      )
+    end
 
-    @apply_uk_visa_content_with_no_needs = random_content.merge_and_validate(
+    @apply_uk_visa_content_with_no_needs = @apply_uk_visa_content.merge(
       title: "Apply for a UK visa",
       links: {
         meets_user_needs: []
