@@ -3,6 +3,7 @@
 <head>
   <title><%= yield :title %> - GOV.UK</title>
   <%= stylesheet_link_tag 'application', media: 'all', integrity: true, crossorigin: 'anonymous' %>
+  <%= javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,6 +13,7 @@
     <main role="main" class="info-frontend">
       <%= yield %>
     </main>
+    <%= render 'govuk_publishing_components/components/feedback' %>
   </div>
 </body>
 </html>
