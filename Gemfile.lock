@@ -324,7 +324,7 @@ DEPENDENCIES
   govuk_publishing_components (~> 6.5.0)
   govuk_schemas (~> 3)
   plek (= 2.1.1)
-  rails (~> 5.1)
+  rails (~> 5.2)
   rspec-its (= 1.2.0)
   rspec-rails (= 3.7.2)
   sass-rails (~> 5.0.5)
