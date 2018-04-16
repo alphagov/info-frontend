@@ -119,7 +119,7 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("Unique pageviews 25.9k per day")
+    expect(page).to have_text("Unique pageviews\n25.9k per day")
   end
 
   scenario "Seeing metrics for multi-part formats" do
@@ -131,9 +131,9 @@ feature "Info page" do
     within("#lead-metrics") do
       # check lead metrics for multipart formats are summed
       # across all pages in the format
-      expect(page).to have_text("Unique pageviews 104k per day")
-      expect(page).to have_text("Searches started 135 per day")
-      expect(page).to have_text("Problem reports 959 per week")
+      expect(page).to have_text("Unique pageviews\n104k per day")
+      expect(page).to have_text("Searches started\n135 per day")
+      expect(page).to have_text("Problem reports\n959 per week")
       expect(page).to have_text("employer access (126)")
       expect(page).to have_text("s2s (104)")
       expect(page).to have_text("pupil premium (45)")
@@ -174,7 +174,7 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("Searches started from this page 72 per day")
+    expect(page).to have_text("Searches started from this page\n72 per day")
   end
 
   scenario "Seeing how problem reports are left" do
@@ -183,7 +183,7 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("Problem reports 140 per week")
+    expect(page).to have_text("Problem reports\n140 per week")
   end
 
   scenario "Seeing what terms users are searching for" do
@@ -211,8 +211,8 @@ feature "Info page" do
 
     visit "/info/some-slug"
 
-    expect(page).to have_text("Unique pageviews 0 per day")
-    expect(page).to have_text("Searches started from this page 0 per day")
+    expect(page).to have_text("Unique pageviews\n0 per day")
+    expect(page).to have_text("Searches started from this page\n0 per day")
   end
 
   scenario "When no information is available for a given slug" do
