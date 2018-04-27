@@ -34,7 +34,6 @@ feature "Info page" do
       updated_at
       first_published_at
       publishing_app
-      need_ids
       format
       phase
       publishing_request_id
