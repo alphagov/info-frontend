@@ -300,7 +300,7 @@ GEM
     unicorn (5.4.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    webmock (3.4.0)
+    webmock (3.4.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -331,7 +331,7 @@ DEPENDENCIES
   slimmer (~> 12.1.0)
   spring
   uglifier (= 4.1.10)
-  webmock (~> 3.4.0)
+  webmock (~> 3.4.1)
 
 BUNDLED WITH
    1.16.1
