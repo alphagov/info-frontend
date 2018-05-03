@@ -11,16 +11,9 @@ class InfoController < ApplicationController
 
   def show
     @slug = parse_slug
-
     @content = content_store.content_item(@slug).to_h
     @needs = @content["links"]["meets_user_needs"]
-
-    begin
-      @statistics = PerformanceData::Statistics.new(@content, @slug)
-    rescue StandardError => e
-      logger.error "Performance data related error for #{@slug}"
-      logger.error e.message
-    end
+    @statistics = PerformanceData::Statistics.new(@content, @slug)
   end
 
 private
@@ -35,5 +28,3 @@ private
     head 404
   end
 end
-
-
