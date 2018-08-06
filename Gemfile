@@ -10,7 +10,7 @@ gem "govuk_app_config", "~> 1.8.0"
 gem 'govuk_frontend_toolkit', '7.6.0'
 gem 'gds-api-adapters', '52.7.0'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
-gem 'govuk_publishing_components', '~> 9.9.0'
+gem 'govuk_publishing_components', '~> 9.9.1'
 
 group :development, :test do
   gem 'rspec-rails', '3.8.0'
