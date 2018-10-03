@@ -7,11 +7,13 @@ module PerformanceData
 
     context "unique pageviews" do
       context "some unique pageviews" do
-        let(:data) { { unique_pageviews: [
+        let(:data) {
+          { unique_pageviews: [
           { value: 3 },
           { value: 2 },
           { value: 1 }
-        ] } }
+        ] }
+        }
         its(:unique_pageviews_average) { should eq(2) }
       end
 
@@ -21,21 +23,25 @@ module PerformanceData
       end
 
       context "average unique pageviews less than 1" do
-        let(:data) { { unique_pageviews: [
+        let(:data) {
+          { unique_pageviews: [
           { value: 0 },
           { value: 1 }
-        ] } }
+        ] }
+        }
         its(:unique_pageviews_average) { should eq(0.5) }
       end
     end
 
     context "users leaving through search" do
       context "some on-page searches" do
-        let(:data) { { exits_via_search: [
+        let(:data) {
+          { exits_via_search: [
           { value: 3 },
           { value: 2 },
           { value: 1 }
-        ] } }
+        ] }
+        }
         its(:exits_via_search_average) { should eq(2) }
       end
     end
@@ -55,7 +61,8 @@ module PerformanceData
     end
 
     context "problem reports" do
-      let(:data) { { problem_reports: [
+      let(:data) {
+        { problem_reports: [
           { value: 1 },
           { value: 3 },
           { value: 3 },
@@ -63,7 +70,8 @@ module PerformanceData
           { value: 0 },
           { value: 0 },
           { value: 0 }
-        ] } }
+        ] }
+      }
       its(:problem_reports_weekly_average) { should eq(7) }
     end
   end
@@ -72,9 +80,9 @@ module PerformanceData
     subject { MultiPartMetrics.new(data) }
 
     context "unique pageviews" do
-
       context "some unique pageviews" do
-        let(:data) { { unique_pageviews: [
+        let(:data) {
+          { unique_pageviews: [
           {
             value: 3,
             timestamp: "2014-11-06T00:00:00+00:00"
@@ -91,7 +99,8 @@ module PerformanceData
             value: 1,
             timestamp: "2014-11-05T00:00:00+00:00"
           }
-        ] } }
+        ] }
+        }
         its(:unique_pageviews_average) { should eq(3.5) }
       end
 
@@ -101,7 +110,8 @@ module PerformanceData
       end
 
       context "average unique pageviews less than 1" do
-        let(:data) { { unique_pageviews: [
+        let(:data) {
+          { unique_pageviews: [
           {
             value: 0,
             timestamp: "2014-11-05T00:00:00+00:00"
@@ -118,14 +128,16 @@ module PerformanceData
             value: 0,
             timestamp: "2014-11-06T00:00:00+00:00"
           }
-        ] } }
+        ] }
+        }
         its(:unique_pageviews_average) { should eq(0.5) }
       end
     end
 
     context "users leaving through search" do
       context "some on-page searches" do
-        let(:data){ { exits_via_search: [
+        let(:data) {
+          { exits_via_search: [
           {
             value: 2,
             timestamp: "2014-11-05T00:00:00+00:00"
@@ -142,7 +154,8 @@ module PerformanceData
             value: 1,
             timestamp: "2014-11-06T00:00:00+00:00"
           }
-        ] } }
+        ] }
+        }
         its(:exits_via_search_average) { should eq(3.5) }
       end
     end
@@ -162,7 +175,8 @@ module PerformanceData
     end
 
     context "problem reports" do
-      let(:data) { { problem_reports: [
+      let(:data) {
+        { problem_reports: [
           {
             value: 1,
             timestamp: "2014-11-01T00:00:00+00:00"
@@ -191,12 +205,14 @@ module PerformanceData
             value: 3,
             timestamp: "2014-11-07T00:00:00+00:00"
           }
-        ] } }
+        ] }
+      }
       its(:problem_reports_weekly_average) { should eq(10) }
     end
 
     context "problem reports with less than a week of data should extrapolate" do
-      let(:data) { { problem_reports: [
+      let(:data) {
+        { problem_reports: [
           {
             value: 1,
             timestamp: "2014-11-01T00:00:00+00:00"
@@ -205,9 +221,9 @@ module PerformanceData
             value: 3,
             timestamp: "2014-11-02T00:00:00+00:00"
           }
-        ] } }
+        ] }
+      }
       its(:problem_reports_weekly_average) { should eq(14) }
     end
   end
-
 end
