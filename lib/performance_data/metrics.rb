@@ -25,13 +25,13 @@ module PerformanceData
     end
 
   private
+
     def average(list)
       list.empty? ? 0 : list.inject(0, :+) / list.size.to_f
     end
   end
 
   class MultiPartMetrics < Metrics
-
     def unique_pageviews_average
       dataset = @data[:unique_pageviews]
       days = number_of_days(dataset)
@@ -52,9 +52,9 @@ module PerformanceData
     end
 
   private
+
     def number_of_days(dataset)
       dataset.empty? ? 0.0 : dataset.uniq { |l| l[:timestamp] }.length.to_f
     end
   end
-
 end

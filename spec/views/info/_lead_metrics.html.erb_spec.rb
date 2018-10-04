@@ -2,7 +2,8 @@ require "rails_helper"
 require "ostruct"
 
 RSpec.describe "info/lead_metrics" do
-  let(:defaults) { {
+  let(:defaults) {
+    {
     unique_pageviews_average: 0,
     exits_via_search_average: 0,
     problem_reports_weekly_average: 0,
@@ -32,7 +33,7 @@ RSpec.describe "info/lead_metrics" do
   end
 
   context "when users have searched on the page" do
-    let(:data) { { top_10_search_terms: [ { total: 4, keyword: "abc" }, { total: 5, keyword: "xyz" } ] } }
+    let(:data) { { top_10_search_terms: [{ total: 4, keyword: "abc" }, { total: 5, keyword: "xyz" }] } }
 
     it "displays search terms" do
       render partial: "info/lead_metrics", locals: locals

@@ -4,7 +4,7 @@ require 'performance_data/metrics'
 
 module PerformanceData
   class Statistics
-    ALLOWED_DOC_TYPES = %w('smart_answer', 'simple_smart_answer').freeze
+    ALLOWED_DOC_TYPES = %w(smart_answer simple_smart_answer).freeze
 
     attr_accessor :per_page_metrics, :lead_metrics
 
