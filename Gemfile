@@ -13,7 +13,7 @@ gem 'asset_bom_removal-rails', '~> 1.0.0'
 gem 'govuk_publishing_components', '~> 12.4.0'
 
 group :development, :test do
-  gem 'rspec-rails', '3.8.0'
+  gem 'rspec-rails', '3.8.1'
   gem 'govuk-lint'
   gem 'ci_reporter_rspec'
 end
