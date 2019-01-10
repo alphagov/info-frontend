@@ -1,5 +1,4 @@
 require 'uri'
-require 'gds_api/helpers'
 require 'performance_data/statistics'
 require 'performance_data/metrics'
 
