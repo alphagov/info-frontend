@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby File.read(".ruby-version").strip
+
 gem 'rails', '~> 5.2'
 gem 'sass-rails', '~> 5.0.5'
 gem 'uglifier', '4.1.20'
