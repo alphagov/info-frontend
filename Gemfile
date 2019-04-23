@@ -23,6 +23,6 @@ end
 group :test do
   gem 'capybara', '3.16.2'
   gem 'webmock', '~> 3.5.1'
-  gem 'rspec-its', '1.2.0'
+  gem 'rspec-its', '1.3.0'
   gem 'govuk_schemas', '~> 3'
 end
