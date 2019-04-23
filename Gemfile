@@ -21,7 +21,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '3.16.2'
+  gem 'capybara', '3.18.0'
   gem 'webmock', '~> 3.5.1'
   gem 'rspec-its', '1.3.0'
   gem 'govuk_schemas', '~> 3'
