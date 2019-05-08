@@ -129,6 +129,7 @@ module PerformanceData
         navigation_document_supertype
         government_document_supertype
         email_document_supertype
+        links
       ) + supertype_fields
       need.except(*fields_to_exclude)
     end

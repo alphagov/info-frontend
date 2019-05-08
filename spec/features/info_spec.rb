@@ -38,6 +38,7 @@ feature "Info page" do
       format
       phase
       publishing_request_id
+      links
     ) + supertype_fields
 
     @apply_uk_visa_content = GovukSchemas::RandomExample.for_schema(
