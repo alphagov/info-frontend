@@ -96,7 +96,7 @@ GEM
       sentry-raven (~> 2.7.1)
       statsd-ruby (~> 1.4.0)
       unicorn (~> 5.4.0)
-    govuk_frontend_toolkit (8.1.0)
+    govuk_frontend_toolkit (8.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
     govuk_publishing_components (16.14.1)
@@ -301,7 +301,7 @@ DEPENDENCIES
   gds-api-adapters
   govuk-lint
   govuk_app_config (~> 1.16.1)
-  govuk_frontend_toolkit (= 8.1.0)
+  govuk_frontend_toolkit (= 8.2.0)
   govuk_publishing_components (~> 16.14.1)
   govuk_schemas (~> 3)
   plek (= 2.1.1)
