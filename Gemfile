@@ -9,7 +9,7 @@ gem 'spring', group: :development
 gem 'slimmer', '~> 13.1.0'
 gem 'plek', '2.1.1'
 gem "govuk_app_config", "~> 1.16.1"
-gem 'govuk_frontend_toolkit', '8.1.0'
+gem 'govuk_frontend_toolkit', '8.2.0'
 gem 'gds-api-adapters'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
 gem 'govuk_publishing_components', '~> 16.14.1'
