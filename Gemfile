@@ -24,5 +24,5 @@ group :test do
   gem 'capybara', '3.26.0'
   gem 'webmock', '~> 3.6.0'
   gem 'rspec-its', '1.3.0'
-  gem 'govuk_schemas', '~> 3'
+  gem 'govuk_schemas', '~> 4'
 end
