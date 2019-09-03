@@ -49,8 +49,6 @@ GEM
       rails (>= 4.2)
       sass (> 3.4)
     ast (2.4.0)
-    aws-xray-sdk (0.10.2)
-      oj (~> 3.0)
     builder (3.2.3)
     capybara (3.29.0)
       addressable
@@ -91,8 +89,7 @@ GEM
       rubocop-rails (~> 2)
       rubocop-rspec (~> 1.28)
       scss_lint
-    govuk_app_config (1.20.2)
-      aws-xray-sdk (~> 0.10.0)
+    govuk_app_config (2.0.0)
       logstasher (>= 1.2.2, < 1.4.0)
       sentry-raven (>= 2.7.1, < 2.12.0)
       statsd-ruby (~> 1.4.0)
@@ -151,7 +148,6 @@ GEM
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     null_logger (0.0.1)
-    oj (3.8.1)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
@@ -314,7 +310,7 @@ DEPENDENCIES
   ci_reporter_rspec
   gds-api-adapters
   govuk-lint
-  govuk_app_config (~> 1.20.2)
+  govuk_app_config (~> 2.0.0)
   govuk_frontend_toolkit (= 8.2.0)
   govuk_publishing_components (~> 17.21.0)
   govuk_schemas (~> 4)
