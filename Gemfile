@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby File.read(".ruby-version").strip
 
 gem 'rails', '~> 5.2'
-gem 'sass-rails', '~> 5.0.5'
+gem 'sass-rails', '~> 6.0.0'
 gem 'uglifier', '4.1.20'
 gem 'spring', group: :development
 gem 'slimmer', '~> 13.1.0'
