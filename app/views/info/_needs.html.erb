@@ -1,13 +1,13 @@
-<section id="needs">
-  <header class="needs-heading">
-    <h1>Why <%- if multipart %> are these pages <%- else %> is this page <%- end %> on GOV.UK?</h1>
+<section id="needs" class="govuk-grid-row needs">
+  <header class="govuk-grid-column-one-third needs__header">
+    <h1 class="govuk-heading-m">Why <%- if multipart %> are these pages <%- else %> is this page <%- end %> on GOV.UK?</h1>
   </header>
-  <div class="individual-need">
+  <div class="govuk-grid-column-two-thirds needs__content">
     <% if needs.present? %>
     <%= render partial: "need_details", collection: needs, as: 'need', spacer_template: "spacer" %>
     <% else %>
     <div class="role-goal-benefit-panel">
-      <h2 class="no-need">There aren’t any validated needs for this page.</h2>
+      <h2 class="govuk-heading-s">There aren’t any validated needs for this page.</h2>
     </div>
     <% end %>
   </div>

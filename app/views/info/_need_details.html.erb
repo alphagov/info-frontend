@@ -1,34 +1,34 @@
-<div class="role-goal-benefit-panel">
-  <p class="need-label">The user need for this page:</p>
-  <p class="need">
-    <span class="role">As a <%= need["details"]["role"] %></span>
-    <span class="goal">I need to <%= need["details"]["goal"] %></span>
-    <span class="benefit">So that <%= need["details"]["benefit"] %></span>
-  </p>
-</div>
+<p class="govuk-body">The user need for this page:</p>
+<p class="govuk-body-l user-need">
+  <span class="user-need__role">As a <%= need["details"]["role"] %></span>
+  <span class="user-need__goal">I need to <%= need["details"]["goal"] %></span>
+  <span class="user-need__benefit">So that <%= need["details"]["benefit"] %></span>
+</p>
 
-<div class="reason-block first">
-  <% if need["details"]["met_when"].present? %>
-    <h2>The need is met when the user:</h2>
-    <ul>
-      <% need["details"]["met_when"].each do |met| %>
-        <li><%= met %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <h2>There are no recorded criteria to know when this need is met.</h2>
-  <% end %>
-</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half user-need__reasons">
+    <% if need["details"]["met_when"].present? %>
+      <h2 class="govuk-heading-s">The need is met when the user:</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <% need["details"]["met_when"].each do |met| %>
+          <li><%= met %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2 class="govuk-heading-s">There are no recorded criteria to know when this need is met.</h2>
+    <% end %>
+  </div>
 
-<div class="reason-block">
-  <% if need["details"]["justifications"].present? %>
-    <h2>This need is <%= link_to "in proposition", "https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition" %> because:</h2>
-    <ul>
-      <% need["details"]["justifications"].each do |justification| %>
-        <li><%= justification %></li>
-      <% end %>
-    </ul>
-  <% else %>
-    <h2>There are no recorded reasons why this need is in proposition for GOV.UK.</h2>
-  <% end %>
+  <div class="govuk-grid-column-one-half user-need__reasons">
+    <% if need["details"]["justifications"].present? %>
+      <h2 class="govuk-heading-s">This need is <%= link_to "in proposition", "https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition", class: "govuk-link" %> because:</h2>
+      <ul class="govuk-list govuk-list--bullet">
+        <% need["details"]["justifications"].each do |justification| %>
+          <li><%= justification %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2 class="govuk-heading-s">There are no recorded reasons why this need is in proposition for GOV.UK.</h2>
+    <% end %>
+  </div>
 </div>
