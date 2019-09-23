@@ -9,10 +9,9 @@ gem 'spring', group: :development
 gem 'slimmer', '~> 13.1.0'
 gem 'plek', '3.0.0'
 gem "govuk_app_config", "~> 2.0.0"
-gem 'govuk_frontend_toolkit', '8.2.0'
 gem 'gds-api-adapters'
 gem 'asset_bom_removal-rails', '~> 1.0.0'
-gem 'govuk_publishing_components', '~> 17.21.0'
+gem 'govuk_publishing_components', '~> 21.1.1'
 
 group :development, :test do
   gem 'rspec-rails', '3.8.2'
