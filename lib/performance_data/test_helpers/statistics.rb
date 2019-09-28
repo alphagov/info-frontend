@@ -1,4 +1,4 @@
-require 'gds_api/test_helpers/performance_platform/data_out'
+require "gds_api/test_helpers/performance_platform/data_out"
 
 module PerformanceData
   module TestHelpers

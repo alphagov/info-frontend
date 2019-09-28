@@ -7,7 +7,7 @@ RSpec.describe "info/lead_metrics" do
     unique_pageviews_average: 0,
     exits_via_search_average: 0,
     problem_reports_weekly_average: 0,
-    top_10_search_terms: []
+    top_10_search_terms: [],
     }
   }
   let(:locals) { { lead_metrics: OpenStruct.new(defaults.merge(data)), multipart: false } }
