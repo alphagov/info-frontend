@@ -11,7 +11,7 @@ gem "rails", "~> 5.2"
 gem "sass-rails", "~> 5.0.5"
 gem "slimmer", "~> 13.1.0"
 gem "spring", group: :development
-gem "uglifier", "4.1.20"
+gem "uglifier", "4.2.0"
 
 group :development, :test do
   gem "ci_reporter_rspec"
