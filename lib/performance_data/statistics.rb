@@ -1,6 +1,6 @@
-require 'json'
-require 'gds_api/performance_platform/data_out'
-require 'performance_data/metrics'
+require "json"
+require "gds_api/performance_platform/data_out"
+require "performance_data/metrics"
 
 module PerformanceData
   class Statistics
@@ -87,21 +87,21 @@ module PerformanceData
         response = data_out.search_terms(@slug)
         stats = []
 
-        if response.raw_response_body != 'null'
+        if response.raw_response_body != "null"
           response = response.to_h
           response["data"].map do |item|
             searches = []
             item["values"].each do |value_item|
               searches << {
                   timestamp: value_item["_start_at"].to_datetime,
-                  value: value_item["searchUniques:sum"].to_i
+                  value: value_item["searchUniques:sum"].to_i,
               }
             end
 
             stats << {
                 total_searches: item["searchUniques:sum"].to_i,
                 keyword: item["searchKeyword"],
-                searches: searches
+                searches: searches,
             }
           end
         end
@@ -133,14 +133,14 @@ module PerformanceData
           unique_pageviews: pageview_data,
           exits_via_search: search_data,
           problem_reports: problem_data,
-          search_terms: search_term_data
+          search_terms: search_term_data,
         )
       else
         return PerformanceData::Metrics.new(
           unique_pageviews: pageview_data,
           exits_via_search: search_data,
           problem_reports: problem_data,
-          search_terms: search_term_data
+          search_terms: search_term_data,
         )
       end
     end
@@ -178,7 +178,7 @@ module PerformanceData
 
     def parse_values(response, value_name)
       stats = []
-      if response.raw_response_body != 'null'
+      if response.raw_response_body != "null"
         response = response.to_h
         data = response["data"]
         data.map do |item|
@@ -186,7 +186,7 @@ module PerformanceData
             stats << {
               value: value_item[value_name].to_i,
               path: item["pagePath"],
-              timestamp: value_item["_start_at"].to_datetime
+              timestamp: value_item["_start_at"].to_datetime,
             }
           end
         end
@@ -251,7 +251,7 @@ module PerformanceData
       PerformanceData::Metrics.new(
         unique_pageviews: performance_data_for(page_views, [path]),
         exits_via_search: performance_data_for(searches, [path]),
-        problem_reports: performance_data_for(problem_reports, [path])
+        problem_reports: performance_data_for(problem_reports, [path]),
       )
     end
 

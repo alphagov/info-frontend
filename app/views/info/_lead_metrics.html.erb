@@ -1,49 +1,46 @@
 <section id="lead-metrics">
   <% if lead_metrics %>
     <%- if multipart %>
-    <h2>Metrics across all pages</h2>
+    <h2 class="govuk-heading-l">Metrics across all pages</h2>
     <%- end %>
-    <div class="metrics-panel">
-      <div class="lead-metric">
-        <h2>Unique pageviews</h2>
-        <p class="count">
+    <div class="metrics-panel govuk-grid-row">
+      <div class="govuk-grid-column-one-third metrics-panel__block">
+        <h2 class="govuk-heading-m">Unique pageviews</h2>
+        <p class="metrics-panel__number">
           <%= human_readable_number(lead_metrics.unique_pageviews_average) %>
-          <span class="unit">per day</span>
+          <span class="metrics-panel__unit">per day</span>
         </p>
       </div>
-      <div class="wide-lead-metric">
-        <h2>Searches started
+      <div class="govuk-grid-column-two-thirds metrics-panel__block">
+        <h2 class="govuk-heading-m">Searches started
           <%- if !multipart %>
             from this page
           <%- end %>
         </h2>
-        <p class="count">
+        <p class="metrics-panel__number">
             <%= human_readable_number(lead_metrics.exits_via_search_average) %>
-          <span class="unit">per day</span>
+          <span class="metrics-panel__unit">per day</span>
         </p>
       </div>
     </div>
-    <div class="metrics-panel">
-      <div class="lead-metric">
-        <h2>Problem reports</h2>
-        <p class="count">
+    <div class="metrics-panel govuk-grid-row">
+      <div class="govuk-grid-column-one-third metrics-panel__block">
+        <h2 class="govuk-heading-m">Problem reports</h2>
+        <p class="metrics-panel__number">
             <%= human_readable_number(lead_metrics.problem_reports_weekly_average) %>
-          <span class="unit">per week</span>
+          <span class="metrics-panel__unit">per week</span>
         </p>
       </div>
       <% if lead_metrics.top_10_search_terms.present? %>
-        <div class="wide-lead-metric search-terms">
-          <h2>Users left by searching for:</h2>
-
-          <div class="search-terms-list">
-            <ul>
+        <div class="govuk-grid-column-two-thirds metrics-panel__block">
+          <h2 class="govuk-heading-m">Users left by searching for:</h2>
+            <ul class="search-terms-list govuk-list">
               <% lead_metrics.top_10_search_terms.each do |search_term| %>
                 <li>
-                  <%= link_to search_term[:keyword], "/search?q=#{search_term[:keyword]}" %> (<%= search_term[:total] %>)
+                  <%= link_to search_term[:keyword], "/search?q=#{search_term[:keyword]}", class:'govuk-link' %> (<%= search_term[:total] %>)
                 </li>
               <% end %>
             </ul>
-          </div>
         </div>
       <% end %>
     </div>

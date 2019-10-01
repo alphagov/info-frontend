@@ -1,5 +1,5 @@
 require "spec_helper"
-require 'performance_data/metrics'
+require "performance_data/metrics"
 
 module PerformanceData
   describe Metrics do
@@ -11,7 +11,7 @@ module PerformanceData
           { unique_pageviews: [
           { value: 3 },
           { value: 2 },
-          { value: 1 }
+          { value: 1 },
         ] }
         }
         its(:unique_pageviews_average) { should eq(2) }
@@ -26,7 +26,7 @@ module PerformanceData
         let(:data) {
           { unique_pageviews: [
           { value: 0 },
-          { value: 1 }
+          { value: 1 },
         ] }
         }
         its(:unique_pageviews_average) { should eq(0.5) }
@@ -39,7 +39,7 @@ module PerformanceData
           { exits_via_search: [
           { value: 3 },
           { value: 2 },
-          { value: 1 }
+          { value: 1 },
         ] }
         }
         its(:exits_via_search_average) { should eq(2) }
@@ -69,7 +69,7 @@ module PerformanceData
           { value: 0 },
           { value: 0 },
           { value: 0 },
-          { value: 0 }
+          { value: 0 },
         ] }
       }
       its(:problem_reports_weekly_average) { should eq(7) }
@@ -85,20 +85,20 @@ module PerformanceData
           { unique_pageviews: [
           {
             value: 3,
-            timestamp: "2014-11-06T00:00:00+00:00"
+            timestamp: "2014-11-06T00:00:00+00:00",
           },
           {
             value: 2,
-            timestamp: "2014-11-06T00:00:00+00:00"
+            timestamp: "2014-11-06T00:00:00+00:00",
           },
           {
             value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00"
-          }
+            timestamp: "2014-11-05T00:00:00+00:00",
+          },
         ] }
         }
         its(:unique_pageviews_average) { should eq(3.5) }
@@ -114,20 +114,20 @@ module PerformanceData
           { unique_pageviews: [
           {
             value: 0,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00"
+            timestamp: "2014-11-06T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00"
-          }
+            timestamp: "2014-11-06T00:00:00+00:00",
+          },
         ] }
         }
         its(:unique_pageviews_average) { should eq(0.5) }
@@ -140,20 +140,20 @@ module PerformanceData
           { exits_via_search: [
           {
             value: 2,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 4,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00"
+            timestamp: "2014-11-06T00:00:00+00:00",
           },
           {
             value: 1,
-            timestamp: "2014-11-06T00:00:00+00:00"
-          }
+            timestamp: "2014-11-06T00:00:00+00:00",
+          },
         ] }
         }
         its(:exits_via_search_average) { should eq(3.5) }
@@ -179,32 +179,32 @@ module PerformanceData
         { problem_reports: [
           {
             value: 1,
-            timestamp: "2014-11-01T00:00:00+00:00"
+            timestamp: "2014-11-01T00:00:00+00:00",
           },
           {
             value: 3,
-            timestamp: "2014-11-02T00:00:00+00:00"
+            timestamp: "2014-11-02T00:00:00+00:00",
           },
           {
             value: 3,
-            timestamp: "2014-11-03T00:00:00+00:00"
+            timestamp: "2014-11-03T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-04T00:00:00+00:00"
+            timestamp: "2014-11-04T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-05T00:00:00+00:00"
+            timestamp: "2014-11-05T00:00:00+00:00",
           },
           {
             value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00"
+            timestamp: "2014-11-06T00:00:00+00:00",
           },
           {
             value: 3,
-            timestamp: "2014-11-07T00:00:00+00:00"
-          }
+            timestamp: "2014-11-07T00:00:00+00:00",
+          },
         ] }
       }
       its(:problem_reports_weekly_average) { should eq(10) }
@@ -215,12 +215,12 @@ module PerformanceData
         { problem_reports: [
           {
             value: 1,
-            timestamp: "2014-11-01T00:00:00+00:00"
+            timestamp: "2014-11-01T00:00:00+00:00",
           },
           {
             value: 3,
-            timestamp: "2014-11-02T00:00:00+00:00"
-          }
+            timestamp: "2014-11-02T00:00:00+00:00",
+          },
         ] }
       }
       its(:problem_reports_weekly_average) { should eq(14) }

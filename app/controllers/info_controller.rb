@@ -1,6 +1,6 @@
-require 'uri'
-require 'performance_data/statistics'
-require 'performance_data/metrics'
+require "uri"
+require "performance_data/statistics"
+require "performance_data/metrics"
 
 class InfoController < ApplicationController
   rescue_from GdsApi::ContentStore::ItemNotFound, with: :not_found
@@ -18,7 +18,7 @@ private
 
   def parse_slug
     slug = URI.encode(params[:slug]) # rubocop:disable Lint/UriEscapeUnescape
-    slug[0] != '/' ? "/#{slug}" : slug
+    slug[0] != "/" ? "/#{slug}" : slug
   end
 
   def not_found

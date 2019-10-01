@@ -1,4 +1,4 @@
-require 'govuk_schemas'
+require "govuk_schemas"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

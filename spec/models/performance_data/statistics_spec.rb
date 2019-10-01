@@ -1,7 +1,7 @@
-require 'rails_helper'
-require 'performance_data/statistics'
-require 'performance_data/test_helpers/statistics'
-require 'gds_api/test_helpers/content_store'
+require "rails_helper"
+require "performance_data/statistics"
+require "performance_data/test_helpers/statistics"
+require "gds_api/test_helpers/content_store"
 
 module PerformanceData
   describe Statistics do
@@ -11,9 +11,9 @@ module PerformanceData
     context "getting a response from the performance platform" do
       context "with nil values" do
         it "should replace nil values with zero" do
-          stub_performance_platform_has_slug('/apply-uk-visa', performance_platform_response_with_nil_values)
+          stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_with_nil_values)
 
-          statistics = Statistics.new(apply_uk_visa_content, '/apply-uk-visa')
+          statistics = Statistics.new(apply_uk_visa_content, "/apply-uk-visa")
 
           expect(statistics.problem_reports.last[:value]).to eql(0)
           expect(statistics.problem_reports.last[:path]).to eql("/apply-uk-visa")
@@ -29,9 +29,9 @@ module PerformanceData
         end
 
         it "should replace nil values with zero for multipart links" do
-          stub_performance_platform_has_slug_multipart('/apply-uk-visa', performance_platform_response_for_multipart_with_nil_values)
+          stub_performance_platform_has_slug_multipart("/apply-uk-visa", performance_platform_response_for_multipart_with_nil_values)
 
-          statistics = Statistics.new(apply_uk_visa_content_multipart, '/apply-uk-visa')
+          statistics = Statistics.new(apply_uk_visa_content_multipart, "/apply-uk-visa")
 
           expect(statistics.problem_reports.last[:value]).to eql(0)
           expect(statistics.problem_reports.last[:path]).to eql("/apply-uk-visa/part-3")
@@ -49,44 +49,44 @@ module PerformanceData
 
     def apply_uk_visa_content
       GovukSchemas::RandomExample.for_schema(
-        frontend_schema: "specialist_document"
+        frontend_schema: "specialist_document",
       ) do |payload|
         payload.merge(
           title: "Apply for a UK visa",
           links: {
-            meets_user_needs: [apply_for_a_uk_visa_need]
-          }
+            meets_user_needs: [apply_for_a_uk_visa_need],
+          },
         )
       end
     end
 
     def apply_uk_visa_content_multipart
       GovukSchemas::RandomExample.for_schema(
-        frontend_schema: "guide"
+        frontend_schema: "guide",
       ) do |payload|
         payload.merge(
           title: "Apply for a UK visa 1",
           links: {
-            meets_user_needs: [apply_for_a_uk_visa_need]
+            meets_user_needs: [apply_for_a_uk_visa_need],
           },
           "details" => {
             "parts" => [
               {
-                "slug" => 'part-1',
-                "title" => 'Part 1',
-                "body" => 'Part 1',
+                "slug" => "part-1",
+                "title" => "Part 1",
+                "body" => "Part 1",
               },
               {
-                "slug" => 'part-2',
-                "title" => 'Part 2',
-                "body" => 'Part 2',
+                "slug" => "part-2",
+                "title" => "Part 2",
+                "body" => "Part 2",
               },
               {
-                "slug" => 'part-3',
-                "title" => 'Part 3',
-                "body" => 'Part 3',
+                "slug" => "part-3",
+                "title" => "Part 3",
+                "body" => "Part 3",
               },
-            ]
+            ],
           },
         )
       end
@@ -94,7 +94,7 @@ module PerformanceData
 
     def apply_for_a_uk_visa_need
       random_need = GovukSchemas::RandomExample.for_schema(
-        frontend_schema: "need"
+        frontend_schema: "need",
       ) do |payload|
         payload.merge(
           "details" => {
@@ -105,9 +105,9 @@ module PerformanceData
             "met_when" => [
               "Finds out how whether they're eligible",
               "How to apply",
-              "What documents to provide"
+              "What documents to provide",
             ],
-          }
+          },
         )
       end
 
