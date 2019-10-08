@@ -16,7 +16,7 @@ gem "uglifier", "4.2.0"
 group :development, :test do
   gem "ci_reporter_rspec"
   gem "govuk-lint"
-  gem "rspec-rails", "3.8.2"
+  gem "rspec-rails", "3.9.0"
 end
 
 group :test do
