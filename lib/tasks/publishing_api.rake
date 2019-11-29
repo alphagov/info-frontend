@@ -4,7 +4,7 @@ require "gds_api/publishing_api/special_route_publisher"
 
 namespace :publishing_api do
   desc "Publish special routes via publishing api"
-  task :publish_special_routes do
+  task publish_special_routes: :environment do
     logger = Logger.new(STDOUT)
     publishing_api = GdsApi::PublishingApiV2.new(
       Plek.new.find("publishing-api"),
