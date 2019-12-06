@@ -129,14 +129,14 @@ module PerformanceData
       search_term_data = performance_data_for(search_terms, [])
 
       if multipart?
-        return PerformanceData::MultiPartMetrics.new(
+        PerformanceData::MultiPartMetrics.new(
           unique_pageviews: pageview_data,
           exits_via_search: search_data,
           problem_reports: problem_data,
           search_terms: search_term_data,
         )
       else
-        return PerformanceData::Metrics.new(
+        PerformanceData::Metrics.new(
           unique_pageviews: pageview_data,
           exits_via_search: search_data,
           problem_reports: problem_data,
