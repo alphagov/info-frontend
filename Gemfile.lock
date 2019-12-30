@@ -75,7 +75,7 @@ GEM
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
-    gds-api-adapters (63.0.0)
+    gds-api-adapters (63.1.1)
       addressable
       link_header
       null_logger
@@ -127,7 +127,7 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
-    mime-types (3.3)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
     mimemagic (0.3.3)
@@ -144,7 +144,7 @@ GEM
     parser (2.6.5.0)
       ast (~> 2.4.0)
     plek (3.0.0)
-    public_suffix (4.0.1)
+    public_suffix (4.0.2)
     rack (2.0.8)
     rack-cache (1.10.0)
       rack (>= 0.4)
