@@ -84,7 +84,7 @@ GEM
       rest-client (~> 2.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    govuk_app_config (2.0.2)
+    govuk_app_config (2.0.3)
       logstasher (>= 1.2.2, < 1.4.0)
       sentry-raven (>= 2.7.1, < 2.14.0)
       statsd-ruby (~> 1.4.0)
@@ -280,7 +280,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.6)
     unicode-display_width (1.6.0)
-    unicorn (5.5.2)
+    unicorn (5.5.3)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     webmock (3.8.0)
@@ -301,7 +301,7 @@ DEPENDENCIES
   capybara (= 3.31.0)
   ci_reporter_rspec
   gds-api-adapters
-  govuk_app_config (~> 2.0.2)
+  govuk_app_config (~> 2.0.3)
   govuk_publishing_components (~> 21.21.3)
   govuk_schemas (~> 4)
   plek (= 3.0.0)
