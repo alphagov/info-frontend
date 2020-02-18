@@ -63,7 +63,7 @@ GEM
     ci_reporter_rspec (1.0.0)
       ci_reporter (~> 2.0)
       rspec (>= 2.14, < 4)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -89,7 +89,7 @@ GEM
       sentry-raven (>= 2.7.1, < 2.14.0)
       statsd-ruby (~> 1.4.0)
       unicorn (>= 5.4, < 5.6)
-    govuk_publishing_components (21.22.1)
+    govuk_publishing_components (21.23.0)
       gds-api-adapters
       govuk_app_config
       kramdown
@@ -137,7 +137,7 @@ GEM
     multipart-post (2.1.1)
     netrc (0.11.0)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     null_logger (0.0.1)
     parallel (1.19.1)
@@ -145,7 +145,7 @@ GEM
       ast (~> 2.4.0)
     plek (3.0.0)
     public_suffix (4.0.3)
-    rack (2.2.1)
+    rack (2.2.2)
     rack-cache (1.11.0)
       rack (>= 0.4)
     rack-test (1.1.0)
@@ -188,7 +188,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rouge (3.15.0)
+    rouge (3.16.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -302,7 +302,7 @@ DEPENDENCIES
   ci_reporter_rspec
   gds-api-adapters
   govuk_app_config (~> 2.0.3)
-  govuk_publishing_components (~> 21.22.1)
+  govuk_publishing_components (~> 21.23.0)
   govuk_schemas (~> 4)
   plek (= 3.0.0)
   rails (~> 5.2)
