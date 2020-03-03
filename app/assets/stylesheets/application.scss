@@ -1,6 +1,15 @@
 $govuk-compatibility-govuktemplate: true;
 $govuk-use-legacy-palette: false;
-@import "govuk_publishing_components/all_components";
+@import 'govuk_publishing_components/govuk_frontend_support';
+@import 'govuk_publishing_components/component_support';
+@import 'govuk_publishing_components/components/_feedback';
+@import 'govuk_publishing_components/components/_phase-banner';
+@import 'govuk_publishing_components/components/_title';
+
+// these are used with classes only, not as gem components
+@import 'govuk_publishing_components/components/_table';
+@import 'govuk_publishing_components/components/_button';
+@import 'govuk_publishing_components/components/_input';
 
 .info-frontend {
   @include govuk-clearfix;
