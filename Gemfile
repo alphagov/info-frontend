@@ -15,7 +15,7 @@ gem "uglifier", "4.2.0"
 
 group :development, :test do
   gem "ci_reporter_rspec"
-  gem "rspec-rails", "3.9.0"
+  gem "rspec-rails", "3.9.1"
   gem "rubocop-govuk"
 end
 
