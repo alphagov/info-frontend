@@ -28,7 +28,7 @@ feature "Info page" do
     end
 
     supertype_fields = @apply_for_a_uk_visa_need.keys.select { |field| field.end_with? "supertype" }
-    fields_to_exclude = %w(
+    fields_to_exclude = %w[
       rendering_app
       withdrawn_notice
       last_edited_at
@@ -39,7 +39,7 @@ feature "Info page" do
       phase
       publishing_request_id
       links
-    ) + supertype_fields
+    ] + supertype_fields
 
     @apply_uk_visa_content = GovukSchemas::RandomExample.for_schema(
       frontend_schema: "specialist_document",
