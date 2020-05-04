@@ -116,7 +116,7 @@ module PerformanceData
 
     def clean_up_need(need)
       supertype_fields = need.keys.select { |field| field.end_with? "supertype" }
-      fields_to_exclude = %w(
+      fields_to_exclude = %w[
         rendering_app
         withdrawn_notice
         last_edited_at
@@ -130,7 +130,7 @@ module PerformanceData
         government_document_supertype
         email_document_supertype
         links
-      ) + supertype_fields
+      ] + supertype_fields
       need.except(*fields_to_exclude)
     end
   end
