@@ -5,7 +5,7 @@ ruby File.read(".ruby-version").strip
 gem "asset_bom_removal-rails", "~> 1.0.0"
 gem "gds-api-adapters"
 gem "govuk_app_config", "~> 2.1.2"
-gem "govuk_publishing_components", "~> 21.43.0"
+gem "govuk_publishing_components", "~> 21.44.0"
 gem "plek", "3.0.0"
 gem "rails", "~> 6.0.2"
 gem "sass-rails", "~> 5.0.5"
