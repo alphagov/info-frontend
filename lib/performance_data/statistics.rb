@@ -93,15 +93,15 @@ module PerformanceData
             searches = []
             item["values"].each do |value_item|
               searches << {
-                  timestamp: value_item["_start_at"].to_datetime,
-                  value: value_item["searchUniques:sum"].to_i,
+                timestamp: value_item["_start_at"].to_datetime,
+                value: value_item["searchUniques:sum"].to_i,
               }
             end
 
             stats << {
-                total_searches: item["searchUniques:sum"].to_i,
-                keyword: item["searchKeyword"],
-                searches: searches,
+              total_searches: item["searchUniques:sum"].to_i,
+              keyword: item["searchKeyword"],
+              searches: searches,
             }
           end
         end

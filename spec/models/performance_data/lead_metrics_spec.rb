@@ -9,10 +9,10 @@ module PerformanceData
       context "some unique pageviews" do
         let(:data) {
           { unique_pageviews: [
-          { value: 3 },
-          { value: 2 },
-          { value: 1 },
-        ] }
+            { value: 3 },
+            { value: 2 },
+            { value: 1 },
+          ] }
         }
         its(:unique_pageviews_average) { should eq(2) }
       end
@@ -25,9 +25,9 @@ module PerformanceData
       context "average unique pageviews less than 1" do
         let(:data) {
           { unique_pageviews: [
-          { value: 0 },
-          { value: 1 },
-        ] }
+            { value: 0 },
+            { value: 1 },
+          ] }
         }
         its(:unique_pageviews_average) { should eq(0.5) }
       end
@@ -37,10 +37,10 @@ module PerformanceData
       context "some on-page searches" do
         let(:data) {
           { exits_via_search: [
-          { value: 3 },
-          { value: 2 },
-          { value: 1 },
-        ] }
+            { value: 3 },
+            { value: 2 },
+            { value: 1 },
+          ] }
         }
         its(:exits_via_search_average) { should eq(2) }
       end
@@ -83,23 +83,23 @@ module PerformanceData
       context "some unique pageviews" do
         let(:data) {
           { unique_pageviews: [
-          {
-            value: 3,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-          {
-            value: 2,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-          {
-            value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-          {
-            value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-        ] }
+            {
+              value: 3,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+            {
+              value: 2,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+            {
+              value: 1,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+            {
+              value: 1,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+          ] }
         }
         its(:unique_pageviews_average) { should eq(3.5) }
       end
@@ -112,23 +112,23 @@ module PerformanceData
       context "average unique pageviews less than 1" do
         let(:data) {
           { unique_pageviews: [
-          {
-            value: 0,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-          {
-            value: 1,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-          {
-            value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-          {
-            value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-        ] }
+            {
+              value: 0,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+            {
+              value: 1,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+            {
+              value: 0,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+            {
+              value: 0,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+          ] }
         }
         its(:unique_pageviews_average) { should eq(0.5) }
       end
@@ -138,23 +138,23 @@ module PerformanceData
       context "some on-page searches" do
         let(:data) {
           { exits_via_search: [
-          {
-            value: 2,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-          {
-            value: 4,
-            timestamp: "2014-11-05T00:00:00+00:00",
-          },
-          {
-            value: 0,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-          {
-            value: 1,
-            timestamp: "2014-11-06T00:00:00+00:00",
-          },
-        ] }
+            {
+              value: 2,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+            {
+              value: 4,
+              timestamp: "2014-11-05T00:00:00+00:00",
+            },
+            {
+              value: 0,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+            {
+              value: 1,
+              timestamp: "2014-11-06T00:00:00+00:00",
+            },
+          ] }
         }
         its(:exits_via_search_average) { should eq(3.5) }
       end
