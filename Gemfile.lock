@@ -275,7 +275,7 @@ GEM
       tilt
     sentry-raven (3.0.0)
       faraday (>= 1.0)
-    slimmer (13.3.0)
+    slimmer (13.4.0)
       activesupport
       json
       nokogiri (~> 1.7)
@@ -334,7 +334,7 @@ DEPENDENCIES
   rspec-rails (= 4.0.0)
   rubocop-govuk
   sass-rails (~> 5.0.5)
-  slimmer (~> 13.3.0)
+  slimmer (~> 13.4.0)
   spring
   uglifier (= 4.2.0)
   webmock (~> 3.8.3)
