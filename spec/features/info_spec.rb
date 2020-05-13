@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require "rails_helper"
 require "performance_data/test_helpers/statistics"
 require "gds_api/test_helpers/content_store"
