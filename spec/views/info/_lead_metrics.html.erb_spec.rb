@@ -23,7 +23,7 @@ RSpec.describe "info/lead_metrics" do
   end
 
   context "when there's lots of traffic" do
-    let(:data) { { unique_pageviews_average: 12345 } }
+    let(:data) { { unique_pageviews_average: 12_345 } }
 
     it "displays pageviews in a human readable form" do
       render partial: "info/lead_metrics", locals: locals
@@ -54,7 +54,7 @@ RSpec.describe "info/lead_metrics" do
   end
 
   context "when the format is a multi-part guide" do
-    let(:data) { { unique_pageviews_average: 13245, exits_via_search_average: 12, problem_reports_weekly_average: 33 } }
+    let(:data) { { unique_pageviews_average: 13_245, exits_via_search_average: 12, problem_reports_weekly_average: 33 } }
 
     it "uses multipart metrics" do
       locals[:multipart] = true
