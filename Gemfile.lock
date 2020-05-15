@@ -144,7 +144,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0425)
+    mime-types-data (3.2020.0512)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -275,7 +275,7 @@ GEM
       tilt
     sentry-raven (3.0.0)
       faraday (>= 1.0)
-    slimmer (13.3.0)
+    slimmer (14.0.0)
       activesupport
       json
       nokogiri (~> 1.7)
@@ -334,7 +334,7 @@ DEPENDENCIES
   rspec-rails (= 4.0.0)
   rubocop-govuk
   sass-rails (~> 5.0.5)
-  slimmer (~> 13.3.0)
+  slimmer (~> 14.0.0)
   spring
   uglifier (= 4.2.0)
   webmock (~> 3.8.3)
