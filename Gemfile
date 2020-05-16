@@ -7,7 +7,7 @@ gem "gds-api-adapters"
 gem "govuk_app_config", "~> 2.1.2"
 gem "govuk_publishing_components", "~> 21.46.0"
 gem "plek", "3.0.0"
-gem "rails", "~> 6.0.2"
+gem "rails", "~> 6.0.3"
 gem "sass-rails", "~> 5.0.5"
 gem "slimmer", "~> 14.0.0"
 gem "spring", group: :development
