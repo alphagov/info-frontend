@@ -70,7 +70,6 @@ Rails.application.configure do
   end
 
   config.slimmer.use_cache = true
-  config.slimmer.asset_host = Plek.current.find("static")
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
