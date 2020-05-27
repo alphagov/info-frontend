@@ -4,7 +4,6 @@ RUN apt-get update -qq && apt-get upgrade -y
 RUN apt-get install -y build-essential nodejs && apt-get clean
 
 ENV GOVUK_APP_NAME info-frontend
-ENV GOVUK_ASSET_ROOT http://assets.publishing.service.gov.uk
 ENV PORT 3085
 ENV RAILS_ENV development
 
