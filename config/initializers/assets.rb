@@ -1,8 +1,5 @@
 # Be sure to restart your server when you modify this file.
 
-# Compiled assets are written to the location specified in config.assets.prefix.
-Rails.application.config.assets.prefix = "/info-frontend"
-
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = "1.0"
 
