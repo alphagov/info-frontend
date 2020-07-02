@@ -140,26 +140,30 @@ feature "Info page" do
 
     # check per-page multipart formats are present and correct
     within("#per-page-metrics") do
-      expect(page.first("th.page").text).to have_text("Page")
-      expect(page.first("th.unique_pageviews").text).to have_text("Unique pageviews")
-      expect(page.first("th.searches").text).to have_text("Searches started from this page")
-      expect(page.first("th.problem_reports").text).to have_text("Problem reports")
-      expect(page.all("td.page")[0].text).to eq("/apply-uk-visa")
-      expect(page.all("td.page")[1].text).to eq("/apply-uk-visa/part-1")
-      expect(page.all("td.page")[2].text).to eq("/apply-uk-visa/part-2")
-      expect(page.all("td.page")[3].text).to eq("/apply-uk-visa/part-3")
-      expect(page.all("td.unique_pageviews")[0].text).to eq("25.9k per day")
-      expect(page.all("td.unique_pageviews")[1].text).to eq("20 per day")
-      expect(page.all("td.unique_pageviews")[2].text).to eq("20 per day")
-      expect(page.all("td.unique_pageviews")[3].text).to eq("25.7k per day")
-      expect(page.all("td.searches")[0].text).to eq("72 per day")
-      expect(page.all("td.searches")[1].text).to eq("100 per day")
-      expect(page.all("td.searches")[2].text).to eq("50 per day")
-      expect(page.all("td.searches")[3].text).to eq("3 per day")
-      expect(page.all("td.problem_reports")[0].text).to eq("140 per week")
-      expect(page.all("td.problem_reports")[1].text).to eq("504 per week")
-      expect(page.all("td.problem_reports")[2].text).to eq("105 per week")
-      expect(page.all("td.problem_reports")[3].text).to eq("210 per week")
+      expect(page.first("th:nth-child(1)").text).to have_text("Page")
+      expect(page.first("th:nth-child(2)").text).to have_text("Unique pageviews")
+      expect(page.first("th:nth-child(3)").text).to have_text("Searches started from this page")
+      expect(page.first("th:nth-child(4)").text).to have_text("Problem reports")
+
+      expect(page.all("tr:nth-child(1) td:nth-child(1)")[0].text).to eq("/apply-uk-visa")
+      expect(page.all("tr:nth-child(2) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-1")
+      expect(page.all("tr:nth-child(3) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-2")
+      expect(page.all("tr:nth-child(4) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-3")
+
+      expect(page.all("tr:nth-child(1) td:nth-child(2)")[0].text).to eq("25.9k per day")
+      expect(page.all("tr:nth-child(2) td:nth-child(2)")[0].text).to eq("20 per day")
+      expect(page.all("tr:nth-child(3) td:nth-child(2)")[0].text).to eq("20 per day")
+      expect(page.all("tr:nth-child(4) td:nth-child(2)")[0].text).to eq("25.7k per day")
+
+      expect(page.all("tr:nth-child(1) td:nth-child(3)")[0].text).to eq("72 per day")
+      expect(page.all("tr:nth-child(2) td:nth-child(3)")[0].text).to eq("100 per day")
+      expect(page.all("tr:nth-child(3) td:nth-child(3)")[0].text).to eq("50 per day")
+      expect(page.all("tr:nth-child(4) td:nth-child(3)")[0].text).to eq("3 per day")
+
+      expect(page.all("tr:nth-child(1) td:nth-child(4)")[0].text).to eq("140 per week")
+      expect(page.all("tr:nth-child(2) td:nth-child(4)")[0].text).to eq("504 per week")
+      expect(page.all("tr:nth-child(3) td:nth-child(4)")[0].text).to eq("105 per week")
+      expect(page.all("tr:nth-child(4) td:nth-child(4)")[0].text).to eq("210 per week")
     end
 
     within("#needs") do
