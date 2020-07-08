@@ -2,14 +2,15 @@ $govuk-compatibility-govuktemplate: true;
 $govuk-use-legacy-palette: false;
 @import 'govuk_publishing_components/govuk_frontend_support';
 @import 'govuk_publishing_components/component_support';
-@import 'govuk_publishing_components/components/_feedback';
-@import 'govuk_publishing_components/components/_phase-banner';
-@import 'govuk_publishing_components/components/_title';
-
-// these are used with classes only, not as gem components
-@import 'govuk_publishing_components/components/_table';
-@import 'govuk_publishing_components/components/_button';
-@import 'govuk_publishing_components/components/_input';
+@import 'govuk_publishing_components/components/button';
+@import 'govuk_publishing_components/components/error-message';
+@import 'govuk_publishing_components/components/feedback';
+@import 'govuk_publishing_components/components/hint';
+@import 'govuk_publishing_components/components/input';
+@import 'govuk_publishing_components/components/label';
+@import 'govuk_publishing_components/components/phase-banner';
+@import 'govuk_publishing_components/components/table';
+@import 'govuk_publishing_components/components/title';
 
 .info-frontend {
   @include govuk-clearfix;
@@ -42,10 +43,6 @@ $govuk-use-legacy-palette: false;
   padding-bottom: govuk-spacing(6);
 }
 
-.metrics-panel {
-  margin-bottom: govuk-spacing(6);
-}
-
 .metrics-panel__block {
   margin-bottom: govuk-spacing(4);
 }
@@ -67,12 +64,4 @@ $govuk-use-legacy-palette: false;
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
   }
-}
-
-.app-c-table .govuk-table__header {
-  @include govuk-font(16, $weight: bold);
-}
-
-.app-c-table .govuk-table__cell {
-  @include govuk-font(16);
 }

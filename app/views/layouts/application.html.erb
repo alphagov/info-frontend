@@ -2,7 +2,8 @@
 <html>
 <head>
   <title><%= yield :title %> - GOV.UK</title>
-  <%= stylesheet_link_tag 'application', media: 'all', integrity: false %>
+  <%= stylesheet_link_tag 'application', media: 'screen', integrity: false %>
+  <%= stylesheet_link_tag 'print', media: 'print', integrity: false %>
   <%= javascript_include_tag 'application', integrity: false %>
   <%= csrf_meta_tags %>
 </head>
