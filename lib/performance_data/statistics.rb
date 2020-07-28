@@ -93,7 +93,7 @@ module PerformanceData
             searches = []
             item["values"].each do |value_item|
               searches << {
-                timestamp: value_item["_start_at"].to_datetime,
+                timestamp: value_item["_start_at"],
                 value: value_item["searchUniques:sum"].to_i,
               }
             end
@@ -186,7 +186,7 @@ module PerformanceData
             stats << {
               value: value_item[value_name].to_i,
               path: item["pagePath"],
-              timestamp: value_item["_start_at"].to_datetime,
+              timestamp: value_item["_start_at"],
             }
           end
         end
