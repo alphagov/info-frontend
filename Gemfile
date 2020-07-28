@@ -2,26 +2,27 @@ source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
 
-gem "asset_bom_removal-rails", "~> 1.0.0"
+gem "rails", "6.0.3.2"
+
+gem "asset_bom_removal-rails"
 gem "gds-api-adapters"
-gem "govuk_app_config", "~> 2.2.1"
-gem "govuk_publishing_components", "~> 21.60.3"
-gem "plek", "4.0.0"
-gem "rails", "~> 6.0.3"
-gem "sass-rails", "~> 5.0.5"
-gem "slimmer", "~> 15.1.0"
+gem "govuk_app_config"
+gem "govuk_publishing_components"
+gem "plek"
+gem "sass-rails"
+gem "slimmer"
 gem "spring", group: :development
-gem "uglifier", "4.2.0"
+gem "uglifier"
 
 group :development, :test do
   gem "ci_reporter_rspec"
-  gem "rspec-rails", "4.0.1"
+  gem "rspec-rails"
   gem "rubocop-govuk"
 end
 
 group :test do
-  gem "capybara", "3.33.0"
-  gem "govuk_schemas", "~> 4"
-  gem "rspec-its", "1.3.0"
-  gem "webmock", "~> 3.8.3"
+  gem "capybara"
+  gem "govuk_schemas"
+  gem "rspec-its"
+  gem "webmock"
 end
