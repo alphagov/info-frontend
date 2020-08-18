@@ -9,7 +9,7 @@ gem "govuk_publishing_components", "~> 21.60.1"
 gem "plek", "4.0.0"
 gem "rails", "~> 6.0.3"
 gem "sass-rails", "~> 5.0.5"
-gem "slimmer", "~> 15.0.0"
+gem "slimmer", "~> 15.1.0"
 gem "spring", group: :development
 gem "uglifier", "4.2.0"
 
