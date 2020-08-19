@@ -2,10 +2,11 @@
 <html>
 <head>
   <title><%= yield :title %> - GOV.UK</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'screen', integrity: false %>
   <%= stylesheet_link_tag 'print', media: 'print', integrity: false %>
   <%= javascript_include_tag 'application', integrity: false %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="global-breadcrumb" class="header-context"></div>
