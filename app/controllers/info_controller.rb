@@ -17,7 +17,8 @@ class InfoController < ApplicationController
 private
 
   def parse_slug
-    slug = URI.encode(params[:slug]) # rubocop:disable Lint/UriEscapeUnescape
+    query = params[:slug]
+    slug = URI.encode_www_form_component(query).gsub("%2F", "/")
     slug[0] != "/" ? "/#{slug}" : slug
   end
 
