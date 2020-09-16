@@ -21,5 +21,6 @@ group :test do
   gem "capybara"
   gem "govuk_schemas"
   gem "rspec-its"
+  gem "simplecov"
   gem "webmock"
 end
