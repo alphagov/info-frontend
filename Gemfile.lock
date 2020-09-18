@@ -255,7 +255,7 @@ GEM
       tilt
     sentry-raven (3.0.4)
       faraday (>= 1.0)
-    slimmer (15.1.0)
+    slimmer (15.1.1)
       activesupport
       json
       nokogiri (~> 1.7)
