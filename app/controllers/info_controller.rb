@@ -11,7 +11,10 @@ class InfoController < ApplicationController
     @slug = parse_slug
     @content = GdsApi.content_store.content_item(@slug).to_h
     @needs = @content["links"]["meets_user_needs"]
-    @statistics = PerformanceData::Statistics.new(@content, @slug)
+
+    # TODO: performance platform no longer exists.
+    # If we want statistics, they need to come from somewhere else.
+    @statistics = nil
   end
 
 private

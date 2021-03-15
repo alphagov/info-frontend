@@ -2,6 +2,6 @@
 
 <%= render partial: "content", locals: { content: @content } %>
 
-<%= render partial: "lead_metrics", locals: { lead_metrics: @statistics.lead_metrics, multipart: @statistics.multipart? } %>
-<%= render partial: "per_page_metrics", locals: { per_page_metrics: @statistics.per_page_metrics } %>
-<%= render partial: "needs", locals: { needs: @needs, multipart: @statistics.multipart? } %>
+<%#= render partial: "lead_metrics", locals: { lead_metrics: @statistics.lead_metrics, multipart: @statistics.multipart? } %>
+<%#= render partial: "per_page_metrics", locals: { per_page_metrics: @statistics.per_page_metrics } %>
+<%= render partial: "needs", locals: { needs: @needs, multipart: false } %>
