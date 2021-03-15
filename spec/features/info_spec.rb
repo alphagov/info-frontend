@@ -112,7 +112,7 @@ feature "Info page" do
     expect(page.response_headers["Cache-Control"]).to eq("max-age=43200, public")
   end
 
-  scenario "Seeing how many visits are made to a page" do
+  xscenario "Seeing how many visits are made to a page" do
     stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
@@ -121,7 +121,7 @@ feature "Info page" do
     expect(page).to have_text("Unique pageviews\n25.9k per day")
   end
 
-  scenario "Seeing metrics for multi-part formats" do
+  xscenario "Seeing metrics for multi-part formats" do
     stub_performance_platform_has_slug_multipart("/apply-uk-visa", performance_platform_response_for_multipart_artefact)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content_multipart)
 
@@ -171,7 +171,7 @@ feature "Info page" do
     end
   end
 
-  scenario "Seeing how many users are leaving via the site search" do
+  xscenario "Seeing how many users are leaving via the site search" do
     stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
@@ -180,7 +180,7 @@ feature "Info page" do
     expect(page).to have_text("Searches started from this page\n72 per day")
   end
 
-  scenario "Seeing how problem reports are left" do
+  xscenario "Seeing how problem reports are left" do
     stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
@@ -189,7 +189,7 @@ feature "Info page" do
     expect(page).to have_text("Problem reports\n140 per week")
   end
 
-  scenario "Seeing what terms users are searching for" do
+  xscenario "Seeing what terms users are searching for" do
     stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
@@ -208,7 +208,7 @@ feature "Info page" do
     expect(page).to have_text("There aren’t any validated needs for this page.")
   end
 
-  scenario "When there isn't any performance data available" do
+  xscenario "When there isn't any performance data available" do
     stub_performance_platform_has_slug("/some-slug", performance_platform_response_with_no_performance_data)
     stub_content_store_has_item("/some-slug", @apply_uk_visa_content)
 
