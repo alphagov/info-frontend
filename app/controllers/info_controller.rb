@@ -1,6 +1,4 @@
 require "uri"
-require "performance_data/statistics"
-require "performance_data/metrics"
 
 class InfoController < ApplicationController
   rescue_from GdsApi::ContentStore::ItemNotFound, with: :not_found
@@ -11,10 +9,6 @@ class InfoController < ApplicationController
     @slug = parse_slug
     @content = GdsApi.content_store.content_item(@slug).to_h
     @needs = @content["links"]["meets_user_needs"]
-
-    # TODO: performance platform no longer exists.
-    # If we want statistics, they need to come from somewhere else.
-    @statistics = nil
   end
 
 private
