@@ -1,9 +1,7 @@
 require "rails_helper"
-require "performance_data/test_helpers/statistics"
 require "gds_api/test_helpers/content_store"
 
 feature "Info page" do
-  include PerformanceData::TestHelpers::Statistics
   include GdsApi::TestHelpers::ContentStore
 
   before do
@@ -89,7 +87,6 @@ feature "Info page" do
   end
 
   scenario "Understanding the needs of a page" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"
@@ -112,95 +109,7 @@ feature "Info page" do
     expect(page.response_headers["Cache-Control"]).to eq("max-age=43200, public")
   end
 
-  xscenario "Seeing how many visits are made to a page" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
-    stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
-
-    visit "/info/apply-uk-visa"
-
-    expect(page).to have_text("Unique pageviews\n25.9k per day")
-  end
-
-  xscenario "Seeing metrics for multi-part formats" do
-    stub_performance_platform_has_slug_multipart("/apply-uk-visa", performance_platform_response_for_multipart_artefact)
-    stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content_multipart)
-
-    visit "/info/apply-uk-visa"
-
-    within("#lead-metrics") do
-      # check lead metrics for multipart formats are summed
-      # across all pages in the format
-      expect(page).to have_text("Unique pageviews\n104k per day")
-      expect(page).to have_text("Searches started\n135 per day")
-      expect(page).to have_text("Problem reports\n959 per week")
-      expect(page).to have_text("employer access (126)")
-      expect(page).to have_text("s2s (104)")
-      expect(page).to have_text("pupil premium (45)")
-    end
-
-    # check per-page multipart formats are present and correct
-    within("#per-page-metrics") do
-      expect(page.first("th:nth-child(1)").text).to have_text("Page")
-      expect(page.first("th:nth-child(2)").text).to have_text("Unique pageviews")
-      expect(page.first("th:nth-child(3)").text).to have_text("Searches started from this page")
-      expect(page.first("th:nth-child(4)").text).to have_text("Problem reports")
-
-      expect(page.all("tr:nth-child(1) td:nth-child(1)")[0].text).to eq("/apply-uk-visa")
-      expect(page.all("tr:nth-child(2) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-1")
-      expect(page.all("tr:nth-child(3) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-2")
-      expect(page.all("tr:nth-child(4) td:nth-child(1)")[0].text).to eq("/apply-uk-visa/part-3")
-
-      expect(page.all("tr:nth-child(1) td:nth-child(2)")[0].text).to eq("25.9k per day")
-      expect(page.all("tr:nth-child(2) td:nth-child(2)")[0].text).to eq("20 per day")
-      expect(page.all("tr:nth-child(3) td:nth-child(2)")[0].text).to eq("20 per day")
-      expect(page.all("tr:nth-child(4) td:nth-child(2)")[0].text).to eq("25.7k per day")
-
-      expect(page.all("tr:nth-child(1) td:nth-child(3)")[0].text).to eq("72 per day")
-      expect(page.all("tr:nth-child(2) td:nth-child(3)")[0].text).to eq("100 per day")
-      expect(page.all("tr:nth-child(3) td:nth-child(3)")[0].text).to eq("50 per day")
-      expect(page.all("tr:nth-child(4) td:nth-child(3)")[0].text).to eq("3 per day")
-
-      expect(page.all("tr:nth-child(1) td:nth-child(4)")[0].text).to eq("140 per week")
-      expect(page.all("tr:nth-child(2) td:nth-child(4)")[0].text).to eq("504 per week")
-      expect(page.all("tr:nth-child(3) td:nth-child(4)")[0].text).to eq("105 per week")
-      expect(page.all("tr:nth-child(4) td:nth-child(4)")[0].text).to eq("210 per week")
-    end
-
-    within("#needs") do
-      expect(page).to have_text("As a non-EEA national")
-    end
-  end
-
-  xscenario "Seeing how many users are leaving via the site search" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
-    stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
-
-    visit "/info/apply-uk-visa"
-
-    expect(page).to have_text("Searches started from this page\n72 per day")
-  end
-
-  xscenario "Seeing how problem reports are left" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
-    stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
-
-    visit "/info/apply-uk-visa"
-
-    expect(page).to have_text("Problem reports\n140 per week")
-  end
-
-  xscenario "Seeing what terms users are searching for" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
-    stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
-
-    visit "/info/apply-uk-visa"
-
-    expect(page).to have_text("employer access (126)")
-    expect(page).to have_text("pupil premium (45)")
-  end
-
   scenario "Seeing where there aren’t any recorded user needs" do
-    stub_performance_platform_has_slug("/some-slug", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/some-slug", @apply_uk_visa_content_with_no_needs)
 
     visit "/info/some-slug"
@@ -208,18 +117,7 @@ feature "Info page" do
     expect(page).to have_text("There aren’t any validated needs for this page.")
   end
 
-  xscenario "When there isn't any performance data available" do
-    stub_performance_platform_has_slug("/some-slug", performance_platform_response_with_no_performance_data)
-    stub_content_store_has_item("/some-slug", @apply_uk_visa_content)
-
-    visit "/info/some-slug"
-
-    expect(page).to have_text("Unique pageviews\n0 per day")
-    expect(page).to have_text("Searches started from this page\n0 per day")
-  end
-
   scenario "When no information is available for a given slug" do
-    stub_performance_platform_has_no_data_for_slug("/slug-without-info")
     stub_content_store_does_not_have_item("/slug-without-info")
 
     visit "/info/slug-without-info"
@@ -228,7 +126,6 @@ feature "Info page" do
   end
 
   scenario "when a slug that needs encoding is provided" do
-    stub_performance_platform_has_slug("/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8", @apply_uk_visa_content)
 
     visit "/info/government/publications/apply-for-a-uk-visa-in-china/%E5%9C%A8"
@@ -237,7 +134,6 @@ feature "Info page" do
   end
 
   scenario "shows the user need when it's valid" do
-    stub_performance_platform_has_slug("/apply-uk-visa", performance_platform_response_for_apply_uk_visa)
     stub_content_store_has_item("/apply-uk-visa", @apply_uk_visa_content)
 
     visit "/info/apply-uk-visa"

@@ -18,7 +18,7 @@ namespace :publishing_api do
     special_route_publisher.publish(
       content_id: "bce40c1f-2259-4404-b275-8c5e04afef34",
       title: "Info pages",
-      description: "Information including user needs and performance of GOV.UK pages",
+      description: "Information including user needs of GOV.UK pages",
       base_path: "/info",
       type: "prefix",
       publishing_app: "info-frontend",
