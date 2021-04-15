@@ -10,4 +10,6 @@ require "rspec/rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
+Rails.application.load_tasks
+
 RSpec.configure(&:infer_spec_type_from_file_location!)

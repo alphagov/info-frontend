@@ -6,7 +6,7 @@ namespace :publishing_api do
   desc "Publish special routes via publishing api"
   task publish_special_routes: :environment do
     logger = Logger.new(STDOUT)
-    publishing_api = GdsApi::PublishingApiV2.new(
+    publishing_api = GdsApi::PublishingApi.new(
       Plek.new.find("publishing-api"),
       bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"] || "example",
     )
