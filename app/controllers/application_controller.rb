@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Slimmer::Template
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -9,6 +10,8 @@ class ApplicationController < ActionController::Base
       password: ENV.fetch("BASIC_AUTH_PASSWORD"),
     )
   end
+
+  slimmer_template :gem_layout
 
 private
 
