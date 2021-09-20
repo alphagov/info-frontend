@@ -21,6 +21,6 @@ private
 
   def not_found
     response.headers[Slimmer::Headers::SKIP_HEADER] = "1"
-    head 404
+    head :not_found
   end
 end
