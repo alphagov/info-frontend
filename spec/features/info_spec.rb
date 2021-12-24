@@ -106,7 +106,7 @@ feature "Info page" do
     expect(page).to have_text("How to apply")
     expect(page).to have_text("What documents to provide")
 
-    expect(page.response_headers["Cache-Control"]).to eq("max-age=43200, public")
+    expect(page.response_headers["Cache-Control"]).to eq("max-age=900, public")
   end
 
   scenario "Seeing where there aren’t any recorded user needs" do

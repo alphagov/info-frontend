@@ -12,12 +12,4 @@ class ApplicationController < ActionController::Base
   end
 
   slimmer_template :gem_layout
-
-private
-
-  def set_expiry(duration = 12.hours)
-    unless Rails.env.development?
-      expires_in(duration, public: true)
-    end
-  end
 end
