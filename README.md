@@ -2,7 +2,7 @@
 
 This application exposes the user needs and metrics about content on GOV.UK. It does this by fetching content details from [Content Store](https://github.com/alphagov/content-store).
 
-Information pages have a prefix of `/info`, for example: https://www.gov.uk/info/benefits-calculators and https://www.gov.uk/info/employers-sick-pay
+Information pages have a prefix of `/info`, for example: https://www.gov.uk/info/benefits-calculators and https://www.gov.uk/info/employers-sick-pay.
 
 ## Technical documentation
 

@@ -1,6 +1,9 @@
 name: Build and publish to ECR
 
 on:
+  workflow_dispatch:
+    branches:
+      - main
   push:
     branches:
       - main
