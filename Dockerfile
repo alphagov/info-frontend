@@ -26,8 +26,18 @@ ENV GOVUK_PROMETHEUS_EXPORTER=true RAILS_ENV=production GOVUK_APP_NAME=info-fron
 RUN apt-get update -qy && \
     apt-get upgrade -y && \
     apt-get install -y nodejs && \
-    apt-get clean
-WORKDIR /app
+    apt-get clean 
+
+RUN mkdir /app && ln -fs /tmp /app
+
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 COPY --from=builder /app ./
+
+WORKDIR /app
+
+RUN groupadd -g 1001 app && \
+    useradd app -u 1001 -g 1001 --home /app
+
+USER app
+
 CMD bundle exec puma
