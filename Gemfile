@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :test do
+  gem "brakeman"
   gem "capybara"
   gem "govuk_schemas"
   gem "rspec-its"

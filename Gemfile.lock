@@ -69,6 +69,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
+    brakeman (5.2.3)
     builder (3.2.4)
     capybara (3.37.1)
       addressable
@@ -347,6 +348,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  brakeman
   capybara
   ci_reporter_rspec
   gds-api-adapters
