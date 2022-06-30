@@ -9,6 +9,7 @@ gem "plek"
 gem "sass-rails"
 gem "slimmer"
 gem "spring", group: :development
+gem "sprockets-rails"
 gem "uglifier"
 
 group :development, :test do
