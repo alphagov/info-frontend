@@ -8,8 +8,11 @@ RUN apt-get update -qy && \
     apt-get upgrade -y && \
     apt-get install -y build-essential nodejs && \
     apt-get clean
-RUN mkdir /app
+
+RUN mkdir -p /app && ln -fs /tmp /app/tmp && ln -fs /tmp /home/app
+
 WORKDIR /app
+
 COPY Gemfile Gemfile.lock .ruby-version /app/
 RUN bundle config set deployment 'true' && \
     bundle config set without 'development test' && \
@@ -28,10 +31,10 @@ RUN apt-get update -qy && \
     apt-get install -y nodejs && \
     apt-get clean 
 
-RUN mkdir /app && ln -fs /tmp /app
+RUN mkdir -p /app && ln -fs /tmp /app/tmp && ln -fs /tmp /home/app
 
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
-COPY --from=builder /app ./
+COPY --from=builder /app /app/
 
 WORKDIR /app
 
