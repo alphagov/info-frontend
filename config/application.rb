@@ -23,6 +23,11 @@ module InfoFrontend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Using a sass css compressor causes a scss file to be processed twice
+    # (once to build, once to compress) which breaks the usage of "unquote"
+    # to use CSS that has same function names as SCSS such as max.
+    config.assets.css_compressor = nil
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
