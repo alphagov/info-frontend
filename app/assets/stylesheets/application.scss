@@ -4,7 +4,6 @@ $govuk-new-link-styles: true;
 
 @import 'govuk_publishing_components/govuk_frontend_support';
 @import 'govuk_publishing_components/components/phase-banner';
-@import 'govuk_publishing_components/components/table';
 
 .info-frontend {
   @include govuk-clearfix;
