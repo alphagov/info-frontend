@@ -28,6 +28,13 @@ module InfoFrontend
     # to use CSS that has same function names as SCSS such as max.
     config.assets.css_compressor = nil
 
+    # Path within public/ where assets are compiled to
+    config.assets.prefix = "/assets/info-frontend"
+
+    # Allow overriding the asset host with an enironment variable, useful for
+    # when router is proxying to this app but asset proxying isn't set up.
+    config.asset_host = ENV["ASSET_HOST"]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
