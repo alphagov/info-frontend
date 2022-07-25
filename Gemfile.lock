@@ -123,7 +123,7 @@ GEM
       rails (>= 6)
       rouge
       sprockets (>= 3)
-    govuk_schemas (4.4.0)
+    govuk_schemas (4.4.1)
       json-schema (~> 2.8.0)
     hashdiff (1.0.1)
     http-accept (1.7.0)
