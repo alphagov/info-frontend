@@ -138,7 +138,7 @@ feature "Info page" do
 
     visit "/info/apply-uk-visa"
 
-    expect(page).to have_text("User needs and metrics")
+    expect(page).to have_text("User needs")
     expect(page).to have_text("non-EEA national")
     expect(page).to have_text("apply for a UK visa")
     expect(page).to have_text("I can come to the UK to visit, study or work")
