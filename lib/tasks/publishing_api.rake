@@ -11,8 +11,8 @@ namespace :publishing_api do
       bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"] || "example",
     )
     special_route_publisher = GdsApi::PublishingApi::SpecialRoutePublisher.new(
-      logger: logger,
-      publishing_api: publishing_api,
+      logger:,
+      publishing_api:,
     )
 
     special_route_publisher.publish(
