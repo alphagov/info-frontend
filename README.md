@@ -18,6 +18,6 @@ If you are using GOV.UK Docker, remember to combine it with the commands that fo
 bundle exec rake
 ```
 
-## License
+## Licence
 
 [MIT License](LICENCE)
