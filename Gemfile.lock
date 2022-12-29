@@ -89,7 +89,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    date (3.3.2)
+    date (3.3.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -118,7 +118,7 @@ GEM
     govuk_personalisation (0.12.0)
       plek (>= 1.9.0)
       rails (>= 6, < 8)
-    govuk_publishing_components (34.1.1)
+    govuk_publishing_components (34.1.2)
       govuk_app_config
       govuk_personalisation (>= 0.7.0)
       kramdown
@@ -158,7 +158,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.3)
-    net-imap (0.3.2)
+    net-imap (0.3.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -180,7 +180,7 @@ GEM
     prometheus_exporter (2.0.6)
       webrick
     public_suffix (5.0.1)
-    puma (6.0.0)
+    puma (6.0.1)
       nio4r (~> 2.0)
     racc (1.6.1)
     rack (2.2.4)
@@ -226,7 +226,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rouge (4.0.0)
+    rouge (4.0.1)
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
       rspec-expectations (~> 3.11.0)
@@ -307,9 +307,9 @@ GEM
       rack
       rest-client
     spring (4.1.0)
-    sprockets (4.1.1)
+    sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
+      rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
