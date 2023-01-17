@@ -359,7 +359,6 @@ DEPENDENCIES
   govuk_app_config
   govuk_publishing_components
   govuk_schemas
-  mail (~> 2.8.0)
   plek
   rails (= 7.0.4)
   rspec-its
