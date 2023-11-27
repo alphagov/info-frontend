@@ -124,7 +124,7 @@ GEM
     google-protobuf (3.25.1)
     googleapis-common-protos-types (1.10.0)
       google-protobuf (~> 3.18)
-    govuk_app_config (9.6.0)
+    govuk_app_config (9.7.0)
       logstasher (~> 2.1)
       opentelemetry-exporter-otlp (>= 0.25, < 0.27)
       opentelemetry-instrumentation-all (>= 0.39.1, < 0.52.0)
@@ -533,10 +533,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sentry-rails (5.13.0)
+    sentry-rails (5.14.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.13.0)
-    sentry-ruby (5.13.0)
+      sentry-ruby (~> 5.14.0)
+    sentry-ruby (5.14.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
     simplecov (0.22.0)
       docile (~> 1.1)
