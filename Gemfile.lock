@@ -99,7 +99,7 @@ GEM
     ci_reporter_rspec (1.0.0)
       ci_reporter (~> 2.0)
       rspec (>= 2.14, < 4)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crack (0.4.5)
       rexml
@@ -121,7 +121,7 @@ GEM
       rest-client (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (3.25.1)
+    google-protobuf (3.25.2)
     googleapis-common-protos-types (1.11.0)
       google-protobuf (~> 3.18)
     govuk_app_config (9.8.1)
@@ -139,7 +139,7 @@ GEM
     govuk_personalisation (0.15.0)
       plek (>= 1.9.0)
       rails (>= 6, < 8)
-    govuk_publishing_components (37.2.1)
+    govuk_publishing_components (37.2.3)
       govuk_app_config
       govuk_personalisation (>= 0.7.0)
       kramdown
@@ -157,9 +157,9 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.7.1)
-    irb (1.11.0)
+    irb (1.11.1)
       rdoc
-      reline (>= 0.3.8)
+      reline (>= 0.4.2)
     json (2.7.1)
     json-schema (4.1.1)
       addressable (>= 2.8)
@@ -185,7 +185,7 @@ GEM
     mime-types-data (3.2023.1205)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.20.0)
+    minitest (5.21.1)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.9.1)
@@ -535,13 +535,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sentry-rails (5.3.1)
+    sentry-rails (5.16.1)
       railties (>= 5.0)
-      sentry-ruby-core (~> 5.3.1)
-    sentry-ruby (5.16.0)
+      sentry-ruby (~> 5.16.1)
+    sentry-ruby (5.16.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-ruby-core (5.3.1)
-      concurrent-ruby
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
