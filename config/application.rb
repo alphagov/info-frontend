@@ -21,7 +21,7 @@ Bundler.require(*Rails.groups)
 module InfoFrontend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Using a sass css compressor causes a scss file to be processed twice
     # (once to build, once to compress) which breaks the usage of "unquote"
