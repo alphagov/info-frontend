@@ -25,4 +25,18 @@ namespace :publishing_api do
       rendering_app: "info-frontend",
     )
   end
+
+  desc "Unpublishes /info prefix route with 410 gone"
+  task unpublish_info_prefix_route: :environment do
+    publishing_api = GdsApi::PublishingApi.new(
+      Plek.new.find("publishing-api"),
+      bearer_token: ENV["PUBLISHING_API_BEARER_TOKEN"] || "example",
+    )
+
+    publishing_api.unpublish(
+      "bce40c1f-2259-4404-b275-8c5e04afef34",
+      type: "gone",
+      discard_drafts: true,
+    )
+  end
 end
