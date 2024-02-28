@@ -42,15 +42,13 @@ As we no longer provide performance data on the /info pages or maintain the
 user needs information, we are proposing to remove the pages and thus, retire
 Info Frontend.
 
-We plan to redirect requests to /info pages to a single mainstream content page
-that outlines what these pages were, why they have been removed. We'll remove
-the existing prefix info/ route that points to info-frontend and instead use
-[Short URL Manager][3] to add a prefix route that points at the single content
-page.  We did consider removing the /info pages without redirects considering
-the low traffic, however a content page would be beneficial for any invested
-user (publisher / public) that is curious why they no longer exist. Post launch
-we will monitor the page traffic and feedback and assess whether the page
-should persist.
+We plan to unpublish the pages with a 410 gone [3]. We'll remove the existing
+prefix info/ route that points to info-frontend and instead return gov.uk's
+static 410 page instead [4]. We did consider creating a single retirement
+content page for and redirecting all the /info page requests to it, however
+this was deemed unnecessary as we've already communicated the upcoming
+retirement to departments and /info pages receive such little traffic that it
+didn't seem worthwhile.
 
 As part of this work, we won't be retiring Maslow or the backing data, we'll
 just be removing the frontend that supports /info pages. Publishers will still
@@ -61,7 +59,8 @@ work is not currently scheduled.
 We will inform the relevant teams internally and post this to the wider content
 community (x-gov) to raise awareness of the upcoming change.
 
-[3]: https://github.com/alphagov/short-url-manager
+[3]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410
+[4]: https://github.com/alphagov/static/blob/main/app/views/root/410.html.erb
 
 ## Consequences
 
