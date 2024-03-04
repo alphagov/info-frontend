@@ -1,3 +1,5 @@
+**Info pages are retired, you can read about the decision in the [retirement ADR](https://github.com/alphagov/info-frontend/blob/main/docs/adr/retiring-info-frontend.md)**
+
 # Info Frontend
 
 This application exposes the user needs and metrics about content on GOV.UK. It does this by fetching content details from [Content Store](https://github.com/alphagov/content-store).
